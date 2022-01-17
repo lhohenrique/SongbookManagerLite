@@ -2,11 +2,15 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="SongbookManagerLite.Views.MusicPage">
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Filtro" Order="Primary"/>
+        <ToolbarItem Text="+" Order="Primary" Command="{Binding NewMusic}"/>
+    </ContentPage.ToolbarItems>
+
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+            <ListView x:Name="MusicPageMusicListListView"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
