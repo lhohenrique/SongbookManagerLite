@@ -5,12 +5,75 @@
 
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Filtro" Order="Primary"/>
-        <ToolbarItem Text="+" Order="Primary" Command="{Binding NewMusic}"/>
+        <ToolbarItem Text="+" Order="Primary" Command="{Binding NewMusicCommand}"/>
     </ContentPage.ToolbarItems>
 
     <ContentPage.Content>
         <StackLayout>
-            <ListView x:Name="MusicPageMusicListListView"/>
+            <ScrollView IsVisible="{Binding IsAddEditMusic, Mode=OneWay}">
+                <StackLayout>
+                    <Label Text="Nome"
+                        FontSize="12"
+                        FontAttributes="Bold"
+                        TextColor="DarkSlateGray"></Label>
+                    <Entry Text="{Binding Name}"></Entry>
+
+                    <Label Text="Autor"
+                        FontSize="12"
+                        FontAttributes="Bold"
+                        TextColor="DarkSlateGray"></Label>
+                    <Entry Text="{Binding Author}"></Entry>
+
+                    <Label Text="Tom"
+                        FontSize="12"
+                        FontAttributes="Bold"
+                        TextColor="DarkSlateGray"></Label>
+                    <Entry Text="{Binding Key}"></Entry>
+                    <!--<Picker ItemsSource="{Binding KeyList}" SelectedItem="{Binding SelectedKey}"/>-->
+
+                    <Label Text="Letra"
+                        FontSize="12"
+                        FontAttributes="Bold"
+                        TextColor="DarkSlateGray"></Label>
+                    <Editor Text="{Binding Lyrics}" HeightRequest="100"></Editor>
+
+                    <Label Text="Cifra"
+                        FontSize="12"
+                        FontAttributes="Bold"
+                        TextColor="DarkSlateGray"></Label>
+                    <Editor Text="{Binding Chords}" HeightRequest="100"></Editor>
+
+                    <Button Text="Salvar" Command="{Binding SaveMusicCommand}"/>
+                    <Button Text="Cancelar" Command="{Binding CancelMusicCommand}"/>
+                </StackLayout>
+            </ScrollView>
+
+            <ListView x:Name="MusicPageMusicListListView"
+                      IsVisible="{Binding IsShowMusicList, Mode=OneWay}"
+                      ItemsSource="{Binding MusicList, Mode=OneWay}">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <StackLayout VerticalOptions="FillAndExpand"
+                                         BackgroundColor="White"
+                                         Orientation="Vertical"
+                                         Spacing="0"
+                                         Padding="7"
+                                         Margin="0,0,0,5">
+                                    <Label Text="{Binding Name}"
+                                        FontSize="14"
+                                        VerticalOptions="Center"
+                                        TextColor="Black"/>
+                                    <Label Text="{Binding Author}"
+                                       FontSize="10"
+                                       VerticalOptions="Center"
+                                       TextColor="DarkSlateGray"
+                                       Margin="0"/>
+                                </StackLayout>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
