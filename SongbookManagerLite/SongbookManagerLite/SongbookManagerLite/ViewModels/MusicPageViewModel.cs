@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
 
@@ -131,6 +132,30 @@ namespace SongbookManagerLite.ViewModels
                 CancelMusicAction();
             });
         }
+
+        public ICommand UpdateMusicList
+        {
+            get => new Command(() =>
+            {
+                //UpdateMusicListAction
+            });
+        }
+
+        public ICommand SelectMusicCommand
+        {
+            get => new Command(() =>
+            {
+                CancelMusicAction();
+            });
+        }
+
+        public ICommand RemoveMusicCommand
+        {
+            get => new Command<Music>(async (Music music) =>
+            {
+                await RemoveMusicAction(music);
+            });
+        }
         #endregion
 
         public MusicPageViewModel()
@@ -139,10 +164,10 @@ namespace SongbookManagerLite.ViewModels
 
             MusicList = new ObservableCollection<Music>();
 
-            var music1 = new Music() { Name = "Music 1", Author = "Fulano 1", Key = "C"};
-            var music2 = new Music() { Name = "Music 2", Author = "Fulano 2", Key = "C#"};
-            var music3 = new Music() { Name = "Music 3", Author = "Fulano 3", Key = "D"};
-            var music4 = new Music() { Name = "Music 4", Author = "Fulano 4", Key = "G#"};
+            var music1 = new Music() { Id = 0, Name = "Music 1", Author = "Fulano 1", Key = "C", Lyrics = "Bla bla bla bla", Chords = "C C C C"};
+            var music2 = new Music() { Id = 1, Name = "Music 2", Author = "Fulano 2", Key = "C#", Lyrics = "Bla bla bla bla", Chords = "C C C C" };
+            var music3 = new Music() { Id = 2, Name = "Music 3", Author = "Fulano 3", Key = "D", Lyrics = "Bla bla bla bla", Chords = "C C C C" };
+            var music4 = new Music() { Id = 3, Name = "Music 4", Author = "Fulano 4", Key = "G#", Lyrics = "Bla bla bla bla", Chords = "C C C C" };
 
             MusicList.Add(music1);
             MusicList.Add(music2);
@@ -178,6 +203,16 @@ namespace SongbookManagerLite.ViewModels
         {
             ClearMusicFields();
             HandleMusicPageState();
+        }
+
+        private async Task RemoveMusicAction(Music music)
+        {
+            var result = await Application.Current.MainPage.DisplayAlert("Tem certeza?", $"A música {music.Name} será removida da sua lista.", "Sim", "Não");
+
+            if (result)
+            {
+                MusicList.Remove(music);
+            }
         }
 
         private void HandleMusicPageState()

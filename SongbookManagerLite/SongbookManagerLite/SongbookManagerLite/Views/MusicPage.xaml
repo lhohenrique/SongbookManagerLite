@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+<ContentPage x:Name="MusicsPage"
+             xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="SongbookManagerLite.Views.MusicPage">
 
@@ -47,38 +48,45 @@
                 </StackLayout>
             </ScrollView>
 
-            <ListView x:Name="MusicPageMusicListListView"
+            <RefreshView Command="{Binding UpdateMusicList}">
+                <ListView x:Name="MusicPageMusicListListView"
                       SeparatorVisibility="None"
                       IsVisible="{Binding IsShowMusicList, Mode=OneWay}"
                       ItemsSource="{Binding MusicList, Mode=OneWay}">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell>
+                                <ViewCell.ContextActions>
+                                    <MenuItem Text="Editar"/>
+                                    <MenuItem Text="Excluir"
+                                              Command="{Binding Source={x:Reference MusicsPage}, Path=BindingContext.RemoveMusicCommand}"
+                                              CommandParameter="{Binding }"/>
+                                </ViewCell.ContextActions>
                                 <StackLayout VerticalOptions="FillAndExpand"
                                          BackgroundColor="White"
                                          Orientation="Vertical"
                                          Spacing="0"
                                          Padding="7"
                                          Margin="0,0,0,5">
-                                <Grid>
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="auto"/>
-                                    </Grid.RowDefinitions>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="*"/>
-                                        <ColumnDefinition Width="auto"/>
-                                    </Grid.ColumnDefinitions>
-                                    <Label Text="{Binding Name}"
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="auto"/>
+                                        </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="auto"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Label Text="{Binding Name}"
                                            FontSize="14"
                                            VerticalOptions="Center"
                                            TextColor="Black"/>
-                                    <Label Text="{Binding Key}"
+                                        <Label Text="{Binding Key}"
                                            FontSize="14"
                                            VerticalOptions="Center"
                                            TextColor="Black"
                                            Grid.Column="1"/>
-                                </Grid>
-                                <Label Text="{Binding Author}"
+                                    </Grid>
+                                    <Label Text="{Binding Author}"
                                        FontSize="10"
                                        VerticalOptions="Center"
                                        TextColor="DarkSlateGray"
@@ -88,6 +96,7 @@
                         </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>
+            </RefreshView>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
