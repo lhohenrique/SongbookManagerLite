@@ -11,6 +11,12 @@
 
     <ContentPage.Content>
         <StackLayout>
+
+            <StackLayout IsVisible="{Binding IsShowMusicList, Mode=OneWay}" Orientation="Horizontal">
+                <SearchBar Placeholder="Pesquisar..." Text="{Binding SearchText, Mode=OneWay}"/>
+                <Button Text="Buscar" Command="{Binding SearchCommand}"/>
+            </StackLayout>
+
             <ScrollView IsVisible="{Binding IsAddEditMusic, Mode=OneWay}">
                 <StackLayout>
                     <Label Text="{Binding Id}"

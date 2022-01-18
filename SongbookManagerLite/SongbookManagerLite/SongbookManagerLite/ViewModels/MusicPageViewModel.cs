@@ -116,6 +116,17 @@ namespace SongbookManagerLite.ViewModels
             get { return keyList; }
             set { keyList = value; }
         }
+
+        private string searchText;
+        public string SearchText
+        {
+            get => searchText;
+            set
+            {
+                searchText = value;
+                PropertyChanged(this, new PropertyChangedEventArgs("SearchText"));
+            }
+        }
         #endregion
 
         #region [Commands]
@@ -175,6 +186,14 @@ namespace SongbookManagerLite.ViewModels
                 await RemoveMusicAction(music);
             });
         }
+
+        public ICommand SearchCommand
+        {
+            get => new Command(() =>
+            {
+                SearchAction();
+            });
+        }
         #endregion
 
         public MusicPageViewModel()
@@ -192,9 +211,17 @@ namespace SongbookManagerLite.ViewModels
             MusicList.Add(music2);
             MusicList.Add(music3);
             MusicList.Add(music4);
+            MusicList.Add(music1);
+            MusicList.Add(music2);
+            MusicList.Add(music3);
+            MusicList.Add(music4);
+            MusicList.Add(music1);
+            MusicList.Add(music2);
+            MusicList.Add(music3);
+            MusicList.Add(music4);
         }
 
-        #region [Private Methods]
+        #region [Actions]
         private void NewMusicAction()
         {
             ClearMusicFields();
@@ -255,6 +282,13 @@ namespace SongbookManagerLite.ViewModels
             }
         }
 
+        private void SearchAction()
+        {
+
+        }
+        #endregion
+
+        #region [Private Methods]
         private void HandleMusicPageState()
         {
             if (IsAddEditMusic)
