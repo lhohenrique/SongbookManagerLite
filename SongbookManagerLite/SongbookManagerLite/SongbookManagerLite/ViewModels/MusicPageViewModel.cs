@@ -37,6 +37,17 @@ namespace SongbookManagerLite.ViewModels
             }
         }
 
+        private int id;
+        public int Id
+        {
+            get { return id; }
+            set
+            {
+                id = value;
+                PropertyChanged(this, new PropertyChangedEventArgs("Id"));
+            }
+        }
+
         private string name;
         public string Name
         {
@@ -149,6 +160,14 @@ namespace SongbookManagerLite.ViewModels
             });
         }
 
+        public ICommand EditMusicCommand
+        {
+            get => new Command<Music>((Music music) =>
+            {
+                EditMusicAction(music);
+            });
+        }
+
         public ICommand RemoveMusicCommand
         {
             get => new Command<Music>(async (Music music) =>
@@ -184,17 +203,24 @@ namespace SongbookManagerLite.ViewModels
 
         private void SaveMusicAction()
         {
-            var newMusic = new Music()
+            if(this.Id == 0)
             {
-                Name = this.Name,
-                Author = this.Author,
-                Key = this.SelectedKey,
-                Lyrics = this.Lyrics,
-                Chords = this.Chords
-            };
+                var newMusic = new Music()
+                {
+                    Name = this.Name,
+                    Author = this.Author,
+                    Key = this.SelectedKey,
+                    Lyrics = this.Lyrics,
+                    Chords = this.Chords
+                };
 
-            MusicList.Add(newMusic);
-
+                MusicList.Add(newMusic);
+            }
+            else
+            {
+                // Update music according to Id
+            }
+            
             ClearMusicFields();
             HandleMusicPageState();
         }
@@ -202,6 +228,20 @@ namespace SongbookManagerLite.ViewModels
         private void CancelMusicAction()
         {
             ClearMusicFields();
+            HandleMusicPageState();
+        }
+
+        private void EditMusicAction(Music music)
+        {
+            ClearMusicFields();
+
+            Id = music.Id;
+            Name = music.Name;
+            Author = music.Author;
+            SelectedKey = music.Key;
+            Lyrics = music.Lyrics;
+            Chords = music.Chords;
+
             HandleMusicPageState();
         }
 

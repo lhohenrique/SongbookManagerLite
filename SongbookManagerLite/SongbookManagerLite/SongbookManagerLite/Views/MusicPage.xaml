@@ -13,6 +13,9 @@
         <StackLayout>
             <ScrollView IsVisible="{Binding IsAddEditMusic, Mode=OneWay}">
                 <StackLayout>
+                    <Label Text="{Binding Id}"
+                           IsVisible="false"/>
+
                     <Label Text="Nome"
                         FontSize="12"
                         FontAttributes="Bold"
@@ -48,16 +51,18 @@
                 </StackLayout>
             </ScrollView>
 
-            <RefreshView Command="{Binding UpdateMusicList}">
+            <RefreshView Command="{Binding UpdateMusicList}"
+                         IsVisible="{Binding IsShowMusicList, Mode=OneWay}">
                 <ListView x:Name="MusicPageMusicListListView"
                       SeparatorVisibility="None"
-                      IsVisible="{Binding IsShowMusicList, Mode=OneWay}"
                       ItemsSource="{Binding MusicList, Mode=OneWay}">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell>
                                 <ViewCell.ContextActions>
-                                    <MenuItem Text="Editar"/>
+                                    <MenuItem Text="Editar"
+                                              Command="{Binding Source={x:Reference MusicsPage}, Path=BindingContext.EditMusicCommand}"
+                                              CommandParameter="{Binding }"/>
                                     <MenuItem Text="Excluir"
                                               Command="{Binding Source={x:Reference MusicsPage}, Path=BindingContext.RemoveMusicCommand}"
                                               CommandParameter="{Binding }"/>
