@@ -58,14 +58,14 @@ namespace SongbookManagerLite.ViewModels
             }
         }
 
-        private string key;
-        public string Key
+        private string selectedKey;
+        public string SelectedKey
         {
-            get { return key; }
+            get { return selectedKey; }
             set
             {
-                key = value;
-                PropertyChanged(this, new PropertyChangedEventArgs("Key"));
+                selectedKey = value;
+                PropertyChanged(this, new PropertyChangedEventArgs("SelectedKey"));
             }
         }
 
@@ -139,16 +139,15 @@ namespace SongbookManagerLite.ViewModels
 
             MusicList = new ObservableCollection<Music>();
 
-            var music1 = new Music() { Name = "Music 1", Author = "Fulano 1"};
-            var music2 = new Music() { Name = "Music 2", Author = "Fulano 2" };
-            var music3 = new Music() { Name = "Music 3", Author = "Fulano 3" };
-            var music4 = new Music() { Name = "Music 4", Author = "Fulano 4" };
+            var music1 = new Music() { Name = "Music 1", Author = "Fulano 1", Key = "C"};
+            var music2 = new Music() { Name = "Music 2", Author = "Fulano 2", Key = "C#"};
+            var music3 = new Music() { Name = "Music 3", Author = "Fulano 3", Key = "D"};
+            var music4 = new Music() { Name = "Music 4", Author = "Fulano 4", Key = "G#"};
 
             MusicList.Add(music1);
             MusicList.Add(music2);
             MusicList.Add(music3);
             MusicList.Add(music4);
-            MusicList.Add(music1);
         }
 
         #region [Private Methods]
@@ -164,7 +163,7 @@ namespace SongbookManagerLite.ViewModels
             {
                 Name = this.Name,
                 Author = this.Author,
-                Key = this.Key,
+                Key = this.SelectedKey,
                 Lyrics = this.Lyrics,
                 Chords = this.Chords
             };
@@ -199,7 +198,7 @@ namespace SongbookManagerLite.ViewModels
         {
             Name = string.Empty;
             Author = string.Empty;
-            Key = string.Empty;
+            SelectedKey = string.Empty;
             Lyrics = string.Empty;
             Chords = string.Empty;
         }
