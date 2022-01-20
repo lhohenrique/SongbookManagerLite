@@ -37,6 +37,29 @@ namespace SongbookManagerLite.ViewModels
             }
         }
 
+        private bool isPreviewMusic = false;
+        public bool IsPreviewMusic
+        {
+            get { return isPreviewMusic; }
+            set
+            {
+                isPreviewMusic = value;
+                PropertyChanged(this, new PropertyChangedEventArgs("IsPreviewMusic"));
+            }
+        }
+
+        private Music selectedMusic;
+        public Music SelectedMusic
+        {
+            get => selectedMusic;
+            set
+            {
+                selectedMusic = value;
+                PropertyChanged(this, new PropertyChangedEventArgs("SelectedMusic"));
+                SelectedMusicAction();
+            }
+        }
+
         private int id;
         public int Id
         {
@@ -100,6 +123,61 @@ namespace SongbookManagerLite.ViewModels
             {
                 chords = value;
                 PropertyChanged(this, new PropertyChangedEventArgs("Chords"));
+            }
+        }
+
+        private string previewName;
+        public string PreviewName
+        {
+            get { return previewName; }
+            set
+            {
+                previewName = value;
+                PropertyChanged(this, new PropertyChangedEventArgs("PreviewName"));
+            }
+        }
+
+        private string previewAuthor;
+        public string PreviewAuthor
+        {
+            get { return previewAuthor; }
+            set
+            {
+                previewAuthor = value;
+                PropertyChanged(this, new PropertyChangedEventArgs("PreviewAuthor"));
+            }
+        }
+
+        private string previewKey;
+        public string PreviewKey
+        {
+            get { return previewKey; }
+            set
+            {
+                previewKey = value;
+                PropertyChanged(this, new PropertyChangedEventArgs("PreviewKey"));
+            }
+        }
+
+        private string previewLyrics;
+        public string PreviewLyrics
+        {
+            get { return previewLyrics; }
+            set
+            {
+                previewLyrics = value;
+                PropertyChanged(this, new PropertyChangedEventArgs("PreviewLyrics"));
+            }
+        }
+
+        private string previewChords;
+        public string PreviewChords
+        {
+            get { return previewChords; }
+            set
+            {
+                previewChords = value;
+                PropertyChanged(this, new PropertyChangedEventArgs("PreviewChords"));
             }
         }
 
@@ -222,10 +300,26 @@ namespace SongbookManagerLite.ViewModels
         }
 
         #region [Actions]
+        private void SelectedMusicAction()
+        {
+            if(SelectedMusic != null)
+            {
+                PreviewName = SelectedMusic.Name;
+                PreviewAuthor = SelectedMusic.Author;
+                PreviewLyrics = SelectedMusic.Lyrics;
+                PreviewKey = SelectedMusic.Key;
+                PreviewChords = SelectedMusic.Chords;
+
+                ClearStates();
+                IsPreviewMusic = true;
+            }
+        }
+
         private void NewMusicAction()
         {
             ClearMusicFields();
-            HandleMusicPageState();
+            ClearStates();
+            IsAddEditMusic = true;
         }
 
         private void SaveMusicAction()
@@ -249,13 +343,17 @@ namespace SongbookManagerLite.ViewModels
             }
             
             ClearMusicFields();
-            HandleMusicPageState();
+            ClearStates();
+
+            IsShowMusicList = true;
         }
 
         private void CancelMusicAction()
         {
             ClearMusicFields();
-            HandleMusicPageState();
+            ClearStates();
+
+            IsShowMusicList = true;
         }
 
         private void EditMusicAction(Music music)
@@ -269,7 +367,8 @@ namespace SongbookManagerLite.ViewModels
             Lyrics = music.Lyrics;
             Chords = music.Chords;
 
-            HandleMusicPageState();
+            ClearStates();
+            IsAddEditMusic = true;
         }
 
         private async Task RemoveMusicAction(Music music)
@@ -289,18 +388,11 @@ namespace SongbookManagerLite.ViewModels
         #endregion
 
         #region [Private Methods]
-        private void HandleMusicPageState()
+        private void ClearStates()
         {
-            if (IsAddEditMusic)
-            {
-                IsAddEditMusic = false;
-                IsShowMusicList = !IsAddEditMusic;
-            }
-            else
-            {
-                IsAddEditMusic = true;
-                IsShowMusicList = !IsAddEditMusic;
-            }
+            IsPreviewMusic = false;
+            IsAddEditMusic = false;
+            IsShowMusicList = false;
         }
 
         private void ClearMusicFields()

@@ -17,7 +17,7 @@
                 <Button Text="Buscar" Command="{Binding SearchCommand}"/>
             </StackLayout>
 
-            <ScrollView IsVisible="{Binding IsAddEditMusic, Mode=OneWay}">
+            <ScrollView x:Name="MusicPageAddEditMusicScrollView" IsVisible="{Binding IsAddEditMusic, Mode=OneWay}">
                 <StackLayout>
                     <Label Text="{Binding Id}"
                            IsVisible="false"/>
@@ -57,11 +57,41 @@
                 </StackLayout>
             </ScrollView>
 
+            <ScrollView x:Name="MusicPagePreviewMusicScrollView" IsVisible="{Binding IsPreviewMusic, Mode=OneWay}">
+                <StackLayout>
+                    <Label Text="{Binding PreviewName}"
+                        FontSize="12"
+                        FontAttributes="Bold"
+                        TextColor="DarkSlateGray"></Label>
+
+                    <Label Text="{Binding PreviewAuthor}"
+                        FontSize="12"
+                        FontAttributes="Bold"
+                        TextColor="DarkSlateGray"></Label>
+
+                    <Label Text="{Binding PreviewKey}"
+                        FontSize="12"
+                        FontAttributes="Bold"
+                        TextColor="DarkSlateGray"></Label>
+
+                    <Label Text="{Binding PreviewLyrics}"
+                        FontSize="12"
+                        FontAttributes="Bold"
+                        TextColor="DarkSlateGray"></Label>
+
+                    <Label Text="{Binding PreviewChords}"
+                        FontSize="12"
+                        FontAttributes="Bold"
+                        TextColor="DarkSlateGray"></Label>
+                </StackLayout>
+            </ScrollView>
+
             <RefreshView Command="{Binding UpdateMusicList}"
                          IsVisible="{Binding IsShowMusicList, Mode=OneWay}">
                 <ListView x:Name="MusicPageMusicListListView"
-                      SeparatorVisibility="None"
-                      ItemsSource="{Binding MusicList, Mode=OneWay}">
+                          SeparatorVisibility="None"
+                          SelectedItem="{Binding SelectedMusic}"
+                          ItemsSource="{Binding MusicList, Mode=OneWay}">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell>

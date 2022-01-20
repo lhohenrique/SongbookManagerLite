@@ -12,7 +12,7 @@
         </Tab>
         <Tab Title="Repertórios" Route="Repertorios">
             <ShellContent>
-                <Views:MusicPage Title="Lista de Repertórios"/>
+                <Views:RepertoirePage Title="Lista de Repertórios"/>
             </ShellContent>
         </Tab>
     </TabBar>
