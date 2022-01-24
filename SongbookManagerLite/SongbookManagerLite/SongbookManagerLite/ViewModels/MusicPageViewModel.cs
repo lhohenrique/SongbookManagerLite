@@ -1,4 +1,5 @@
 ﻿using SongbookManagerLite.Models;
+using SongbookManagerLite.Views;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -13,6 +14,9 @@ namespace SongbookManagerLite.ViewModels
     public class MusicPageViewModel : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
+
+        public INavigation Navigation { get; set; }
+
 
         #region [Properties]
         private bool isAddEditMusic = false;
@@ -241,14 +245,6 @@ namespace SongbookManagerLite.ViewModels
             });
         }
 
-        public ICommand SelectMusicCommand
-        {
-            get => new Command(() =>
-            {
-                CancelMusicAction();
-            });
-        }
-
         public ICommand EditMusicCommand
         {
             get => new Command<Music>((Music music) =>
@@ -274,8 +270,10 @@ namespace SongbookManagerLite.ViewModels
         }
         #endregion
 
-        public MusicPageViewModel()
+        public MusicPageViewModel(INavigation navigation)
         {
+            this.Navigation = navigation;
+
             KeyList = new ObservableCollection<string>(){"C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"};
 
             MusicList = new ObservableCollection<Music>();
@@ -304,14 +302,18 @@ namespace SongbookManagerLite.ViewModels
         {
             if(SelectedMusic != null)
             {
-                PreviewName = SelectedMusic.Name;
-                PreviewAuthor = SelectedMusic.Author;
-                PreviewLyrics = SelectedMusic.Lyrics;
-                PreviewKey = SelectedMusic.Key;
-                PreviewChords = SelectedMusic.Chords;
+                //PreviewName = SelectedMusic.Name;
+                //PreviewAuthor = SelectedMusic.Author;
+                //PreviewLyrics = SelectedMusic.Lyrics;
+                //PreviewKey = SelectedMusic.Key;
+                //PreviewChords = SelectedMusic.Chords;
 
-                ClearStates();
-                IsPreviewMusic = true;
+                //ClearStates();
+                //IsPreviewMusic = true;
+
+                Navigation.PushAsync(new PreviewMusicPage(selectedMusic));
+
+
             }
         }
 

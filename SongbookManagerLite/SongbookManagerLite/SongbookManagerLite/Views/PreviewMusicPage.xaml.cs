@@ -1,4 +1,4 @@
-﻿using SongbookManagerLite.ViewModels;
+﻿using SongbookManagerLite.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,13 +11,12 @@ using Xamarin.Forms.Xaml;
 namespace SongbookManagerLite.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class MusicPage : ContentPage
+    public partial class PreviewMusicPage : ContentPage
     {
-        public MusicPage()
+        public PreviewMusicPage(Music music)
         {
             InitializeComponent();
-
-            BindingContext = new MusicPageViewModel(Navigation);
+            lblMusicId.Text = music.Name;
         }
     }
 }

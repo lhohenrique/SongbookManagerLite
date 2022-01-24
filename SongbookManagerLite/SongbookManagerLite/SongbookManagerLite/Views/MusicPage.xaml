@@ -57,7 +57,7 @@
                 </StackLayout>
             </ScrollView>
 
-            <ScrollView x:Name="MusicPagePreviewMusicScrollView" IsVisible="{Binding IsPreviewMusic, Mode=OneWay}">
+            <!--<ScrollView x:Name="MusicPagePreviewMusicScrollView" IsVisible="{Binding IsPreviewMusic, Mode=OneWay}">
                 <StackLayout>
                     <Label Text="{Binding PreviewName}"
                         FontSize="12"
@@ -84,7 +84,7 @@
                         FontAttributes="Bold"
                         TextColor="DarkSlateGray"></Label>
                 </StackLayout>
-            </ScrollView>
+            </ScrollView>-->
 
             <RefreshView Command="{Binding UpdateMusicList}"
                          IsVisible="{Binding IsShowMusicList, Mode=OneWay}">
