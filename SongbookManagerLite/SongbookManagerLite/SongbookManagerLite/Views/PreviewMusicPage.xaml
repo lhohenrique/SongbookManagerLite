@@ -2,31 +2,37 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="SongbookManagerLite.Views.PreviewMusicPage">
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Editar" Order="Primary" Command="{Binding EditMusicCommand}"/>
+        <ToolbarItem Text="Excluir" Order="Primary" Command="{Binding RemoveMusicCommand}"/>
+    </ContentPage.ToolbarItems>
+
     <ContentPage.Content>
         <StackLayout>
-            <ScrollView x:Name="MusicPagePreviewMusicScrollView" IsVisible="{Binding IsPreviewMusic, Mode=OneWay}">
+            <ScrollView>
                 <StackLayout>
-                    <Label x:Name="lblMusicId"
+                    <Label Text="{Binding Name}"
                         FontSize="12"
                         FontAttributes="Bold"
                         TextColor="DarkSlateGray"></Label>
 
-                    <Label 
+                    <Label Text="{Binding Author}"
                         FontSize="12"
                         FontAttributes="Bold"
                         TextColor="DarkSlateGray"></Label>
 
-                    <Label 
+                    <Label Text="{Binding Key}"
                         FontSize="12"
                         FontAttributes="Bold"
                         TextColor="DarkSlateGray"></Label>
 
-                    <Label 
+                    <Label Text="{Binding Lyrics}"
                         FontSize="12"
                         FontAttributes="Bold"
                         TextColor="DarkSlateGray"></Label>
 
-                    <Label 
+                    <Label Text="{Binding Chords}"
                         FontSize="12"
                         FontAttributes="Bold"
                         TextColor="DarkSlateGray"></Label>

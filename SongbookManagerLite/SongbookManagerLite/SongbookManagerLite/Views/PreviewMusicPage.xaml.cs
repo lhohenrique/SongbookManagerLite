@@ -1,4 +1,5 @@
 ﻿using SongbookManagerLite.Models;
+using SongbookManagerLite.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,7 +17,14 @@ namespace SongbookManagerLite.Views
         public PreviewMusicPage(Music music)
         {
             InitializeComponent();
-            lblMusicId.Text = music.Name;
+
+            BindingContext = new PreviewMusicPageViewModel(Navigation, music);
+        }
+
+        protected override void OnAppearing()
+        {
+            var viewModel = (PreviewMusicPageViewModel)BindingContext;
+            viewModel.ShowMusicDetailsCommand.Execute(null);
         }
     }
 }
