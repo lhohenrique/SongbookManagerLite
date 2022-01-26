@@ -19,28 +19,6 @@ namespace SongbookManagerLite.ViewModels
 
 
         #region [Properties]
-        private bool isAddEditMusic = false;
-        public bool IsAddEditMusic
-        {
-            get { return isAddEditMusic; }
-            set 
-            {
-                isAddEditMusic = value;
-                PropertyChanged(this, new PropertyChangedEventArgs("IsAddEditMusic"));
-            }
-        }
-
-        private bool isShowMusicList = true;
-        public bool IsShowMusicList
-        {
-            get { return isShowMusicList; }
-            set
-            {
-                isShowMusicList = value;
-                PropertyChanged(this, new PropertyChangedEventArgs("IsShowMusicList"));
-            }
-        }
-
         private bool isPreviewMusic = false;
         public bool IsPreviewMusic
         {
@@ -221,22 +199,6 @@ namespace SongbookManagerLite.ViewModels
             });
         }
 
-        public ICommand SaveMusicCommand
-        {
-            get => new Command(() =>
-            {
-                SaveMusicAction();
-            });
-        }
-
-        public ICommand CancelMusicCommand
-        {
-            get => new Command(() =>
-            {
-                CancelMusicAction();
-            });
-        }
-
         public ICommand UpdateMusicList
         {
             get => new Command(() =>
@@ -274,8 +236,6 @@ namespace SongbookManagerLite.ViewModels
         {
             this.Navigation = navigation;
 
-            KeyList = new ObservableCollection<string>(){"C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"};
-
             MusicList = new ObservableCollection<Music>();
 
             var music1 = new Music() { Id = 0, Name = "Music 1", Author = "Fulano 1", Key = "C", Lyrics = "Bla bla bla bla", Chords = "C C C C"};
@@ -302,75 +262,18 @@ namespace SongbookManagerLite.ViewModels
         {
             if(SelectedMusic != null)
             {
-                //PreviewName = SelectedMusic.Name;
-                //PreviewAuthor = SelectedMusic.Author;
-                //PreviewLyrics = SelectedMusic.Lyrics;
-                //PreviewKey = SelectedMusic.Key;
-                //PreviewChords = SelectedMusic.Chords;
-
-                //ClearStates();
-                //IsPreviewMusic = true;
-
                 Navigation.PushAsync(new PreviewMusicPage(selectedMusic));
-
-
             }
         }
 
         private void NewMusicAction()
         {
-            ClearMusicFields();
-            ClearStates();
-            IsAddEditMusic = true;
-        }
-
-        private void SaveMusicAction()
-        {
-            if(this.Id == 0)
-            {
-                var newMusic = new Music()
-                {
-                    Name = this.Name,
-                    Author = this.Author,
-                    Key = this.SelectedKey,
-                    Lyrics = this.Lyrics,
-                    Chords = this.Chords
-                };
-
-                MusicList.Add(newMusic);
-            }
-            else
-            {
-                // Update music according to Id
-            }
-            
-            ClearMusicFields();
-            ClearStates();
-
-            IsShowMusicList = true;
-        }
-
-        private void CancelMusicAction()
-        {
-            ClearMusicFields();
-            ClearStates();
-
-            IsShowMusicList = true;
+            Navigation.PushAsync(new AddEditMusicPage(null));
         }
 
         private void EditMusicAction(Music music)
-        {
-            ClearMusicFields();
-
-            Id = music.Id;
-            Name = music.Name;
-            Author = music.Author;
-            SelectedKey = music.Key;
-            Lyrics = music.Lyrics;
-            Chords = music.Chords;
-
-            ClearStates();
-            IsAddEditMusic = true;
+        {           
+            Navigation.PushAsync(new AddEditMusicPage(music));
         }
 
         private async Task RemoveMusicAction(Music music)
@@ -390,21 +293,6 @@ namespace SongbookManagerLite.ViewModels
         #endregion
 
         #region [Private Methods]
-        private void ClearStates()
-        {
-            IsPreviewMusic = false;
-            IsAddEditMusic = false;
-            IsShowMusicList = false;
-        }
-
-        private void ClearMusicFields()
-        {
-            Name = string.Empty;
-            Author = string.Empty;
-            SelectedKey = string.Empty;
-            Lyrics = string.Empty;
-            Chords = string.Empty;
-        }
         #endregion
     }
 }

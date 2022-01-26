@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SongbookManagerLite.Views.AddEditMusicPage">
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Salvar" Order="Primary" Command="{Binding SaveMusicCommand}"/>
+    </ContentPage.ToolbarItems>
+
+    <ContentPage.Content>
+        <ScrollView x:Name="MusicPageAddEditMusicScrollView">
+            <StackLayout>
+                <Label Text="{Binding Id}"
+                           IsVisible="false"/>
+
+                <Label Text="Nome"
+                        FontSize="12"
+                        FontAttributes="Bold"
+                        TextColor="DarkSlateGray"></Label>
+                <Entry Text="{Binding Name}"></Entry>
+
+                <Label Text="Autor"
+                        FontSize="12"
+                        FontAttributes="Bold"
+                        TextColor="DarkSlateGray"></Label>
+                <Entry Text="{Binding Author}"></Entry>
+
+                <Label Text="Tom"
+                        FontSize="12"
+                        FontAttributes="Bold"
+                        TextColor="DarkSlateGray"></Label>
+                <Picker ItemsSource="{Binding KeyList}" SelectedItem="{Binding SelectedKey}"/>
+
+                <Label Text="Letra"
+                        FontSize="12"
+                        FontAttributes="Bold"
+                        TextColor="DarkSlateGray"></Label>
+                <Editor Text="{Binding Lyrics}" HeightRequest="100"></Editor>
+
+                <Label Text="Cifra"
+                        FontSize="12"
+                        FontAttributes="Bold"
+                        TextColor="DarkSlateGray"></Label>
+                <Editor Text="{Binding Chords}" HeightRequest="100"></Editor>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

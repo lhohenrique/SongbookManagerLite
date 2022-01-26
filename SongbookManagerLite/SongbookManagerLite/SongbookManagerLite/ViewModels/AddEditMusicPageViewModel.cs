@@ -1,7 +1,7 @@
 ﻿using SongbookManagerLite.Models;
-using SongbookManagerLite.Views;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Text;
 using System.Windows.Input;
@@ -9,7 +9,7 @@ using Xamarin.Forms;
 
 namespace SongbookManagerLite.ViewModels
 {
-    public class PreviewMusicPageViewModel : INotifyPropertyChanged
+    public class AddEditMusicPageViewModel : INotifyPropertyChanged
     {
         public INavigation Navigation { get; set; }
         public event PropertyChangedEventHandler PropertyChanged;
@@ -17,6 +17,17 @@ namespace SongbookManagerLite.ViewModels
         private Music music;
 
         #region [Properties]
+        private int id;
+        public int Id
+        {
+            get { return id; }
+            set
+            {
+                id = value;
+                PropertyChanged(this, new PropertyChangedEventArgs("Id"));
+            }
+        }
+
         private string name;
         public string Name
         {
@@ -39,14 +50,14 @@ namespace SongbookManagerLite.ViewModels
             }
         }
 
-        private string key;
-        public string Key
+        private string selectedKey;
+        public string SelectedKey
         {
-            get { return key; }
+            get { return selectedKey; }
             set
             {
-                key = value;
-                PropertyChanged(this, new PropertyChangedEventArgs("Key"));
+                selectedKey = value;
+                PropertyChanged(this, new PropertyChangedEventArgs("SelectedKey"));
             }
         }
 
@@ -71,66 +82,58 @@ namespace SongbookManagerLite.ViewModels
                 PropertyChanged(this, new PropertyChangedEventArgs("Chords"));
             }
         }
+
+        private ObservableCollection<string> keyList = new ObservableCollection<string>(){"C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"};
+        public ObservableCollection<string> KeyList
+        {
+            get { return keyList; }
+            set { keyList = value; }
+        }
         #endregion
 
         #region [Commands]
-        public ICommand ShowMusicDetailsCommand
+        public ICommand SaveMusicCommand
         {
             get => new Command(() =>
             {
-                ShowMusicDetailsAction();
-            });
-        }
-
-        public ICommand EditMusicCommand
-        {
-            get => new Command(() =>
-            {
-                EditMusicAction();
-            });
-        }
-
-        public ICommand RemoveMusicDetailsCommand
-        {
-            get => new Command(() =>
-            {
-                RemoveMusicAction();
+                SaveMusicAction();
             });
         }
         #endregion
 
-        public PreviewMusicPageViewModel(INavigation navigation, Music music)
+        public AddEditMusicPageViewModel(INavigation navigation, Music music)
         {
             Navigation = navigation;
+
             this.music = music;
         }
 
         #region [Actions]
-        private void ShowMusicDetailsAction()
+        public void SaveMusicAction()
+        {
+            // Edit
+            if(music != null)
+            {
+
+            }
+            else // Save
+            {
+
+            }
+        }
+        #endregion
+
+        #region [Public Methods]
+        public void PopulateMusicFields()
         {
             if(music != null)
             {
+                Id = music.Id;
                 Name = music.Name;
                 Author = music.Author;
-                Key = music.Key;
+                SelectedKey = music.Key;
                 Lyrics = music.Lyrics;
                 Chords = music.Chords;
-            }
-        }
-
-        private void EditMusicAction()
-        {
-            if(music != null)
-            {
-                Navigation.PushAsync(new AddEditMusicPage(music));
-            }
-        }
-
-        private void RemoveMusicAction()
-        {
-            if(music != null)
-            {
-
             }
         }
         #endregion

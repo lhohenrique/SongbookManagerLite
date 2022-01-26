@@ -12,82 +12,12 @@
     <ContentPage.Content>
         <StackLayout>
 
-            <StackLayout IsVisible="{Binding IsShowMusicList, Mode=OneWay}" Orientation="Horizontal">
+            <StackLayout Orientation="Horizontal">
                 <SearchBar Placeholder="Pesquisar..." Text="{Binding SearchText, Mode=OneWay}"/>
                 <Button Text="Buscar" Command="{Binding SearchCommand}"/>
             </StackLayout>
 
-            <ScrollView x:Name="MusicPageAddEditMusicScrollView" IsVisible="{Binding IsAddEditMusic, Mode=OneWay}">
-                <StackLayout>
-                    <Label Text="{Binding Id}"
-                           IsVisible="false"/>
-
-                    <Label Text="Nome"
-                        FontSize="12"
-                        FontAttributes="Bold"
-                        TextColor="DarkSlateGray"></Label>
-                    <Entry Text="{Binding Name}"></Entry>
-
-                    <Label Text="Autor"
-                        FontSize="12"
-                        FontAttributes="Bold"
-                        TextColor="DarkSlateGray"></Label>
-                    <Entry Text="{Binding Author}"></Entry>
-
-                    <Label Text="Tom"
-                        FontSize="12"
-                        FontAttributes="Bold"
-                        TextColor="DarkSlateGray"></Label>
-                    <Picker ItemsSource="{Binding KeyList}" SelectedItem="{Binding SelectedKey}"/>
-
-                    <Label Text="Letra"
-                        FontSize="12"
-                        FontAttributes="Bold"
-                        TextColor="DarkSlateGray"></Label>
-                    <Editor Text="{Binding Lyrics}" HeightRequest="100"></Editor>
-
-                    <Label Text="Cifra"
-                        FontSize="12"
-                        FontAttributes="Bold"
-                        TextColor="DarkSlateGray"></Label>
-                    <Editor Text="{Binding Chords}" HeightRequest="100"></Editor>
-
-                    <Button Text="Salvar" Command="{Binding SaveMusicCommand}"/>
-                    <Button Text="Cancelar" Command="{Binding CancelMusicCommand}"/>
-                </StackLayout>
-            </ScrollView>
-
-            <!--<ScrollView x:Name="MusicPagePreviewMusicScrollView" IsVisible="{Binding IsPreviewMusic, Mode=OneWay}">
-                <StackLayout>
-                    <Label Text="{Binding PreviewName}"
-                        FontSize="12"
-                        FontAttributes="Bold"
-                        TextColor="DarkSlateGray"></Label>
-
-                    <Label Text="{Binding PreviewAuthor}"
-                        FontSize="12"
-                        FontAttributes="Bold"
-                        TextColor="DarkSlateGray"></Label>
-
-                    <Label Text="{Binding PreviewKey}"
-                        FontSize="12"
-                        FontAttributes="Bold"
-                        TextColor="DarkSlateGray"></Label>
-
-                    <Label Text="{Binding PreviewLyrics}"
-                        FontSize="12"
-                        FontAttributes="Bold"
-                        TextColor="DarkSlateGray"></Label>
-
-                    <Label Text="{Binding PreviewChords}"
-                        FontSize="12"
-                        FontAttributes="Bold"
-                        TextColor="DarkSlateGray"></Label>
-                </StackLayout>
-            </ScrollView>-->
-
-            <RefreshView Command="{Binding UpdateMusicList}"
-                         IsVisible="{Binding IsShowMusicList, Mode=OneWay}">
+            <RefreshView Command="{Binding UpdateMusicList}">
                 <ListView x:Name="MusicPageMusicListListView"
                           SeparatorVisibility="None"
                           SelectedItem="{Binding SelectedMusic}"
