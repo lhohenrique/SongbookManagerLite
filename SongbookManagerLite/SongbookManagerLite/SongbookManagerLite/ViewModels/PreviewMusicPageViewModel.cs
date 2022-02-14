@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
 
@@ -90,11 +91,11 @@ namespace SongbookManagerLite.ViewModels
             });
         }
 
-        public ICommand RemoveMusicDetailsCommand
+        public ICommand RemoveMusicCommand
         {
-            get => new Command(() =>
+            get => new Command(async () =>
             {
-                RemoveMusicAction();
+                await RemoveMusicAction();
             });
         }
         #endregion
@@ -126,12 +127,26 @@ namespace SongbookManagerLite.ViewModels
             }
         }
 
-        private void RemoveMusicAction()
+        private async Task RemoveMusicAction()
         {
             if(music != null)
             {
+                try
+                {
+                    var result = await Application.Current.MainPage.DisplayAlert("Tem certeza?", $"A música {music.Name} será removida da sua lista.", "Sim", "Não");
 
+                    if (result)
+                    {
+                        await App.Database.DeleteMusic(music.Id);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    await Application.Current.MainPage.DisplayAlert("Erro", ex.Message, "OK");
+                }
             }
+
+            await Navigation.PopAsync();
         }
         #endregion
     }

@@ -7,17 +7,19 @@
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Filtro" Order="Primary"/>
         <ToolbarItem Text="+" Order="Primary" Command="{Binding NewMusicCommand}"/>
+        <ToolbarItem Text="Clear" Order="Secondary" Command="{Binding ClearCommand}"/>
+        <ToolbarItem Text="Mock" Order="Secondary" Command="{Binding MockMusicCommand}"/>
     </ContentPage.ToolbarItems>
 
     <ContentPage.Content>
         <StackLayout>
 
             <StackLayout Orientation="Horizontal">
-                <SearchBar Placeholder="Pesquisar..." Text="{Binding SearchText, Mode=OneWay}"/>
+                <SearchBar Placeholder="Pesquisar..." Text="{Binding SearchText}"/>
                 <Button Text="Buscar" Command="{Binding SearchCommand}"/>
             </StackLayout>
 
-            <RefreshView Command="{Binding UpdateMusicList}">
+            <RefreshView IsRefreshing="{Binding IsUpdating, Mode=OneWay}" Command="{Binding UpdateMusicListCommand}">
                 <ListView x:Name="MusicPageMusicListListView"
                           SeparatorVisibility="None"
                           SelectedItem="{Binding SelectedMusic}"

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
 
@@ -94,9 +95,9 @@ namespace SongbookManagerLite.ViewModels
         #region [Commands]
         public ICommand SaveMusicCommand
         {
-            get => new Command(() =>
+            get => new Command(async () =>
             {
-                SaveMusicAction();
+                await SaveMusicAction();
             });
         }
         #endregion
@@ -109,16 +110,40 @@ namespace SongbookManagerLite.ViewModels
         }
 
         #region [Actions]
-        public void SaveMusicAction()
+        public async Task SaveMusicAction()
         {
-            // Edit
-            if(music != null)
+            try
             {
+                // Edit music
+                if (music != null)
+                {
+                    music.Name = Name;
+                    music.Author = Author;
+                    music.Key = SelectedKey;
+                    music.Lyrics = Lyrics;
+                    music.Chords = Chords;
 
+                    await App.Database.UpdateMusic(music);
+                }
+                else // Save new music
+                {
+                    var newMusic = new Music()
+                    {
+                        Name = Name,
+                        Author = Author,
+                        Key = SelectedKey,
+                        Lyrics = Lyrics,
+                        Chords = Chords
+                    };
+
+                    await App.Database.InsertMusic(newMusic);
+                }
+
+                await Navigation.PopAsync();
             }
-            else // Save
+            catch (Exception ex)
             {
-
+                await Application.Current.MainPage.DisplayAlert("Erro", ex.Message, "OK");
             }
         }
         #endregion
@@ -134,6 +159,15 @@ namespace SongbookManagerLite.ViewModels
                 SelectedKey = music.Key;
                 Lyrics = music.Lyrics;
                 Chords = music.Chords;
+            }
+            else
+            {
+                Id = 0;
+                Name = string.Empty;
+                Author = string.Empty;
+                SelectedKey = string.Empty;
+                Lyrics = string.Empty;
+                Chords = string.Empty;
             }
         }
         #endregion

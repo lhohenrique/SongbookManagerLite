@@ -19,5 +19,11 @@ namespace SongbookManagerLite.Views
 
             BindingContext = new MusicPageViewModel(Navigation);
         }
+
+        protected override void OnAppearing()
+        {
+            var viewModel = (MusicPageViewModel)BindingContext;
+            viewModel.UpdateMusicListCommand.Execute(null);
+        }
     }
 }
