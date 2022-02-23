@@ -14,9 +14,12 @@ namespace SongbookManagerLite.Helpers
         public SQLiteDataBaseHelper(string dbPath)
         {
             _db = new SQLiteAsyncConnection(dbPath);
+
             _db.CreateTableAsync<Music>().Wait();
+            _db.CreateTableAsync<User>().Wait();
         }
 
+        #region [Music Methods]
         public Task<List<Music>> GetAllMusics()
         {
             return _db.Table<Music>().OrderByDescending(i => i.Id).ToListAsync();
@@ -63,5 +66,22 @@ namespace SongbookManagerLite.Helpers
         {
             return _db.Table<Music>().DeleteAsync(i => i.Id >= 0);
         }
+        #endregion
+
+        #region [User Methods]
+        //public Task<bool> IsUserExists(string email)
+        //{
+        //    return _db.Table<User>().FirstAsync(i => i.Email.Equals(email)) != null;
+        //}
+        public Task<int> RegisterUser(User user)
+        {
+            return _db.InsertAsync(user);
+        }
+        
+        public Task<User>LoginUser(string email, string password)
+        {
+            return _db.Table<User>().FirstAsync(i => i.Email.Equals(email) && i.Password.Equals(password));
+        }
+        #endregion
     }
 }

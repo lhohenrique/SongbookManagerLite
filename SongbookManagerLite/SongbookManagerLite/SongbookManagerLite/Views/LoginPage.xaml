@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:converters="clr-namespace:SongbookManagerLite.Converters"
+             x:Class="SongbookManagerLite.Views.LoginPage">
+    <ContentPage.Resources>
+        <converters:ReverseBoolConverter x:Key="reverseBoolConverter"/>
+    </ContentPage.Resources>
+
+    <Grid Padding="10" VerticalOptions="Center">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <StackLayout VerticalOptions="Center">
+            <Image WidthRequest="150" HeightRequest="150"/>
+
+            <Label Text="Login" FontFamily="Verdana"
+                   TextColor="Purple" FontSize="30"
+                   FontAttributes="Bold"
+                   HorizontalOptions="Center"/>
+        </StackLayout>
+
+        <StackLayout Grid.Row="1" Spacing="5">
+            <Entry Placeholder="Nome" Text="{Binding Name}" IsVisible="{Binding IsRegistering}"/>
+            <Label Text="{Binding NameErrorMessage}" TextColor="Red"/>
+            
+            <Entry Placeholder="Email" Text="{Binding Email}"/>
+            <Label Text="{Binding EmailErrorMessage}" TextColor="Red"/>
+            
+            <Entry Placeholder="Senha" Text="{Binding Password}" IsPassword="True"/>
+            <Label Text="{Binding PasswordErrorMessage}" TextColor="Red"/>
+            
+            <Entry Placeholder="Confirme a senha" Text="{Binding ConfirmPassword}" IsPassword="True" IsVisible="{Binding IsRegistering}"/>
+            <Label Text="{Binding PasswordErrorMessage}" TextColor="Red"/>
+
+            <StackLayout Orientation="Horizontal" Spacing="3" IsVisible="{Binding IsRegistering, Converter={StaticResource reverseBoolConverter}}">
+                <Label Text="Novo Usuário?" TextColor="DarkSlateGray" Margin="0,11,0,0"/>
+                <Button Text="Inscreva-se" BackgroundColor="Transparent" TextColor="Purple"
+                        HeightRequest="40" Padding="0" TextTransform="None" FontAttributes="Bold" FontSize="16"
+                        Command="{Binding SignUpCommand}"/>
+            </StackLayout>
+
+            <Button Text="Login" HorizontalOptions="Center" BackgroundColor="Black"
+                    TextColor="White" WidthRequest="300" HeightRequest="40" Margin="0,20,0,0"
+                    IsVisible="{Binding IsRegistering, Converter={StaticResource reverseBoolConverter}}"
+                    Command="{Binding LoginCommand}"/>
+
+            <Button Text="Registrar" HorizontalOptions="Center" BackgroundColor="DarkSlateGray"
+                    TextColor="White" WidthRequest="300" HeightRequest="40" Margin="0,20,0,0"
+                    IsVisible="{Binding IsRegistering}"
+                    Command="{Binding RegisterCommand}"/>
+        </StackLayout>
+    </Grid>
+</ContentPage>
