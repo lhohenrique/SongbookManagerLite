@@ -80,7 +80,7 @@ namespace SongbookManagerLite.Helpers
         
         public Task<User>LoginUser(string email, string password)
         {
-            return _db.Table<User>().FirstAsync(i => i.Email.Equals(email) && i.Password.Equals(password));
+            return _db.Table<User>().FirstOrDefaultAsync(i => i.Email.Equals(email) && i.Password.Equals(password));
         }
         #endregion
     }
