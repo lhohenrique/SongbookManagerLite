@@ -130,6 +130,7 @@ namespace SongbookManagerLite.ViewModels
         public Command LoginCommand { get; set; }
         public Command RegisterCommand { get; set; }
         public Command SignUpCommand { get; set; }
+        public Command CancelCommand { get; set; }
         #endregion
 
         public LoginPageViewModel()
@@ -137,6 +138,7 @@ namespace SongbookManagerLite.ViewModels
             LoginCommand = new Command(async () => await LoginActionAsync());
             RegisterCommand = new Command(async () => await RegisterActionAsync());
             SignUpCommand = new Command(() => SignUpAction());
+            CancelCommand = new Command(() => CancelAction());
         }
 
         #region [Actions]
@@ -220,6 +222,15 @@ namespace SongbookManagerLite.ViewModels
             {
                 IsBusy = false;
             }
+        }
+
+        private void CancelAction()
+        {
+            Name = string.Empty;
+            Email = string.Empty;
+            Password = string.Empty;
+
+            IsRegistering = false;
         }
         #endregion
 
