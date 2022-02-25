@@ -2,6 +2,7 @@
 using SongbookManagerLite.Views;
 using System;
 using System.IO;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -29,7 +30,15 @@ namespace SongbookManagerLite
             InitializeComponent();
 
             //MainPage = new MainPage();
-            MainPage = new NavigationPage(new LoginPage());
+            var loggedUserId = Preferences.Get("UserId", 0);
+            if (loggedUserId == 0)
+            {
+                MainPage = new NavigationPage(new LoginPage());
+            }
+            else
+            {
+                MainPage = new MainPage();
+            }
         }
 
         protected override void OnStart()

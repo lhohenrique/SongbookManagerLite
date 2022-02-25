@@ -206,7 +206,7 @@ namespace SongbookManagerLite.ViewModels
 
                 if(userLogged != null)
                 {
-                    Preferences.Set("Email", Email);
+                    Preferences.Set("UserId", userLogged.Id);
                     await Application.Current.MainPage.Navigation.PushAsync(new MusicPage());
                 }
                 else
