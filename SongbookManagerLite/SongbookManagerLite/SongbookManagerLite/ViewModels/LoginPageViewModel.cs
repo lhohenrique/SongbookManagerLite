@@ -1,4 +1,5 @@
-﻿using SongbookManagerLite.Models;
+﻿using SongbookManagerLite.Helpers;
+using SongbookManagerLite.Models;
 using SongbookManagerLite.Views;
 using System;
 using System.Collections.Generic;
@@ -207,6 +208,7 @@ namespace SongbookManagerLite.ViewModels
                 if(userLogged != null)
                 {
                     Preferences.Set("UserId", userLogged.Id);
+                    LoggedUserHelper.UpdateLoggedUser(userLogged);
                     await Application.Current.MainPage.Navigation.PushAsync(new MusicPage());
                 }
                 else

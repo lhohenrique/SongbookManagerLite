@@ -82,6 +82,11 @@ namespace SongbookManagerLite.Helpers
         {
             return _db.Table<User>().FirstOrDefaultAsync(i => i.Email.Equals(email) && i.Password.Equals(password));
         }
+
+        public Task<User> GetUserById(int id)
+        {
+            return _db.Table<User>().FirstOrDefaultAsync(i => i.Id == id);
+        }
         #endregion
     }
 }

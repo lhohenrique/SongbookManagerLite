@@ -209,6 +209,15 @@ namespace SongbookManagerLite.ViewModels
             });
         }
 
+        public ICommand UpdateAllCommand
+        {
+            get => new Command(async () =>
+            {
+                // await UpdateLoggedUserAction();
+                await UpdateMusicListAction();
+            });
+        }
+
         public ICommand EditMusicCommand
         {
             get => new Command<Music>((Music music) =>
@@ -282,6 +291,8 @@ namespace SongbookManagerLite.ViewModels
         public MusicPageViewModel(INavigation navigation)
         {
             this.Navigation = navigation;
+
+            // Update logged user
         }
 
         #region [Actions]
