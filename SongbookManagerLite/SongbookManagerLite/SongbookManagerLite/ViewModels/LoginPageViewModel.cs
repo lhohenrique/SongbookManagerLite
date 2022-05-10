@@ -1,5 +1,6 @@
 ﻿using SongbookManagerLite.Helpers;
 using SongbookManagerLite.Models;
+using SongbookManagerLite.Services;
 using SongbookManagerLite.Views;
 using System;
 using System.Collections.Generic;
@@ -167,14 +168,27 @@ namespace SongbookManagerLite.ViewModels
 
                 if (infoValid)
                 {
-                    User newUser = new User()
-                    {
-                        Name = this.Name,
-                        Email = this.Email,
-                        Password = this.Password
-                    };
+                    // Old DataBase structure
+                    //User newUser = new User()
+                    //{
+                    //    Name = this.Name,
+                    //    Email = this.Email,
+                    //    Password = this.Password
+                    //};
 
-                    await App.Database.RegisterUser(newUser);
+                    //await App.Database.RegisterUser(newUser);
+
+                    var userService = new UserService();
+                    Result = await userService.RegisterUSer(Name, Email, Password);
+
+                    if (Result)
+                    {
+                        await Application.Current.MainPage.DisplayAlert("Sucesso", "Usuário Registrado", "Ok");
+                    }
+                    else
+                    {
+                        await Application.Current.MainPage.DisplayAlert("Erro", "Falha ao registrar usuário", "Ok");
+                    }
                 }
             }
             catch(Exception ex)
@@ -203,12 +217,27 @@ namespace SongbookManagerLite.ViewModels
             {
                 IsBusy = true;
 
-                User userLogged = await App.Database.LoginUser(Email, Password);
+                // Old DataBase structure
+                //User userLogged = await App.Database.LoginUser(Email, Password);
 
-                if(userLogged != null)
+                //if (userLogged != null)
+                //{
+                //    Preferences.Set("UserId", userLogged.Id);
+                //    LoggedUserHelper.UpdateLoggedUser(userLogged);
+                //    await Application.Current.MainPage.Navigation.PushAsync(new MusicPage());
+                //}
+                //else
+                //{
+                //    await Application.Current.MainPage.DisplayAlert("Erro", "Usuário/Senha inválido(s)", "Ok");
+                //}
+
+                var userService = new UserService();
+                Result = await userService.LoginUser(Email, Password);
+
+                if (Result)
                 {
-                    Preferences.Set("UserId", userLogged.Id);
-                    LoggedUserHelper.UpdateLoggedUser(userLogged);
+                    Preferences.Set("Email", Email);
+                    LoggedUserHelper.UpdateLoggedUser(new User() { Name = Name, Email = Email, Password = Password});
                     await Application.Current.MainPage.Navigation.PushAsync(new MusicPage());
                 }
                 else

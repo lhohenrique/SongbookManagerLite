@@ -30,8 +30,8 @@ namespace SongbookManagerLite
             InitializeComponent();
 
             //MainPage = new MainPage();
-            var loggedUserId = Preferences.Get("UserId", 0);
-            if (loggedUserId == 0)
+            var loggedUserEmail = Preferences.Get("Email", string.Empty);
+            if (string.IsNullOrEmpty(loggedUserEmail))
             {
                 MainPage = new NavigationPage(new LoginPage());
             }
