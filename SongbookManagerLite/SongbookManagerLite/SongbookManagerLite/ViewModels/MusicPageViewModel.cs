@@ -1,4 +1,5 @@
 ﻿using SongbookManagerLite.Models;
+using SongbookManagerLite.Services;
 using SongbookManagerLite.Views;
 using System;
 using System.Collections.Generic;
@@ -7,6 +8,7 @@ using System.ComponentModel;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace SongbookManagerLite.ViewModels
@@ -322,7 +324,9 @@ namespace SongbookManagerLite.ViewModels
 
                 if (result)
                 {
-                    await App.Database.DeleteMusic(music.Id);
+                    //await App.Database.DeleteMusic(music.Id);
+                    var musicService = new MusicService();
+                    await musicService.DeleteMusic(music);
                 }
 
                 await UpdateMusicListAction();
@@ -344,7 +348,10 @@ namespace SongbookManagerLite.ViewModels
 
                 IsUpdating = true;
 
-                List<Music> musicListUpdated = await App.Database.GetAllMusics();
+                //List<Music> musicListUpdated = await App.Database.GetAllMusics();
+                var musicService = new MusicService();
+                var userEmail = Preferences.Get("Email", string.Empty);
+                List<Music> musicListUpdated = await musicService.GetMusicsByUser(userEmail);
 
                 MusicList.Clear();
 
@@ -371,7 +378,10 @@ namespace SongbookManagerLite.ViewModels
 
                 isUpdating = true;
 
-                List<Music> musicListUpdated = await App.Database.SearchMusic(SearchText);
+                //List<Music> musicListUpdated = await App.Database.SearchMusic(SearchText);
+                var musicService = new MusicService();
+                var userEmail = Preferences.Get("Email", string.Empty);
+                List<Music> musicListUpdated = await musicService.SearchMusic(SearchText, userEmail);
 
                 MusicList.Clear();
 
