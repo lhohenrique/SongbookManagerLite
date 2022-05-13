@@ -251,6 +251,7 @@ namespace SongbookManagerLite.ViewModels
                 var music1 = new Music()
                 {
                     Name = "O Nome Da Paz",
+                    UserEmail = "lho.henrique@gmail.com",
                     Author = "Resgate",
                     Key = "C",
                     Lyrics = "De que adianta estar vestido de branco\nE ter no rosto um sorriso amarelo\nSe a paz não é um estado de espírito\nSe por dentro há uma grande e interminável guerra\n\nA paz não é o que se encontra no mundo\nQue paz é essa que se arma prá guerra ?\nAonde está o fim da destruição ?\nAnsiedade quer vencer o desespero do coração\n\nO nome da paz, foi declarado na cruz\nO nome da paz é jesus\n\nOuço a voz que diz:\nA minha paz vos dou\nAgora tudo vai mudar",
@@ -260,6 +261,7 @@ namespace SongbookManagerLite.ViewModels
                 var music2 = new Music()
                 {
                     Name = "Palavras",
+                    UserEmail = "lho.henrique@gmail.com",
                     Author = "Resgate",
                     Key = "F#",
                     Lyrics = "Eu poderia ficar a vida inteira\nOuvindo a Tua voz, tão doce\nEu poderia ficar a vida inteira\nAo som de Tua palavras\nNem só de pão o homem viverá\nMas da palavra que sai da Tua boca\n\nEu poderia ficar a vida inteira\nOuvindo a Tua voz, tão doce\nEu poderia ficar a vida inteira\nAo som de Tua palavras\n\nComo uma lâmpada para os meus pés\nComo luz no meu caminho\nAs Tuas palavras\nQue alimentam\nO meu interior",
@@ -269,15 +271,21 @@ namespace SongbookManagerLite.ViewModels
                 var music3 = new Music()
                 {
                     Name = "5:50 Am",
+                    UserEmail = "lho.henrique@gmail.com",
                     Author = "Resgate",
                     Key = "G",
                     Lyrics = "Abro os olhos sob o mesmo teto, todo dia\nTudo outra vez\nAcordo, um tapa no relógio\nA mente tá vazia, são dez pra seis\n\nHoje a morte do meu ego tá fazendo aniversário\nSerá que eu vou chegar\nChegar ao fim de mais um calendário\nEu não sei! Eu não sei.....eu não sei...\nÉ tudo sempre igual\n\nDisseram que o Teu amor é novo a cada dia, eu pensei\nQuero ouvir a Tua voz\nFalar o que eu queria, são dez pra seis\n\nSe é pra Te servir e então matar aquela velha sede\nSe é pra Te seguir e nunca mais cair na mesma rede\nEu vou! Eu vou....eu vou...\nTe seguir... ",
                     Chords = "Intro 4x: G  Bm  Am7\n\nPrimeira Parte:\nEm                   D                C9\nAbro os olhos sob o mesmo teto, todo dia\n      G  Bm Am7\nTudo outra vez\n\nEm                    D\nAcordo, um tapa no relógio\nC                G Bm  Am7\nA mente tá vazia, são Dez pra seis\n\nSegunda Parte:\n C D9(11)\nHoje a morte do meu ego tá fazendo aniversário\n   C\nSerá que eu vou chegar\n                  D9(11)\nChegar ao fim de mais um calendário\n        G   D C9            G D           C9\nEu não sei!Eu não sei.....eu não sei...\nÉ tudo sempre igual\n       C D9(11)\n\n(Intro)\n\n(Primeira Parte - com variação na letra)\n   Em D                 C\nDisseram que o Teu amor é novo a cada dia,\n       G Bm7  Am7\nEu pensei\n\n Em               D\nQuero ouvir a Tua voz\n                  C G   Bm Am7\nFalar o que eu queria, são dez pra seis\n\n(Segunda Parte com variação)\n   C D9(11)\nSe é pra Te servir e então matar aquela velha sede\n  C                                     D9(11)\nSe é pra Te seguir e nunca mais cair na mesma rede\n    G D  C9 G  D C9\nEu vou!Eu vou....eu vou...\n\nTe seguir...\n\n(Solo)\n\n   C                                      D9(11)\nSe é pra Te servir e então matar aquela velha sede\n  C                                     D9(11)\nSe é pra Te seguir e nunca mais cair na mesma rede\n    G D  C9 G  D C9\nEu vou!Eu vou....eu vou\n\nTe seguir"
                 };
 
-                await App.Database.InsertMusic(music1);
-                await App.Database.InsertMusic(music2);
-                await App.Database.InsertMusic(music3);
+                //await App.Database.InsertMusic(music1);
+                //await App.Database.InsertMusic(music2);
+                //await App.Database.InsertMusic(music3);
+
+                var musicService = new MusicService();
+                await musicService.InsertMusic(music1);
+                await musicService.InsertMusic(music2);
+                await musicService.InsertMusic(music3);
             });
         }
 
@@ -350,6 +358,7 @@ namespace SongbookManagerLite.ViewModels
 
                 //List<Music> musicListUpdated = await App.Database.GetAllMusics();
                 var musicService = new MusicService();
+                // TODO: Não utilizar o email logado. Usar o email do LoggedUserHelper pq o usuário pode estar vendo uma lista compartilhada
                 var userEmail = Preferences.Get("Email", string.Empty);
                 List<Music> musicListUpdated = await musicService.GetMusicsByUser(userEmail);
 
@@ -380,6 +389,7 @@ namespace SongbookManagerLite.ViewModels
 
                 //List<Music> musicListUpdated = await App.Database.SearchMusic(SearchText);
                 var musicService = new MusicService();
+                // TODO: Não utilizar o email logado. Usar o email do LoggedUserHelper pq o usuário pode estar vendo uma lista compartilhada
                 var userEmail = Preferences.Get("Email", string.Empty);
                 List<Music> musicListUpdated = await musicService.SearchMusic(SearchText, userEmail);
 

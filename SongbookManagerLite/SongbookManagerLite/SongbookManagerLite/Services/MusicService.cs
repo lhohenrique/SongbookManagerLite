@@ -57,10 +57,10 @@ namespace SongbookManagerLite.Services
             
         }
 
-        public async Task UpdateMusic(Music music)
+        public async Task UpdateMusic(Music music, string oldName)
         {
             var musicToUpdate = (await client.Child("Musics").OnceAsync<Music>())
-                                                .Where(m => m.Object.Name.Equals(music.Name) && m.Object.UserEmail.Equals(music.UserEmail)).FirstOrDefault();
+                                                .Where(m => m.Object.Name.Equals(oldName) && m.Object.UserEmail.Equals(music.UserEmail)).FirstOrDefault();
 
             await client.Child("Musics").Child(musicToUpdate.Key).PutAsync(music);
         }

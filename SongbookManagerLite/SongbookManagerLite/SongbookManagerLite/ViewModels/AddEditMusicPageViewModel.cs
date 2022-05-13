@@ -1,4 +1,5 @@
 ﻿using SongbookManagerLite.Models;
+using SongbookManagerLite.Services;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -6,6 +7,7 @@ using System.ComponentModel;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace SongbookManagerLite.ViewModels
@@ -16,6 +18,7 @@ namespace SongbookManagerLite.ViewModels
         public event PropertyChangedEventHandler PropertyChanged;
 
         private Music music;
+        private string oldName;
 
         #region [Properties]
         private int id;
@@ -107,6 +110,7 @@ namespace SongbookManagerLite.ViewModels
             Navigation = navigation;
 
             this.music = music;
+            oldName = music.Name;
         }
 
         #region [Actions]
@@ -123,20 +127,28 @@ namespace SongbookManagerLite.ViewModels
                     music.Lyrics = Lyrics;
                     music.Chords = Chords;
 
-                    await App.Database.UpdateMusic(music);
+                    //await App.Database.UpdateMusic(music);
+                    var musicService = new MusicService();
+                    await musicService.UpdateMusic(music, oldName);
                 }
                 else // Save new music
                 {
+                    var userEmail = Preferences.Get("Email", string.Empty);
+
+                    // TODO: Não utilizar o email logado, usar o email do LoggedUserHelper pq o usuário pode estar inserindo em uma lista compartilhada
                     var newMusic = new Music()
                     {
                         Name = Name,
+                        UserEmail = userEmail,
                         Author = Author,
                         Key = SelectedKey,
                         Lyrics = Lyrics,
                         Chords = Chords
                     };
 
-                    await App.Database.InsertMusic(newMusic);
+                    //await App.Database.InsertMusic(newMusic);
+                    var musicService = new MusicService();
+                    await musicService.InsertMusic(newMusic);
                 }
 
                 await Navigation.PopAsync();

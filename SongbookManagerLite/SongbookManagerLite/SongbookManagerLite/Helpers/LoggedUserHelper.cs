@@ -29,18 +29,18 @@ namespace SongbookManagerLite.Helpers
 
         public static bool HasSharedList()
         {
-            return LoggedUser.GroupId > 0;
+            return !string.IsNullOrEmpty(LoggedUser.SharedList);
         }
 
-        public static int GetSharedId()
+        public static string GetSharedId()
         {
             if (HasSharedList())
             {
-                return LoggedUser.GroupId;
+                return LoggedUser.SharedList;
             }
             else
             {
-                return LoggedUser.Id;
+                return LoggedUser.Email;
             }
         }
     }
