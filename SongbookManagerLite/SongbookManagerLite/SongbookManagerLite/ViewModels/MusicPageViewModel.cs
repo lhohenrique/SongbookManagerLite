@@ -19,6 +19,7 @@ namespace SongbookManagerLite.ViewModels
 
         public INavigation Navigation { get; set; }
 
+        private MusicService musicService;
 
         #region [Properties]
         private bool isPreviewMusic = false;
@@ -282,7 +283,6 @@ namespace SongbookManagerLite.ViewModels
                 //await App.Database.InsertMusic(music2);
                 //await App.Database.InsertMusic(music3);
 
-                var musicService = new MusicService();
                 await musicService.InsertMusic(music1);
                 await musicService.InsertMusic(music2);
                 await musicService.InsertMusic(music3);
@@ -301,6 +301,8 @@ namespace SongbookManagerLite.ViewModels
         public MusicPageViewModel(INavigation navigation)
         {
             this.Navigation = navigation;
+
+            musicService = new MusicService();
 
             // Update logged user
         }
@@ -333,7 +335,6 @@ namespace SongbookManagerLite.ViewModels
                 if (result)
                 {
                     //await App.Database.DeleteMusic(music.Id);
-                    var musicService = new MusicService();
                     await musicService.DeleteMusic(music);
                 }
 
@@ -357,7 +358,6 @@ namespace SongbookManagerLite.ViewModels
                 IsUpdating = true;
 
                 //List<Music> musicListUpdated = await App.Database.GetAllMusics();
-                var musicService = new MusicService();
                 // TODO: Não utilizar o email logado. Usar o email do LoggedUserHelper pq o usuário pode estar vendo uma lista compartilhada
                 var userEmail = Preferences.Get("Email", string.Empty);
                 List<Music> musicListUpdated = await musicService.GetMusicsByUser(userEmail);
@@ -388,7 +388,6 @@ namespace SongbookManagerLite.ViewModels
                 isUpdating = true;
 
                 //List<Music> musicListUpdated = await App.Database.SearchMusic(SearchText);
-                var musicService = new MusicService();
                 // TODO: Não utilizar o email logado. Usar o email do LoggedUserHelper pq o usuário pode estar vendo uma lista compartilhada
                 var userEmail = Preferences.Get("Email", string.Empty);
                 List<Music> musicListUpdated = await musicService.SearchMusic(SearchText, userEmail);

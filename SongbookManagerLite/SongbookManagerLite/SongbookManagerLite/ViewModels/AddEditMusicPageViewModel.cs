@@ -19,6 +19,7 @@ namespace SongbookManagerLite.ViewModels
 
         private Music music;
         private string oldName;
+        private MusicService musicService;
 
         #region [Properties]
         private int id;
@@ -109,6 +110,8 @@ namespace SongbookManagerLite.ViewModels
         {
             Navigation = navigation;
 
+            musicService = new MusicService();
+
             this.music = music;
             oldName = music.Name;
         }
@@ -128,7 +131,6 @@ namespace SongbookManagerLite.ViewModels
                     music.Chords = Chords;
 
                     //await App.Database.UpdateMusic(music);
-                    var musicService = new MusicService();
                     await musicService.UpdateMusic(music, oldName);
                 }
                 else // Save new music
@@ -147,7 +149,6 @@ namespace SongbookManagerLite.ViewModels
                     };
 
                     //await App.Database.InsertMusic(newMusic);
-                    var musicService = new MusicService();
                     await musicService.InsertMusic(newMusic);
                 }
 

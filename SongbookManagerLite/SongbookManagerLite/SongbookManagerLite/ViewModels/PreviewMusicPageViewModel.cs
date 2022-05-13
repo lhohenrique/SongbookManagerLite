@@ -1,4 +1,5 @@
 ﻿using SongbookManagerLite.Models;
+using SongbookManagerLite.Services;
 using SongbookManagerLite.Views;
 using System;
 using System.Collections.Generic;
@@ -16,6 +17,7 @@ namespace SongbookManagerLite.ViewModels
         public event PropertyChangedEventHandler PropertyChanged;
 
         private Music music;
+        private MusicService musicService;
 
         #region [Properties]
         private string name;
@@ -104,6 +106,8 @@ namespace SongbookManagerLite.ViewModels
         {
             Navigation = navigation;
             this.music = music;
+
+            musicService = new MusicService();
         }
 
         #region [Actions]
@@ -137,7 +141,8 @@ namespace SongbookManagerLite.ViewModels
 
                     if (result)
                     {
-                        await App.Database.DeleteMusic(music.Id);
+                        //await App.Database.DeleteMusic(music.Id);
+                        await musicService.DeleteMusic(music);
                     }
                 }
                 catch (Exception ex)
