@@ -25,7 +25,6 @@ namespace SongbookManagerLite.Services
             return user != null;
         }
 
-
         public async Task<bool> RegisterUSer(string name, string email, string password)
         {
             if(await IsUserExists(name) == false)
@@ -51,6 +50,19 @@ namespace SongbookManagerLite.Services
             var user = (await client.Child("Users").OnceAsync<User>()).Where(u => u.Object.Name == name && u.Object.Password == password);
 
             return user != null;
+        }
+
+        public async Task<User> GetUser(string email)
+        {
+            var user = (await client.Child("Users").OnceAsync<User>()).Select(item => new User
+            {
+                Name = item.Object.Name,
+                Email = item.Object.Email,
+                Password = item.Object.Password,
+                SharedList = item.Object.SharedList
+            }).Where(u => u.Email.Equals(email)).FirstOrDefault();
+
+            return user;
         }
     }
 }

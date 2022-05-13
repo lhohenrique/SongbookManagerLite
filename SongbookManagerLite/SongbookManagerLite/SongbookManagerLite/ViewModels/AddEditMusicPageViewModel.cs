@@ -1,4 +1,5 @@
-﻿using SongbookManagerLite.Models;
+﻿using SongbookManagerLite.Helpers;
+using SongbookManagerLite.Models;
 using SongbookManagerLite.Services;
 using System;
 using System.Collections.Generic;
@@ -113,7 +114,7 @@ namespace SongbookManagerLite.ViewModels
             musicService = new MusicService();
 
             this.music = music;
-            oldName = music.Name;
+            oldName = music?.Name;
         }
 
         #region [Actions]
@@ -135,13 +136,10 @@ namespace SongbookManagerLite.ViewModels
                 }
                 else // Save new music
                 {
-                    var userEmail = Preferences.Get("Email", string.Empty);
-
-                    // TODO: Não utilizar o email logado, usar o email do LoggedUserHelper pq o usuário pode estar inserindo em uma lista compartilhada
                     var newMusic = new Music()
                     {
                         Name = Name,
-                        UserEmail = userEmail,
+                        UserEmail = LoggedUserHelper.GetEmail(),
                         Author = Author,
                         Key = SelectedKey,
                         Lyrics = Lyrics,

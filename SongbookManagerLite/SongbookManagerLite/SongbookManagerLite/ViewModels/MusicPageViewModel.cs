@@ -1,4 +1,5 @@
-﻿using SongbookManagerLite.Models;
+﻿using SongbookManagerLite.Helpers;
+using SongbookManagerLite.Models;
 using SongbookManagerLite.Services;
 using SongbookManagerLite.Views;
 using System;
@@ -208,6 +209,8 @@ namespace SongbookManagerLite.ViewModels
         {
             get => new Command(async () =>
             {
+                await LoggedUserHelper.UpdateLoggedUserAsync();
+
                 await UpdateMusicListAction();
             });
         }
@@ -358,8 +361,7 @@ namespace SongbookManagerLite.ViewModels
                 IsUpdating = true;
 
                 //List<Music> musicListUpdated = await App.Database.GetAllMusics();
-                // TODO: Não utilizar o email logado. Usar o email do LoggedUserHelper pq o usuário pode estar vendo uma lista compartilhada
-                var userEmail = Preferences.Get("Email", string.Empty);
+                var userEmail = LoggedUserHelper.GetEmail();
                 List<Music> musicListUpdated = await musicService.GetMusicsByUser(userEmail);
 
                 MusicList.Clear();
@@ -388,8 +390,7 @@ namespace SongbookManagerLite.ViewModels
                 isUpdating = true;
 
                 //List<Music> musicListUpdated = await App.Database.SearchMusic(SearchText);
-                // TODO: Não utilizar o email logado. Usar o email do LoggedUserHelper pq o usuário pode estar vendo uma lista compartilhada
-                var userEmail = Preferences.Get("Email", string.Empty);
+                var userEmail = LoggedUserHelper.GetEmail();
                 List<Music> musicListUpdated = await musicService.SearchMusic(SearchText, userEmail);
 
                 MusicList.Clear();

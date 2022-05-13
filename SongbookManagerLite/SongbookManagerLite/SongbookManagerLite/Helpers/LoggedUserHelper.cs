@@ -1,7 +1,9 @@
 ﻿using SongbookManagerLite.Models;
+using SongbookManagerLite.Services;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 using Xamarin.Essentials;
 
 namespace SongbookManagerLite.Helpers
@@ -22,8 +24,14 @@ namespace SongbookManagerLite.Helpers
             }
         }
 
-        public static void UpdateLoggedUser(User user)
+        private static UserService userService = new UserService();
+
+        public static async Task UpdateLoggedUserAsync()
         {
+            var userEmail = Preferences.Get("Email", string.Empty);
+
+            var user = await userService.GetUser(userEmail);
+
             loggedUser = user;
         }
 
@@ -32,7 +40,7 @@ namespace SongbookManagerLite.Helpers
             return !string.IsNullOrEmpty(LoggedUser.SharedList);
         }
 
-        public static string GetSharedId()
+        public static string GetEmail()
         {
             if (HasSharedList())
             {
