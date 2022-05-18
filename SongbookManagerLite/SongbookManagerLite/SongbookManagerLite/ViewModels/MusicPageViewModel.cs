@@ -248,6 +248,14 @@ namespace SongbookManagerLite.ViewModels
             });
         }
 
+        public ICommand ShareCommand
+        {
+            get => new Command(() =>
+            {
+                ShareAction();
+            });
+        }
+
         public ICommand MockMusicCommand
         {
             get => new Command(async () =>
@@ -405,6 +413,11 @@ namespace SongbookManagerLite.ViewModels
             {
                 IsUpdating = false;
             }
+        }
+
+        private void ShareAction()
+        {
+            Navigation.PushAsync(new SharePage());
         }
         #endregion
 

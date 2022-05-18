@@ -7,6 +7,7 @@
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Filtro" Order="Primary"/>
         <ToolbarItem Text="+" Order="Primary" Command="{Binding NewMusicCommand}"/>
+        <ToolbarItem Text="Share" Order="Secondary" Command="{Binding ShareCommand}"/>
         <ToolbarItem Text="Clear" Order="Secondary" Command="{Binding ClearCommand}"/>
         <ToolbarItem Text="Mock" Order="Secondary" Command="{Binding MockMusicCommand}"/>
     </ContentPage.ToolbarItems>
