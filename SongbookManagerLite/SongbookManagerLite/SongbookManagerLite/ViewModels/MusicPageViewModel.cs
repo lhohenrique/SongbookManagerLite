@@ -181,7 +181,15 @@ namespace SongbookManagerLite.ViewModels
             set { keyList = value; }
         }
 
-        public string SearchText { get; set; }
+        private string searchText = string.Empty;
+        public string SearchText
+        {
+            get { return searchText; }
+            set
+            {
+                searchText = value;
+            }
+        }
 
         private bool isUpdating = false;
         public bool IsUpdating

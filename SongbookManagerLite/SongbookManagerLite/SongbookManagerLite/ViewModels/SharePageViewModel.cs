@@ -146,7 +146,7 @@ namespace SongbookManagerLite.ViewModels
         }
         #endregion
 
-        #region [Private Methods]
+        #region [Public Methods]
         public void HandleShareButton()
         {
             IsShareEnabled = !string.IsNullOrEmpty(Email);   
