@@ -64,5 +64,26 @@ namespace SongbookManagerLite.Services
 
             return user;
         }
+
+        public async Task<List<User>> GetSharedUsers(string email)
+        {
+            var users = (await client.Child("Users").OnceAsync<User>()).Select(item => new User
+            {
+                Name = item.Object.Name,
+                Email = item.Object.Email,
+                Password = item.Object.Password,
+                SharedList = item.Object.SharedList
+            }).Where(u => !string.IsNullOrEmpty(u.SharedList) && u.SharedList.Equals(email)).ToList();
+
+            return users;
+        }
+
+        public async Task UpdateUser(User user)
+        {
+            var userToUpdate = (await client.Child("Users").OnceAsync<User>())
+                                                .Where(m => m.Object.Email.Equals(user.Email)).FirstOrDefault();
+
+            await client.Child("Users").Child(userToUpdate.Key).PutAsync(user);
+        }
     }
 }

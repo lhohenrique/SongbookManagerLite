@@ -13,7 +13,7 @@
                     <ColumnDefinition Width="auto"/>
                 </Grid.ColumnDefinitions>
                 <Entry Placeholder="Email" Text="{Binding Email}"/>
-                <Button Text="Share" Grid.Column="1" IsEnabled="{Binding IsShareEnabled, Mode=OneWay}" Command="{Binding ShareCommand}"/>
+                <Button Text="Share" Grid.Column="1" IsEnabled="{Binding IsShareEnabled}" Command="{Binding ShareCommand}"/>
             </Grid>
             
             <RefreshView>

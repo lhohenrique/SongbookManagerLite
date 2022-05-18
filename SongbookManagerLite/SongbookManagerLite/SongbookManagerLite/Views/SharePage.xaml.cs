@@ -19,5 +19,12 @@ namespace SongbookManagerLite.Views
 
             BindingContext = new SharePageViewModel(Navigation);
         }
+
+        protected override void OnAppearing()
+        {
+            var viewModel = (SharePageViewModel)BindingContext;
+            viewModel.UpdateUserListCommand.Execute(null);
+            viewModel.HandleShareButton();
+        }
     }
 }
