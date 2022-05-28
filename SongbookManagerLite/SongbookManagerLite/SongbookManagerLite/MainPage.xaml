@@ -2,15 +2,19 @@
 <Shell xmlns="http://xamarin.com/schemas/2014/forms"
        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
        xmlns:Views="clr-namespace:SongbookManagerLite.Views"
-             x:Class="SongbookManagerLite.MainPage">
+       x:Class="SongbookManagerLite.MainPage">
 
+    <ShellItem Route="LoginPage" FlyoutItemIsVisible="False">
+        <ShellContent ContentTemplate="{DataTemplate Views:LoginPage}"/>
+    </ShellItem>
+    
     <TabBar>
-        <Tab Title="Músicas" Route="Musicas">
+        <Tab Title="Músicas" Route="MusicPage">
             <ShellContent>
                 <Views:MusicPage Title="Lista de Músicas"/>
             </ShellContent>
         </Tab>
-        <Tab Title="Repertórios" Route="Repertorios">
+        <Tab Title="Repertórios" Route="RepertoirePage">
             <ShellContent>
                 <Views:RepertoirePage Title="Lista de Repertórios"/>
             </ShellContent>

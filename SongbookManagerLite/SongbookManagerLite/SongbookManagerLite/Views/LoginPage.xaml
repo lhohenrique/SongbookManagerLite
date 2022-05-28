@@ -2,6 +2,8 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:converters="clr-namespace:SongbookManagerLite.Converters"
+             Shell.FlyoutBehavior="Disabled"
+             Shell.NavBarIsVisible="False"
              x:Class="SongbookManagerLite.Views.LoginPage">
     <ContentPage.Resources>
         <converters:ReverseBoolConverter x:Key="reverseBoolConverter"/>

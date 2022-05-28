@@ -220,24 +220,17 @@ namespace SongbookManagerLite.ViewModels
                 // Old DataBase structure
                 //User userLogged = await App.Database.LoginUser(Email, Password);
 
-                //if (userLogged != null)
-                //{
-                //    Preferences.Set("UserId", userLogged.Id);
-                //    LoggedUserHelper.UpdateLoggedUser(userLogged);
-                //    await Application.Current.MainPage.Navigation.PushAsync(new MusicPage());
-                //}
-                //else
-                //{
-                //    await Application.Current.MainPage.DisplayAlert("Erro", "Usuário/Senha inválido(s)", "Ok");
-                //}
-
-                var userService = new UserService();
-                Result = await userService.LoginUser(Email, Password);
+                //var userService = new UserService();
+                //Result = await userService.LoginUser(Email, Password);
+                Result = true;
 
                 if (Result)
                 {
                     Preferences.Set("Email", Email);
-                    await Application.Current.MainPage.Navigation.PushAsync(new MusicPage());
+                    await Shell.Current.GoToAsync($"//{nameof(MusicPage)}");
+                    
+                    // Old navigation
+                    //await Application.Current.MainPage.Navigation.PushAsync(new MusicPage());
                 }
                 else
                 {
@@ -325,6 +318,23 @@ namespace SongbookManagerLite.ViewModels
             }
 
             return isValid;
+        }
+        #endregion
+
+        #region [Public Methods]
+        public async void OnAppearingAsync()
+        {
+            var loggedUserEmail = Preferences.Get("Email", string.Empty);
+            if (string.IsNullOrEmpty(loggedUserEmail))
+            {
+                Name = string.Empty;
+                Email = string.Empty;
+                Password = string.Empty;
+            }
+            else
+            {
+                await Shell.Current.GoToAsync($"//{nameof(MusicPage)}");
+            }
         }
         #endregion
     }

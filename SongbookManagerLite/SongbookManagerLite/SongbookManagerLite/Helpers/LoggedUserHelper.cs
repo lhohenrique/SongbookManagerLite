@@ -51,5 +51,10 @@ namespace SongbookManagerLite.Helpers
                 return LoggedUser.Email;
             }
         }
+
+        public static void ResetLoggedUser()
+        {
+            loggedUser = null;
+        }
     }
 }

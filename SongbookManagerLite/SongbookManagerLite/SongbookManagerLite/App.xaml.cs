@@ -29,16 +29,7 @@ namespace SongbookManagerLite
         {
             InitializeComponent();
 
-            //MainPage = new MainPage();
-            var loggedUserEmail = Preferences.Get("Email", string.Empty);
-            if (string.IsNullOrEmpty(loggedUserEmail))
-            {
-                MainPage = new NavigationPage(new LoginPage());
-            }
-            else
-            {
-                MainPage = new MainPage();
-            }
+            MainPage = new MainPage();
         }
 
         protected override void OnStart()

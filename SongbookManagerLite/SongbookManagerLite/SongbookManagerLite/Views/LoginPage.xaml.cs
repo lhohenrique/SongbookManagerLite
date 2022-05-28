@@ -22,11 +22,8 @@ namespace SongbookManagerLite.Views
 
         protected override void OnAppearing()
         {
-            //var loggedUserEmail = Preferences.Get("Email", string.Empty);
-            //if (!String.IsNullOrEmpty(loggedUserEmail))
-            //{
-            //    await Application.Current.MainPage.Navigation.PushAsync(new MusicPage());
-            //}
+            var viewModel = (LoginPageViewModel)BindingContext;
+            viewModel.OnAppearingAsync();
         }
     }
 }
