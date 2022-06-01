@@ -315,14 +315,6 @@ namespace SongbookManagerLite.ViewModels
                 await App.Database.DeleteAll();
             });
         }
-
-        public ICommand LogOutCommand
-        {
-            get => new Command(() =>
-            {
-                LogOutAction();
-            });
-        }
         #endregion
 
         public MusicPageViewModel(INavigation navigation)
@@ -434,20 +426,6 @@ namespace SongbookManagerLite.ViewModels
         private void ShareAction()
         {
             Navigation.PushAsync(new SharePage());
-        }
-
-        private async void LogOutAction()
-        {
-            var result = await Application.Current.MainPage.DisplayAlert("Tem certeza de que deseja sair?", string.Empty, "Sair", "Cancelar");
-
-            if (result)
-            {
-                Preferences.Clear();
-                LoggedUserHelper.ResetLoggedUser();
-
-                await Shell.Current.GoToAsync($"//{nameof(LoginPage)}");
-            }
-            
         }
         #endregion
 

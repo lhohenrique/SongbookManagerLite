@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             Shell.TabBarIsVisible="False"
+             Shell.NavBarIsVisible="False"
+             x:Class="SongbookManagerLite.Views.ProfilePage">
+    
+    <ContentPage.Content>
+        <StackLayout Padding="20">
+            <Label Text="{Binding Name}"
+                   FontSize="20"
+                   FontAttributes="Bold"
+                   TextColor="DarkSlateGray"></Label>
+            <Label Text="{Binding Email}"
+                   FontSize="15"
+                   TextColor="DarkSlateGray"></Label>
+
+            <StackLayout>
+                <Button Text="Alterar senha" BackgroundColor="Transparent" TextColor="DarkSlateGray" HorizontalOptions="Start"
+                            HeightRequest="40" Padding="0" TextTransform="None" FontAttributes="Bold" FontSize="16"
+                            Command="{Binding ChangePasswordCommand}"/>
+            </StackLayout>
+
+            <StackLayout>
+                <Button Text="Feedback" BackgroundColor="Transparent" TextColor="DarkSlateGray" HorizontalOptions="Start"
+                            HeightRequest="40" Padding="0" TextTransform="None" FontAttributes="Bold" FontSize="16"
+                            Command="{Binding FeedbackCommand}"/>
+                <Button Text="Rate App" BackgroundColor="Transparent" TextColor="DarkSlateGray" HorizontalOptions="Start"
+                            HeightRequest="40" Padding="0" TextTransform="None" FontAttributes="Bold" FontSize="16"
+                            Command="{Binding RateAppCommand}"/>
+                <Button Text="Configurações" BackgroundColor="Transparent" TextColor="DarkSlateGray" HorizontalOptions="Start"
+                            HeightRequest="40" Padding="0" TextTransform="None" FontAttributes="Bold" FontSize="16"
+                            Command="{Binding SettingsCommand}"/>
+            </StackLayout>
+
+            <StackLayout>
+                <Button Text="Politica de Privacidade" BackgroundColor="Transparent" TextColor="DarkSlateGray" HorizontalOptions="Start"
+                            HeightRequest="40" Padding="0" TextTransform="None" FontAttributes="Bold" FontSize="16"
+                            Command="{Binding PrivacyPolicyCommand}"/>
+            </StackLayout>
+
+            <StackLayout>
+                <Button Text="Logout" BackgroundColor="Transparent" TextColor="DarkSlateGray" HorizontalOptions="Start"
+                            HeightRequest="40" Padding="0" TextTransform="None" FontAttributes="Bold" FontSize="16"
+                            Command="{Binding LogoutCommand}"/>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

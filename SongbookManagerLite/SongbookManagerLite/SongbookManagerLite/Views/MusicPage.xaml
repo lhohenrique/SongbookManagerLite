@@ -10,7 +10,6 @@
         <ToolbarItem Text="Share" Order="Secondary" Command="{Binding ShareCommand}"/>
         <ToolbarItem Text="Clear" Order="Secondary" Command="{Binding ClearCommand}"/>
         <ToolbarItem Text="Mock" Order="Secondary" Command="{Binding MockMusicCommand}"/>
-        <ToolbarItem Text="Sair" Order="Secondary" Command="{Binding LogOutCommand}"/>
     </ContentPage.ToolbarItems>
 
     <ContentPage.Content>

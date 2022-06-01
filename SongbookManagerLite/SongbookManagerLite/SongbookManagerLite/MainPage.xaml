@@ -14,9 +14,14 @@
                 <Views:MusicPage Title="Lista de Músicas"/>
             </ShellContent>
         </Tab>
-        <Tab Title="Repertórios" Route="RepertoirePage">
+        <Tab Title="Repertórios" Route="RepertoirePage" IsEnabled="False">
             <ShellContent>
                 <Views:RepertoirePage Title="Lista de Repertórios"/>
+            </ShellContent>
+        </Tab>
+        <Tab Title="Perfil" Route="ProfilePage">
+            <ShellContent>
+                <Views:ProfilePage Title="Perfil"/>
             </ShellContent>
         </Tab>
     </TabBar>
