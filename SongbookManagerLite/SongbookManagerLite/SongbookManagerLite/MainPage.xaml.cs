@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SongbookManagerLite.Views;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -13,6 +14,9 @@ namespace SongbookManagerLite
         public MainPage()
         {
             InitializeComponent();
+
+            Routing.RegisterRoute(nameof(ForgotPasswordPage),
+                typeof(ForgotPasswordPage));
         }
     }
 }

@@ -11,7 +11,7 @@
 
     <StackLayout Padding="10" VerticalOptions="Center">
         <ScrollView>
-            <StackLayout Spacing="5">
+            <StackLayout Spacing="1">
                 <Image WidthRequest="150" HeightRequest="150"/>
 
                 <!--<Label Text="Login" FontFamily="Verdana"
@@ -22,7 +22,7 @@
                 <Entry Placeholder="Nome" Text="{Binding Name}" IsVisible="{Binding IsRegistering}"/>
                 <Label Text="{Binding NameErrorMessage}" TextColor="Red"/>
 
-                <Entry Placeholder="Email" Text="{Binding Email}"/>
+                <Entry Placeholder="Email" Text="{Binding Email}" Keyboard="Email"/>
                 <Label Text="{Binding EmailErrorMessage}" TextColor="Red"/>
 
                 <Entry Placeholder="Senha" Text="{Binding Password}" IsPassword="True"/>
@@ -31,11 +31,14 @@
                 <Entry Placeholder="Confirme a senha" Text="{Binding ConfirmPassword}" IsPassword="True" IsVisible="{Binding IsRegistering}"/>
                 <Label Text="{Binding PasswordErrorMessage}" TextColor="Red"/>
 
-                <StackLayout Orientation="Horizontal" Spacing="3" IsVisible="{Binding IsRegistering, Converter={StaticResource reverseBoolConverter}}">
+                <StackLayout Orientation="Horizontal" Spacing="3" Margin="0,-20,0,0" IsVisible="{Binding IsRegistering, Converter={StaticResource reverseBoolConverter}}">
                     <Label Text="Novo Usuário?" TextColor="DarkSlateGray" Margin="0,11,0,0"/>
                     <Button Text="Inscreva-se" BackgroundColor="Transparent" TextColor="Purple"
                             HeightRequest="40" Padding="0" TextTransform="None" FontAttributes="Bold" FontSize="16"
                             Command="{Binding SignUpCommand}"/>
+                    <Button Text="Esqueceu a senha?" BackgroundColor="Transparent" TextColor="DarkSlateGray" HorizontalOptions="EndAndExpand"
+                            HeightRequest="40" Padding="0" TextTransform="None" FontAttributes="None" FontSize="14"
+                            Command="{Binding ForgotPasswordCommand}"/>
                 </StackLayout>
 
                 <Button Text="Login" HorizontalOptions="Center" BackgroundColor="Black"

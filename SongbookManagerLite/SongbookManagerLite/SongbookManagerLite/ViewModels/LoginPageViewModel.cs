@@ -132,6 +132,7 @@ namespace SongbookManagerLite.ViewModels
         public Command LoginCommand { get; set; }
         public Command RegisterCommand { get; set; }
         public Command SignUpCommand { get; set; }
+        public Command ForgotPasswordCommand { get; set; }
         public Command CancelCommand { get; set; }
         #endregion
 
@@ -140,6 +141,7 @@ namespace SongbookManagerLite.ViewModels
             LoginCommand = new Command(async () => await LoginActionAsync());
             RegisterCommand = new Command(async () => await RegisterActionAsync());
             SignUpCommand = new Command(() => SignUpAction());
+            ForgotPasswordCommand = new Command(async () => await ForgotPasswordAction());
             CancelCommand = new Command(() => CancelAction());
         }
 
@@ -220,8 +222,9 @@ namespace SongbookManagerLite.ViewModels
                 // Old DataBase structure
                 //User userLogged = await App.Database.LoginUser(Email, Password);
 
-                //var userService = new UserService();
-                //Result = await userService.LoginUser(Email, Password);
+                var userService = new UserService();
+                Result = await userService.LoginUser(Email, Password);
+                // TODO: Remove
                 Result = true;
 
                 if (Result)
@@ -254,6 +257,11 @@ namespace SongbookManagerLite.ViewModels
             Password = string.Empty;
 
             IsRegistering = false;
+        }
+
+        private async Task ForgotPasswordAction()
+        {
+            await Shell.Current.GoToAsync($"{nameof(ForgotPasswordPage)}");
         }
         #endregion
 

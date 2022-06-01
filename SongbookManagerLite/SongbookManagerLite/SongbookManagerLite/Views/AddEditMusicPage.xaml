@@ -36,13 +36,13 @@
                         FontSize="12"
                         FontAttributes="Bold"
                         TextColor="DarkSlateGray"></Label>
-                <Editor Text="{Binding Lyrics}" HeightRequest="100"></Editor>
+                <Editor Text="{Binding Lyrics}" AutoSize="TextChanges"></Editor>
 
                 <Label Text="Cifra"
                         FontSize="12"
                         FontAttributes="Bold"
                         TextColor="DarkSlateGray"></Label>
-                <Editor Text="{Binding Chords}" HeightRequest="100"></Editor>
+                <Editor Text="{Binding Chords}" AutoSize="TextChanges"></Editor>
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>
