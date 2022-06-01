@@ -225,7 +225,7 @@ namespace SongbookManagerLite.ViewModels
                 var userService = new UserService();
                 Result = await userService.LoginUser(Email, Password);
                 // TODO: Remove
-                Result = true;
+                //Result = true;
 
                 if (Result)
                 {
