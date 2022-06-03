@@ -217,9 +217,16 @@ namespace SongbookManagerLite.ViewModels
         {
             get => new Command(async () =>
             {
-                await LoggedUserHelper.UpdateLoggedUserAsync();
+                try
+                {
+                    await LoggedUserHelper.UpdateLoggedUserAsync();
 
-                await UpdateMusicListAction();
+                    await UpdateMusicListAction();
+                }
+                catch (Exception ex)
+                {
+                    await Application.Current.MainPage.DisplayAlert("Erro", "Não foi possivel atualizar a lista de músicas", "OK");
+                }
             });
         }
 

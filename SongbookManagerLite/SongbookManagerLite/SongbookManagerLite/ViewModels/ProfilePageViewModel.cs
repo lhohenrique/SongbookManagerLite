@@ -67,12 +67,26 @@ namespace SongbookManagerLite.ViewModels
 
         public void FeedbackAction()
         {
-            // Open email to send feedback
+            string emailTo = GlobalVariables.FromEmail;
+            string subject = "Feedback for Songbook Manager";
+
+            string url = "mailto:" + emailTo + "?subject=" + subject;
+
+            Launcher.OpenAsync(new Uri(url));
         }
 
         public void RateAppAction()
         {
-            // Open store
+            //var activity = Android.App.Application.Context;
+            //var url = $"market://details?id={(activity as Context)?.PackageName}";
+
+            //string url = Device.RuntimePlatform == Device.iOS ? "https://itunes.apple.com/br/app/skype-para-iphone/id304878510?mt=8"
+            //   : "https://play.google.com/store/apps/details?id=com.skype.raider&hl=pt_BR";
+
+            string url = Device.RuntimePlatform == Device.iOS ? "https://itunes.apple.com/br/app/skype-para-iphone/id304878510?mt=8"
+               : "https://play.google.com/store/search?q=Songbook%20Manager&c=apps";
+        
+            Launcher.OpenAsync(new Uri(url));
         }
 
         public void SettingsAction()
