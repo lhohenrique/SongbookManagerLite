@@ -39,6 +39,28 @@ namespace SongbookManagerLite.ViewModels
             }
         }
 
+        private string sharedName;
+        public string SharedName
+        {
+            get { return sharedName; }
+            set
+            {
+                sharedName = value;
+                PropertyChanged(this, new PropertyChangedEventArgs("SharedName"));
+            }
+        }
+
+        private string sharedEmail;
+        public string SharedEmail
+        {
+            get { return sharedEmail; }
+            set
+            {
+                sharedEmail = value;
+                PropertyChanged(this, new PropertyChangedEventArgs("SharedEmail"));
+            }
+        }
+
         private bool isShareEnabled = false;
         public bool IsShareEnabled
         {
@@ -60,28 +82,33 @@ namespace SongbookManagerLite.ViewModels
                 PropertyChanged(this, new PropertyChangedEventArgs("IsUpdating"));
             }
         }
+
+        private bool isSharedList = false;
+        public bool IsSharedList
+        {
+            get { return isSharedList; }
+            set
+            {
+                isSharedList = value;
+                PropertyChanged(this, new PropertyChangedEventArgs("IsSharedList"));
+            }
+        }
         #endregion
 
         #region [Command]
-        public ICommand ShareCommand
-        {
-            get => new Command(() =>
-            {
-                ShareAction();
-            });
-        }
-
-        public ICommand UpdateUserListCommand
-        {
-            get => new Command(async () =>
-            {
-                await UpdateUserListAction();
-            });
-        }
+        public Command ShareCommand { get; set; }
+        public Command UpdateUserListCommand { get; set; }
+        public Command<User> RemoveShareCommand { get; set; }
+        public Command UnshareCommand { get; set; }
         #endregion
 
         public SharePageViewModel(INavigation navigation)
         {
+            ShareCommand = new Command(async () => await ShareAction());
+            UpdateUserListCommand = new Command(async () => await UpdateUserListAction());
+            RemoveShareCommand = new Command<User>(async (User user) => await RemoveShareAction(user));
+            UnshareCommand = new Command(async () => await UnshareAction());
+
             Navigation = navigation;
             userService = new UserService();
         }
@@ -107,6 +134,8 @@ namespace SongbookManagerLite.ViewModels
                     await userService.UpdateUser(userToShare);
 
                     await Application.Current.MainPage.DisplayAlert("Sucesso", $"Lista compartilhada com sucesso.", "Ok");
+
+                    Email = string.Empty;
 
                     await UpdateUserListAction();
                 }
@@ -144,12 +173,81 @@ namespace SongbookManagerLite.ViewModels
                 IsUpdating = false;
             }
         }
+
+        private async Task RemoveShareAction(User user)
+        {
+            try
+            {
+                var result = await Application.Current.MainPage.DisplayAlert("Tem certeza?", $"'{user.Name}' será removido(a) da sua lista de compartilhamentos.", "Sim", "Não");
+
+                if (result)
+                {
+                    var userToRemove = await userService.GetUser(user.Email);
+                    userToRemove.SharedList = string.Empty;
+
+                    await userService.UpdateUser(userToRemove);
+
+                    await Application.Current.MainPage.DisplayAlert("Sucesso", $"Usuário removido com sucesso.", "Ok");
+
+                    await UpdateUserListAction();
+                }
+            }
+            catch (Exception ex)
+            {
+                await Application.Current.MainPage.DisplayAlert("Erro", ex.Message, "OK");
+            }
+        }
+
+        private async Task UnshareAction()
+        {
+            try
+            {
+                var result = await Application.Current.MainPage.DisplayAlert("Tem certeza?", $"Você não terá mais acesso à lista de {SharedName}.", "Sim", "Não");
+
+                if (result)
+                {
+                    LoggedUserHelper.LoggedUser.SharedList = string.Empty;
+                    await userService.UpdateUser(LoggedUserHelper.LoggedUser);
+
+                    await HandlePageState();
+                }
+            }
+            catch(Exception ex)
+            {
+                await Application.Current.MainPage.DisplayAlert("Erro", "Erro ao parar compartilhamento", "OK");
+            }
+        }
         #endregion
 
         #region [Public Methods]
         public void HandleShareButton()
         {
             IsShareEnabled = !string.IsNullOrEmpty(Email);   
+        }
+
+        public async Task HandlePageState()
+        {
+            var sharedEmail = LoggedUserHelper.LoggedUser.SharedList;
+
+            if (string.IsNullOrEmpty(sharedEmail))
+            {
+                await UpdateUserListAction();
+
+                HandleShareButton();
+
+                IsSharedList = false;
+            }
+            else
+            {
+                var sharedUser = await userService.GetUser(sharedEmail);
+                if(sharedUser != null)
+                {
+                    SharedName = sharedUser.Name;
+                    SharedEmail = sharedUser.Email;
+                }
+
+                IsSharedList = true;
+            }
         }
         #endregion
     }

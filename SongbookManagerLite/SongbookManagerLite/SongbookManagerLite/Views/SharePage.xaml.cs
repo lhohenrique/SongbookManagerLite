@@ -23,8 +23,9 @@ namespace SongbookManagerLite.Views
         protected override void OnAppearing()
         {
             var viewModel = (SharePageViewModel)BindingContext;
-            viewModel.UpdateUserListCommand.Execute(null);
-            viewModel.HandleShareButton();
+            viewModel.HandlePageState();
+            //viewModel.UpdateUserListCommand.Execute(null);
+            //viewModel.HandleShareButton();
         }
     }
 }
