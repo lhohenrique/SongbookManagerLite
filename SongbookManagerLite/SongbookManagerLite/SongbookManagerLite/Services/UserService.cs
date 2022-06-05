@@ -18,16 +18,16 @@ namespace SongbookManagerLite.Services
             client = new FirebaseClient("https://songbookmanagerlite-default-rtdb.firebaseio.com/");
         }
 
-        public async Task<bool> IsUserExists(string name)
+        public async Task<bool> IsUserExists(string email)
         {
-            var user = (await client.Child("Users").OnceAsync<User>()).Where(u => u.Object.Name == name).FirstOrDefault();
+            var user = (await client.Child("Users").OnceAsync<User>()).Where(u => u.Object.Email == email).FirstOrDefault();
 
             return user != null;
         }
 
         public async Task<bool> RegisterUSer(string name, string email, string password)
         {
-            if(await IsUserExists(name) == false)
+            if(await IsUserExists(email) == false)
             {
                 await client.Child("Users")
                     .PostAsync(new User()

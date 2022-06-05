@@ -15,6 +15,8 @@ namespace SongbookManagerLite
         {
             InitializeComponent();
 
+            Routing.RegisterRoute(nameof(RegisterPage),
+                typeof(RegisterPage));
             Routing.RegisterRoute(nameof(ForgotPasswordPage),
                 typeof(ForgotPasswordPage));
         }

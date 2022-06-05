@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             Title="Novo usuário"
+             x:Class="SongbookManagerLite.Views.RegisterPage">
+
+    <StackLayout Padding="10" VerticalOptions="Start">
+        <Entry Placeholder="Nome" Text="{Binding Name}"/>
+        <Label Text="{Binding NameErrorMessage}" TextColor="Red"/>
+
+        <Entry Placeholder="Email" Text="{Binding Email}" Keyboard="Email"/>
+        <Label Text="{Binding EmailErrorMessage}" TextColor="Red"/>
+
+        <Entry Placeholder="Senha" Text="{Binding Password}" IsPassword="True"/>
+
+        <Entry Placeholder="Confirme a senha" Text="{Binding ConfirmPassword}" IsPassword="True"/>
+        <Label Text="{Binding PasswordErrorMessage}" TextColor="Red"/>
+
+        <Button Text="Registrar" HorizontalOptions="Center" BackgroundColor="DarkSlateGray"
+                TextColor="White" WidthRequest="300" HeightRequest="40"
+                Command="{Binding RegisterCommand}"/>
+    </StackLayout>
+</ContentPage>
