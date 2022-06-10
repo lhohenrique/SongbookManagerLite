@@ -21,6 +21,8 @@ namespace SongbookManagerLite.ViewModels
         private Music music;
         private string oldName;
         private MusicService musicService;
+        private UserService userService;
+        private KeyService keyService;
 
         #region [Properties]
         private int id;
@@ -95,6 +97,13 @@ namespace SongbookManagerLite.ViewModels
             get { return keyList; }
             set { keyList = value; }
         }
+
+        private ObservableCollection<UserKey> userList = new ObservableCollection<UserKey>();
+        public ObservableCollection<UserKey> UserList
+        {
+            get { return userList; }
+            set { userList = value; }
+        }
         #endregion
 
         #region [Commands]
@@ -112,6 +121,8 @@ namespace SongbookManagerLite.ViewModels
             Navigation = navigation;
 
             musicService = new MusicService();
+            keyService = new KeyService();
+            userService = new UserService();
 
             this.music = music;
             oldName = music?.Name;
@@ -133,6 +144,22 @@ namespace SongbookManagerLite.ViewModels
 
                     //await App.Database.UpdateMusic(music);
                     await musicService.UpdateMusic(music, oldName);
+
+                    foreach (UserKey userKey in UserList)
+                    {
+                        if (!string.IsNullOrEmpty(userKey.Key))
+                        {
+                            var isUserKeyExists = await keyService.IsUserKeyExists(userKey);
+                            if (isUserKeyExists)
+                            {
+                                await keyService.UpdateKey(userKey);
+                            }
+                            else
+                            {
+                                await keyService.InsertKey(userKey);
+                            }
+                        }
+                    }
                 }
                 else // Save new music
                 {
@@ -148,6 +175,15 @@ namespace SongbookManagerLite.ViewModels
 
                     //await App.Database.InsertMusic(newMusic);
                     await musicService.InsertMusic(newMusic);
+
+                    foreach (UserKey userKey in UserList)
+                    {
+                        if (!string.IsNullOrEmpty(userKey.Key))
+                        {
+                            userKey.MusicName = newMusic.Name;
+                            await keyService.InsertKey(userKey);
+                        }
+                    }
                 }
 
                 await Navigation.PopAsync();
@@ -160,27 +196,66 @@ namespace SongbookManagerLite.ViewModels
         #endregion
 
         #region [Public Methods]
-        public void PopulateMusicFields()
+        public async Task PopulateMusicFieldsAsync()
         {
-            if(music != null)
+            try
             {
-                Id = music.Id;
-                Name = music.Name;
-                Author = music.Author;
-                SelectedKey = music.Key;
-                Lyrics = music.Lyrics;
-                Chords = music.Chords;
+                var musicOwner = LoggedUserHelper.GetEmail();
+
+                if (music != null)
+                {
+                    Id = music.Id;
+                    Name = music.Name;
+                    Author = music.Author;
+                    SelectedKey = music.Key;
+                    Lyrics = music.Lyrics;
+                    Chords = music.Chords;
+
+                    var sharedUsers = await userService.GetSharedUsers(musicOwner);
+                    var usersKeys = await keyService.GetKeysByOwner(musicOwner, Name);
+
+                    foreach (User user in sharedUsers)
+                    {
+                        if (!usersKeys.Exists(u => u.UserEmail.Equals(user.Email)))
+                        {
+                            usersKeys.Add(new UserKey()
+                            {
+                                MusicName = Name,
+                                UserName = user.Name,
+                                UserEmail = user.Email,
+                                MusicOwner = musicOwner
+                            });
+                        }
+                    }
+
+                    usersKeys.ForEach(i => UserList.Add(i));
+                }
+                else
+                {
+                    Id = 0;
+                    Name = string.Empty;
+                    Author = string.Empty;
+                    SelectedKey = string.Empty;
+                    Lyrics = string.Empty;
+                    Chords = string.Empty;
+
+                    var sharedUsers = await userService.GetSharedUsers(musicOwner);
+                    sharedUsers.ForEach(u => UserList.Add(new UserKey()
+                    {
+                        UserName = u.Name,
+                        UserEmail = u.Email,
+                        MusicOwner = musicOwner
+                    }));
+                }
             }
-            else
+            catch (Exception)
             {
-                Id = 0;
-                Name = string.Empty;
-                Author = string.Empty;
-                SelectedKey = string.Empty;
-                Lyrics = string.Empty;
-                Chords = string.Empty;
+                await Application.Current.MainPage.DisplayAlert("Erro", "Não foi carregar página", "OK");
             }
         }
+        #endregion
+
+        #region [Private Methods]
         #endregion
     }
 }

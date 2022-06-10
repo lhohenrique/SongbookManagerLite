@@ -1,8 +1,10 @@
-﻿using SongbookManagerLite.Models;
+﻿using SongbookManagerLite.Helpers;
+using SongbookManagerLite.Models;
 using SongbookManagerLite.Services;
 using SongbookManagerLite.Views;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Text;
 using System.Threading.Tasks;
@@ -18,8 +20,16 @@ namespace SongbookManagerLite.ViewModels
 
         private Music music;
         private MusicService musicService;
+        private KeyService keyService;
 
         #region [Properties]
+        private ObservableCollection<UserKey> userList = new ObservableCollection<UserKey>();
+        public ObservableCollection<UserKey> UserList
+        {
+            get { return userList; }
+            set { userList = value; }
+        }
+
         private string name;
         public string Name
         {
@@ -79,9 +89,9 @@ namespace SongbookManagerLite.ViewModels
         #region [Commands]
         public ICommand ShowMusicDetailsCommand
         {
-            get => new Command(() =>
+            get => new Command(async () =>
             {
-                ShowMusicDetailsAction();
+                await ShowMusicDetailsAction();
             });
         }
 
@@ -108,10 +118,11 @@ namespace SongbookManagerLite.ViewModels
             this.music = music;
 
             musicService = new MusicService();
+            keyService = new KeyService();
         }
 
         #region [Actions]
-        private void ShowMusicDetailsAction()
+        private async Task ShowMusicDetailsAction()
         {
             if(music != null)
             {
@@ -120,6 +131,8 @@ namespace SongbookManagerLite.ViewModels
                 Key = music.Key;
                 Lyrics = music.Lyrics;
                 Chords = music.Chords;
+
+                await GetMusicKeys();
             }
         }
 
@@ -152,6 +165,21 @@ namespace SongbookManagerLite.ViewModels
             }
 
             await Navigation.PopAsync();
+        }
+        #endregion
+
+        #region [Private Methods]
+        private async Task GetMusicKeys()
+        {
+            try
+            {
+                var usersToAdd = await keyService.GetKeysByOwner(LoggedUserHelper.GetEmail(), Name);
+                usersToAdd.ForEach(i => UserList.Add(i));
+            }
+            catch (Exception)
+            {
+                await Application.Current.MainPage.DisplayAlert("Erro", "Não foi possível carregar os tons", "OK");
+            }
         }
         #endregion
     }

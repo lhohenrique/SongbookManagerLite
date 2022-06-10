@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+<ContentPage x:Name="AddEditMusicContentPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              Shell.TabBarIsVisible="False"
              x:Class="SongbookManagerLite.Views.AddEditMusicPage">
@@ -26,11 +27,11 @@
                         TextColor="DarkSlateGray"></Label>
                 <Entry Text="{Binding Author}"></Entry>
 
-                <Label Text="Tom"
+                <Label Text="Tom original"
                         FontSize="12"
                         FontAttributes="Bold"
                         TextColor="DarkSlateGray"></Label>
-                <Picker ItemsSource="{Binding KeyList}" SelectedItem="{Binding SelectedKey}"/>
+                <Picker ItemsSource="{Binding KeyList}" SelectedItem="{Binding SelectedKey}" Title="Tom"/>
 
                 <Label Text="Letra"
                         FontSize="12"
@@ -43,6 +44,64 @@
                         FontAttributes="Bold"
                         TextColor="DarkSlateGray"></Label>
                 <Editor Text="{Binding Chords}" AutoSize="TextChanges"></Editor>
+
+                <!--<StackLayout BindableLayout.ItemsSource="{Binding UserList}">
+                    <BindableLayout.ItemTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="auto"/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="45"/>
+                                </Grid.ColumnDefinitions>
+                                <Label Text="{Binding UserName}"
+                                    FontSize="14"
+                                    VerticalOptions="Center"
+                                    TextColor="Black"/>
+                                <Picker ItemsSource="{Binding Source={x:Reference AddEditMusicContentPage}, Path=BindingContext.KeyList}"
+                                        SelectedItem="{Binding Key}" Title="Tom"
+                                        Grid.Column="1"/>
+                            </Grid>
+                        </DataTemplate>
+                    </BindableLayout.ItemTemplate>
+                </StackLayout>-->
+
+                <ListView x:Name="UserListListView"
+                        SeparatorVisibility="None"
+                        SelectionMode="None"
+                    ItemsSource="{Binding UserList, Mode=OneWay}">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <StackLayout VerticalOptions="FillAndExpand"
+                                    BackgroundColor="White"
+                                    Orientation="Vertical"
+                                    Spacing="0"
+                                    Padding="7"
+                                    Margin="0,0,0,5">
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="auto"/>
+                                        </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="45"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Label Text="{Binding UserName}"
+                                    FontSize="14"
+                                    VerticalOptions="Center"
+                                    TextColor="Black"/>
+                                        <Picker ItemsSource="{Binding Source={x:Reference AddEditMusicContentPage}, Path=BindingContext.KeyList}"
+                                        SelectedItem="{Binding Key}" Title="Tom"
+                                        Grid.Column="1"/>
+                                    </Grid>
+                                </StackLayout>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>

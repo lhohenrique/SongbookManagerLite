@@ -37,6 +37,42 @@
                         FontSize="12"
                         FontAttributes="Bold"
                         TextColor="DarkSlateGray"></Label>
+
+                    <ListView x:Name="UserListListView"
+                          SeparatorVisibility="None"
+                          ItemsSource="{Binding UserList, Mode=OneWay}">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell>
+                                    <StackLayout VerticalOptions="FillAndExpand"
+                                         BackgroundColor="White"
+                                         Orientation="Vertical"
+                                         Spacing="0"
+                                         Padding="7"
+                                         Margin="0,0,0,5">
+                                        <Grid>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="auto"/>
+                                            </Grid.RowDefinitions>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="auto"/>
+                                            </Grid.ColumnDefinitions>
+                                            <Label Text="{Binding UserName}"
+                                           FontSize="14"
+                                           VerticalOptions="Center"
+                                           TextColor="Black"/>
+                                            <Label Text="{Binding Key}"
+                                           FontSize="14"
+                                           VerticalOptions="Center"
+                                           TextColor="Black"
+                                           Grid.Column="1"/>
+                                        </Grid>
+                                    </StackLayout>
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
                 </StackLayout>
             </ScrollView>
         </StackLayout>

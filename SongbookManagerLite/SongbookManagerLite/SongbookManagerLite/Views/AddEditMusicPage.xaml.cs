@@ -21,10 +21,10 @@ namespace SongbookManagerLite.Views
             BindingContext = new AddEditMusicPageViewModel(Navigation, music);
         }
 
-        protected override void OnAppearing()
+        protected async override void OnAppearing()
         {
             var viewModel = (AddEditMusicPageViewModel)BindingContext;
-            viewModel.PopulateMusicFields();
+            await viewModel.PopulateMusicFieldsAsync();
         }
     }
 }
