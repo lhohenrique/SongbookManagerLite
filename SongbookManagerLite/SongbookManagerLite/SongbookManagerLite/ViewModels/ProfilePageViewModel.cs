@@ -1,9 +1,11 @@
 ﻿using SongbookManagerLite.Helpers;
+using SongbookManagerLite.Services;
 using SongbookManagerLite.Views;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Text;
+using System.Threading.Tasks;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 
@@ -13,6 +15,7 @@ namespace SongbookManagerLite.ViewModels
     {
         public event PropertyChangedEventHandler PropertyChanged;
         public INavigation Navigation { get; set; }
+        private UserService userService;
 
         #region [Properties]
         private string name;
@@ -36,6 +39,18 @@ namespace SongbookManagerLite.ViewModels
                 PropertyChanged(this, new PropertyChangedEventArgs("Email"));
             }
         }
+
+        private bool isSinger;
+        public bool IsSinger
+        {
+            get { return isSinger; }
+            set
+            {
+                isSinger = value;
+                PropertyChanged(this, new PropertyChangedEventArgs("IsSinger"));
+                UpdateUserAsync();
+            }
+        }
         #endregion
 
         #region [Commands]
@@ -50,6 +65,7 @@ namespace SongbookManagerLite.ViewModels
         public ProfilePageViewModel(INavigation navigation)
         {
             this.Navigation = navigation;
+            this.userService = new UserService();
 
             ChangePasswordCommand = new Command(() => ChangePasswordAction());
             FeedbackCommand = new Command(() => FeedbackAction());
@@ -118,6 +134,24 @@ namespace SongbookManagerLite.ViewModels
         {
             Name = LoggedUserHelper.LoggedUser.Name;
             Email = LoggedUserHelper.LoggedUser.Email;
+            IsSinger = LoggedUserHelper.LoggedUser.IsSinger;
+        }
+        #endregion
+
+        #region [Private Methods]
+        private async void UpdateUserAsync()
+        {
+            try
+            {
+                var user = LoggedUserHelper.LoggedUser;
+                user.IsSinger = IsSinger;
+
+                await userService.UpdateUser(user);
+            }
+            catch (Exception)
+            {
+
+            }
         }
         #endregion
     }

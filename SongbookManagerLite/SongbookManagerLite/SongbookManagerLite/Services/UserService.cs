@@ -59,7 +59,8 @@ namespace SongbookManagerLite.Services
                 Name = item.Object.Name,
                 Email = item.Object.Email,
                 Password = item.Object.Password,
-                SharedList = item.Object.SharedList
+                SharedList = item.Object.SharedList,
+                IsSinger = item.Object.IsSinger
             }).Where(u => u.Email.Equals(email)).FirstOrDefault();
 
             return user;
@@ -72,8 +73,23 @@ namespace SongbookManagerLite.Services
                 Name = item.Object.Name,
                 Email = item.Object.Email,
                 Password = item.Object.Password,
-                SharedList = item.Object.SharedList
+                SharedList = item.Object.SharedList,
+                IsSinger = item.Object.IsSinger
             }).Where(u => !string.IsNullOrEmpty(u.SharedList) && u.SharedList.Equals(email)).ToList();
+
+            return users;
+        }
+
+        public async Task<List<User>> GetSharedSingerUsers(string email)
+        {
+            var users = (await client.Child("Users").OnceAsync<User>()).Select(item => new User
+            {
+                Name = item.Object.Name,
+                Email = item.Object.Email,
+                Password = item.Object.Password,
+                SharedList = item.Object.SharedList,
+                IsSinger = item.Object.IsSinger
+            }).Where(u => !string.IsNullOrEmpty(u.SharedList) && u.SharedList.Equals(email) && u.IsSinger).ToList();
 
             return users;
         }
