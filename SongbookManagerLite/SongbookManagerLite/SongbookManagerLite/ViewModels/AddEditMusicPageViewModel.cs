@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -103,6 +104,17 @@ namespace SongbookManagerLite.ViewModels
         {
             get { return userList; }
             set { userList = value; }
+        }
+
+        private bool hasSingers = false;
+        public bool HasSingers
+        {
+            get { return hasSingers; }
+            set
+            {
+                hasSingers = value;
+                PropertyChanged(this, new PropertyChangedEventArgs("HasSingers"));
+            }
         }
         #endregion
 
@@ -211,7 +223,7 @@ namespace SongbookManagerLite.ViewModels
                     Lyrics = music.Lyrics;
                     Chords = music.Chords;
 
-                    var sharedUsers = await userService.GetSharedUsers(musicOwner);
+                    var sharedUsers = await userService.GetSingers(musicOwner);
                     var usersKeys = await keyService.GetKeysByOwner(musicOwner, Name);
 
                     foreach (User user in sharedUsers)
@@ -239,7 +251,7 @@ namespace SongbookManagerLite.ViewModels
                     Lyrics = string.Empty;
                     Chords = string.Empty;
 
-                    var sharedUsers = await userService.GetSharedUsers(musicOwner);
+                    var sharedUsers = await userService.GetSingers(musicOwner);
                     sharedUsers.ForEach(u => UserList.Add(new UserKey()
                     {
                         UserName = u.Name,
@@ -247,10 +259,12 @@ namespace SongbookManagerLite.ViewModels
                         MusicOwner = musicOwner
                     }));
                 }
+
+                HasSingers = UserList.Any();
             }
             catch (Exception)
             {
-                await Application.Current.MainPage.DisplayAlert("Erro", "Não foi carregar página", "OK");
+                await Application.Current.MainPage.DisplayAlert("Erro", "Não foi possivel carregar a página", "OK");
             }
         }
         #endregion

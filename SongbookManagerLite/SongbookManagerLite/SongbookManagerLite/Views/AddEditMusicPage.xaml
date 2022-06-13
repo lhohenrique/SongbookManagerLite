@@ -1,10 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <TabbedPage x:Name="AddEditMusicContentPage"
-    xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             Shell.TabBarIsVisible="False"
-             x:Class="SongbookManagerLite.Views.AddEditMusicPage">
+            xmlns="http://xamarin.com/schemas/2014/forms"
+            xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+            xmlns:converters="clr-namespace:SongbookManagerLite.Converters"
+            Shell.TabBarIsVisible="False"
+            x:Class="SongbookManagerLite.Views.AddEditMusicPage">
 
+    <TabbedPage.Resources>
+        <converters:ReverseBoolConverter x:Key="reverseBoolConverter"/>
+    </TabbedPage.Resources>
+    
     <TabbedPage.ToolbarItems>
         <ToolbarItem Text="Salvar" Order="Primary" Command="{Binding SaveMusicCommand}"/>
     </TabbedPage.ToolbarItems>
@@ -55,40 +60,51 @@
     </ContentPage>
 
     <ContentPage Title="Tons">
-        <ListView x:Name="UserListListView"
+        <StackLayout>
+            <Label Text="Não existem cantores registrados ou com acesso compartilhado."
+                       FontSize="12"
+                       FontAttributes="Bold"
+                       TextColor="DarkSlateGray"
+                       HorizontalOptions="Center"
+                       Margin="0,10,0,0"
+                       IsVisible="{Binding HasSingers, Converter={StaticResource reverseBoolConverter}}"></Label>
+
+            <ListView x:Name="UserListListView"
                     SeparatorVisibility="None"
                     SelectionMode="None"
                     ItemsSource="{Binding UserList, Mode=OneWay}">
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <ViewCell>
-                        <StackLayout VerticalOptions="FillAndExpand"
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout VerticalOptions="FillAndExpand"
                                 BackgroundColor="White"
                                 Orientation="Vertical"
                                 Spacing="0"
                                 Padding="7"
                                 Margin="0,0,0,5">
-                            <Grid>
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="auto"/>
-                                </Grid.RowDefinitions>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="45"/>
-                                </Grid.ColumnDefinitions>
-                                <Label Text="{Binding UserName}"
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="auto"/>
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="45"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Label Text="{Binding UserName}"
                                 FontSize="14"
                                 VerticalOptions="Center"
                                 TextColor="Black"/>
-                                <Picker ItemsSource="{Binding Source={x:Reference AddEditMusicContentPage}, Path=BindingContext.KeyList}"
+                                    <Picker ItemsSource="{Binding Source={x:Reference AddEditMusicContentPage}, Path=BindingContext.KeyList}"
                                     SelectedItem="{Binding Key}" Title="Tom"
                                     Grid.Column="1"/>
-                            </Grid>
-                        </StackLayout>
-                    </ViewCell>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
+                                </Grid>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+        
         <!--<StackLayout BindableLayout.ItemsSource="{Binding UserList}">
                 <BindableLayout.ItemTemplate>
                     <DataTemplate>

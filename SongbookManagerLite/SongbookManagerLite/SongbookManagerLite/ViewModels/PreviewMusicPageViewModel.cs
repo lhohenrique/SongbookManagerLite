@@ -188,6 +188,8 @@ namespace SongbookManagerLite.ViewModels
             try
             {
                 var usersToAdd = await keyService.GetKeysByOwner(LoggedUserHelper.GetEmail(), Name);
+                
+                UserList.Clear();
                 usersToAdd.ForEach(i => UserList.Add(i));
             }
             catch (Exception)
