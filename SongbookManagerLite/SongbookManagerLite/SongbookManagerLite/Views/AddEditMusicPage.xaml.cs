@@ -12,7 +12,7 @@ using Xamarin.Forms.Xaml;
 namespace SongbookManagerLite.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class AddEditMusicPage : ContentPage
+    public partial class AddEditMusicPage : TabbedPage
     {
         public AddEditMusicPage(Music music)
         {
