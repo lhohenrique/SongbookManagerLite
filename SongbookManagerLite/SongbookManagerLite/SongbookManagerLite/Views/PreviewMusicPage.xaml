@@ -1,44 +1,76 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             Shell.TabBarIsVisible="False"
-             x:Class="SongbookManagerLite.Views.PreviewMusicPage">
+<TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
+            xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+            Shell.TabBarIsVisible="False"
+            xmlns:converters="clr-namespace:SongbookManagerLite.Converters"
+            x:Class="SongbookManagerLite.Views.PreviewMusicPage">
 
-    <ContentPage.ToolbarItems>
+    <TabbedPage.Resources>
+        <converters:ReverseBoolConverter x:Key="reverseBoolConverter"/>
+    </TabbedPage.Resources>
+    
+    <TabbedPage.ToolbarItems>
         <ToolbarItem Text="Editar" Order="Primary" Command="{Binding EditMusicCommand}"/>
         <ToolbarItem Text="Excluir" Order="Primary" Command="{Binding RemoveMusicCommand}"/>
-    </ContentPage.ToolbarItems>
+    </TabbedPage.ToolbarItems>
 
-    <ContentPage.Content>
-        <StackLayout>
-            <ScrollView>
-                <StackLayout>
-                    <Label Text="{Binding Name}"
+    <ContentPage Title="Detalhes" Padding="5">
+        <ContentPage.Content>
+            <StackLayout>
+                <ScrollView>
+                    <StackLayout>
+                        <Label Text="{Binding Name}"
                         FontSize="12"
                         FontAttributes="Bold"
                         TextColor="DarkSlateGray"></Label>
 
-                    <Label Text="{Binding Author}"
+                        <Label Text="{Binding Author}"
                         FontSize="12"
                         FontAttributes="Bold"
                         TextColor="DarkSlateGray"></Label>
 
-                    <Label Text="{Binding Key}"
+                        <Label Text="{Binding Lyrics}"
+                        FontSize="12"
+                        FontAttributes="Bold"
+                        TextColor="DarkSlateGray"></Label>
+                    </StackLayout>
+                </ScrollView>
+            </StackLayout>
+        </ContentPage.Content>
+    </ContentPage>
+
+    <ContentPage Title="Acordes">
+        <ContentPage.Content>
+            <StackLayout>
+                <ScrollView>
+                    <StackLayout>
+                        <Label Text="{Binding Key}"
                         FontSize="12"
                         FontAttributes="Bold"
                         TextColor="DarkSlateGray"></Label>
 
-                    <Label Text="{Binding Lyrics}"
+                        <Label Text="{Binding Chords}"
                         FontSize="12"
                         FontAttributes="Bold"
                         TextColor="DarkSlateGray"></Label>
+                    </StackLayout>
+                </ScrollView>
+            </StackLayout>
+        </ContentPage.Content>
+    </ContentPage>
 
-                    <Label Text="{Binding Chords}"
-                        FontSize="12"
-                        FontAttributes="Bold"
-                        TextColor="DarkSlateGray"></Label>
-
-                    <ListView x:Name="UserListListView"
+    <ContentPage Title="Tons">
+        <ContentPage.Content>
+            <StackLayout>
+                <Label Text="Não existem cantores com tons salvos para esta músicas."
+                       FontSize="12"
+                       FontAttributes="Bold"
+                       TextColor="DarkSlateGray"
+                       HorizontalOptions="Center"
+                       Margin="0,10,0,0"
+                       IsVisible="{Binding HasSingers, Converter={StaticResource reverseBoolConverter}}"></Label>
+                
+                <ListView x:Name="UserListListView"
                           SeparatorVisibility="None"
                           ItemsSource="{Binding UserList, Mode=OneWay}">
                         <ListView.ItemTemplate>
@@ -73,8 +105,7 @@
                             </DataTemplate>
                         </ListView.ItemTemplate>
                     </ListView>
-                </StackLayout>
-            </ScrollView>
-        </StackLayout>
-    </ContentPage.Content>
-</ContentPage>
+            </StackLayout>
+        </ContentPage.Content>
+    </ContentPage>
+</TabbedPage>

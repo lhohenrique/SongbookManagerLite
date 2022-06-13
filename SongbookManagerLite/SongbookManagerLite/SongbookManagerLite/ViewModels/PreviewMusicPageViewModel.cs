@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -84,6 +85,17 @@ namespace SongbookManagerLite.ViewModels
                 PropertyChanged(this, new PropertyChangedEventArgs("Chords"));
             }
         }
+
+        private bool hasSingers = false;
+        public bool HasSingers
+        {
+            get { return hasSingers; }
+            set
+            {
+                hasSingers = value;
+                PropertyChanged(this, new PropertyChangedEventArgs("HasSingers"));
+            }
+        }
         #endregion
 
         #region [Commands]
@@ -134,6 +146,8 @@ namespace SongbookManagerLite.ViewModels
 
                 await GetMusicKeys();
             }
+
+            HasSingers = UserList.Any();
         }
 
         private void EditMusicAction()
