@@ -5,9 +5,11 @@
              x:Class="SongbookManagerLite.Views.MusicPage">
 
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Filtro" Order="Primary"/>
+        <ToolbarItem Text="Compartilhar" Order="Primary" Command="{Binding ShareCommand}"/>
         <ToolbarItem Text="+" Order="Primary" Command="{Binding NewMusicCommand}"/>
-        <ToolbarItem Text="Share" Order="Secondary" Command="{Binding ShareCommand}"/>
+        <ToolbarItem Text="Ordem - Alfabética" Order="Secondary" Command="{Binding AlphabeticalOrderCommand}"/>
+        <ToolbarItem Text="Ordem - Mais recente" Order="Secondary" Command="{Binding MostRecentOrderCommand}"/>
+        <ToolbarItem Text="Ordem - Mais antiga" Order="Secondary" Command="{Binding OldestOrderCommand}"/>
         <ToolbarItem Text="Clear" Order="Secondary" Command="{Binding ClearCommand}"/>
         <ToolbarItem Text="Mock" Order="Secondary" Command="{Binding MockMusicCommand}"/>
     </ContentPage.ToolbarItems>

@@ -182,7 +182,8 @@ namespace SongbookManagerLite.ViewModels
                         Author = Author,
                         Key = SelectedKey,
                         Lyrics = Lyrics,
-                        Chords = Chords
+                        Chords = Chords,
+                        CreationDate = DateTime.Now
                     };
 
                     //await App.Database.InsertMusic(newMusic);

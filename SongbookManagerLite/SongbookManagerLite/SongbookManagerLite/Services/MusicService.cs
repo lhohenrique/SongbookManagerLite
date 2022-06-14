@@ -28,7 +28,8 @@ namespace SongbookManagerLite.Services
                     Key = item.Object.Key,
                     Lyrics = item.Object.Lyrics,
                     Chords = item.Object.Chords,
-                    UserEmail = item.Object.UserEmail
+                    UserEmail = item.Object.UserEmail,
+                    CreationDate = item.Object.CreationDate
                 }).ToList();
 
             return musics;
@@ -43,7 +44,8 @@ namespace SongbookManagerLite.Services
                 Key = item.Object.Key,
                 Lyrics = item.Object.Lyrics,
                 Chords = item.Object.Chords,
-                UserEmail = item.Object.UserEmail
+                UserEmail = item.Object.UserEmail,
+                CreationDate = item.Object.CreationDate
             }).Where(m => m.UserEmail.Equals(userEmail)).ToList();
 
             return musics;
