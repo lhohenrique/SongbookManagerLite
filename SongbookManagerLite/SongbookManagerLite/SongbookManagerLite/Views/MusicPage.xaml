@@ -18,8 +18,7 @@
         <StackLayout>
 
             <StackLayout Orientation="Horizontal">
-                <SearchBar Placeholder="Pesquisar..." Text="{Binding SearchText}"/>
-                <Button Text="Buscar" Command="{Binding SearchCommand}"/>
+                <SearchBar x:Name="MusicSearchBar" Placeholder="Pesquisar..." Text="{Binding SearchText}"  TextChanged="MusicSearchBar_TextChanged" HorizontalOptions="FillAndExpand" />
             </StackLayout>
 
             <RefreshView IsRefreshing="{Binding IsUpdating, Mode=OneWay}" Command="{Binding UpdateMusicListCommand}">
