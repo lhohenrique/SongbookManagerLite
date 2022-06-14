@@ -65,6 +65,17 @@ namespace SongbookManagerLite.Services
             await client.Child("Keys").Child(keyToUpdate.Key).PutAsync(key);
         }
 
+        public async Task RemoveUserKeyByMusic(string musicOwner, string musicName)
+        {
+            var keysToRemove = (await client.Child("Keys").OnceAsync<UserKey>())
+                                                .Where(k => k.Object.MusicOwner.Equals(musicOwner) && k.Object.MusicName.Equals(musicName)).ToList();
+
+            foreach (var key in keysToRemove)
+            {
+                await client.Child("Keys").Child(key.Key).DeleteAsync();
+            }
+        }
+
         public async Task ClearUserKeys(string userEmail)
         {
             var keysToRemove = (await client.Child("Keys").OnceAsync<UserKey>())

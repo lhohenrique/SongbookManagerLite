@@ -18,6 +18,7 @@ namespace SongbookManagerLite.ViewModels
         public INavigation Navigation { get; set; }
         
         private UserService userService;
+        private KeyService keyService;
 
         #region [Properties]
         private ObservableCollection<User> userList = new ObservableCollection<User>();
@@ -111,6 +112,7 @@ namespace SongbookManagerLite.ViewModels
 
             Navigation = navigation;
             userService = new UserService();
+            keyService = new KeyService();
         }
 
         #region [Actions]
@@ -187,9 +189,10 @@ namespace SongbookManagerLite.ViewModels
 
                     await userService.UpdateUser(userToRemove);
 
-                    await Application.Current.MainPage.DisplayAlert("Sucesso", $"Usuário removido com sucesso.", "Ok");
-
                     await UpdateUserListAction();
+
+                    // Remove all keys from this user
+                    await keyService.ClearUserKeys(user.Email);
                 }
             }
             catch (Exception ex)
@@ -210,9 +213,12 @@ namespace SongbookManagerLite.ViewModels
                     await userService.UpdateUser(LoggedUserHelper.LoggedUser);
 
                     await HandlePageState();
+                    
+                    // Remove all keys from this user
+                    await keyService.ClearUserKeys(LoggedUserHelper.LoggedUser.Email);
                 }
             }
-            catch(Exception ex)
+            catch(Exception)
             {
                 await Application.Current.MainPage.DisplayAlert("Erro", "Erro ao parar compartilhamento", "OK");
             }

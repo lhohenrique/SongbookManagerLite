@@ -22,6 +22,7 @@ namespace SongbookManagerLite.ViewModels
         public INavigation Navigation { get; set; }
 
         private MusicService musicService;
+        private KeyService keyService;
 
         #region [Properties]
         private bool isPreviewMusic = false;
@@ -357,6 +358,7 @@ namespace SongbookManagerLite.ViewModels
             this.Navigation = navigation;
 
             musicService = new MusicService();
+            keyService = new KeyService();
 
             // Update logged user
         }
@@ -393,6 +395,10 @@ namespace SongbookManagerLite.ViewModels
                 }
 
                 await UpdateMusicListAction();
+
+                // Remove all keys from this music
+                var musicOwner = LoggedUserHelper.GetEmail();
+                await keyService.RemoveUserKeyByMusic(musicOwner, music.Name);
             }
             catch(Exception ex)
             {
