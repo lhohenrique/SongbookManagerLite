@@ -20,10 +20,10 @@ namespace SongbookManagerLite.Views
             BindingContext = new MusicPageViewModel(Navigation);
         }
 
-        protected override void OnAppearing()
+        protected async override void OnAppearing()
         {
             var viewModel = (MusicPageViewModel)BindingContext;
-            viewModel.UpdateMusicListCommand.Execute(null);
+            await viewModel.LoadingPage();
         }
 
         private void MusicSearchBar_TextChanged(object sender, TextChangedEventArgs e)

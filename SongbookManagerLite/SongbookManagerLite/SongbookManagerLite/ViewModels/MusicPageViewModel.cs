@@ -23,6 +23,7 @@ namespace SongbookManagerLite.ViewModels
 
         private MusicService musicService;
         private KeyService keyService;
+        private bool pageLoaded = false;
 
         #region [Properties]
         private bool isPreviewMusic = false;
@@ -219,16 +220,7 @@ namespace SongbookManagerLite.ViewModels
         {
             get => new Command(async () =>
             {
-                try
-                {
-                    await LoggedUserHelper.UpdateLoggedUserAsync();
-
-                    await UpdateMusicListAction();
-                }
-                catch (Exception)
-                {
-                    await Application.Current.MainPage.DisplayAlert("Erro", "Não foi possivel atualizar a lista de músicas", "OK");
-                }
+                await UpdateMusicListAction();
             });
         }
 
@@ -417,6 +409,8 @@ namespace SongbookManagerLite.ViewModels
 
                 IsUpdating = true;
 
+                await LoggedUserHelper.UpdateLoggedUserAsync();
+
                 //List<Music> musicListUpdated = await App.Database.GetAllMusics();
                 var userEmail = LoggedUserHelper.GetEmail();
                 List<Music> musicListUpdated = await musicService.GetMusicsByUser(userEmail);
@@ -425,9 +419,9 @@ namespace SongbookManagerLite.ViewModels
 
                 musicListUpdated.ForEach(i => MusicList.Add(i));
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                await Application.Current.MainPage.DisplayAlert("Erro", ex.Message, "OK");
+                await Application.Current.MainPage.DisplayAlert("Erro", "Não foi possivel atualizar a lista de músicas", "OK");
             }
             finally
             {
@@ -439,6 +433,11 @@ namespace SongbookManagerLite.ViewModels
         {
             try
             {
+                if (!pageLoaded)
+                {
+                    return;
+                }
+
                 //List<Music> musicListUpdated = await App.Database.SearchMusic(SearchText);
                 var userEmail = LoggedUserHelper.GetEmail();
                 List<Music> musicListUpdated = await musicService.SearchMusic(SearchText, userEmail);
@@ -447,9 +446,9 @@ namespace SongbookManagerLite.ViewModels
 
                 musicListUpdated.ForEach(i => MusicList.Add(i));
             }
-            catch(Exception ex)
+            catch(Exception)
             {
-                await Application.Current.MainPage.DisplayAlert("Erro", ex.Message, "OK");
+                await Application.Current.MainPage.DisplayAlert("Erro", "Não foi possivel realizar a buscar", "OK");
             }
         }
 
@@ -480,6 +479,15 @@ namespace SongbookManagerLite.ViewModels
             
             MusicList.Clear();
             orderedList.ForEach(i => MusicList.Add(i));
+        }
+        #endregion
+
+        #region [Public Methods]
+        public async Task LoadingPage()
+        {
+            await UpdateMusicListAction();
+            pageLoaded = true;
+
         }
         #endregion
 
