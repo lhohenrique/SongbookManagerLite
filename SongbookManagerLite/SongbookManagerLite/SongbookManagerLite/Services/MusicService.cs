@@ -85,7 +85,7 @@ namespace SongbookManagerLite.Services
                 Lyrics = item.Object.Lyrics,
                 Chords = item.Object.Chords,
                 Owner = item.Object.Owner
-            }).Where(m => m.Owner.Equals(userEmail) && m.Name.Contains(searchText)).ToList();
+            }).Where(m => m.Owner.Equals(userEmail) && m.Name.ToUpper().Contains(searchText.ToUpper())).ToList();
 
             return musics;
         }

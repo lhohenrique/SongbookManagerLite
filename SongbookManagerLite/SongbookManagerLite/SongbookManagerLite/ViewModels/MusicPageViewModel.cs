@@ -439,13 +439,6 @@ namespace SongbookManagerLite.ViewModels
         {
             try
             {
-                if (IsUpdating)
-                {
-                    return;
-                }
-
-                isUpdating = true;
-
                 //List<Music> musicListUpdated = await App.Database.SearchMusic(SearchText);
                 var userEmail = LoggedUserHelper.GetEmail();
                 List<Music> musicListUpdated = await musicService.SearchMusic(SearchText, userEmail);
@@ -457,10 +450,6 @@ namespace SongbookManagerLite.ViewModels
             catch(Exception ex)
             {
                 await Application.Current.MainPage.DisplayAlert("Erro", ex.Message, "OK");
-            }
-            finally
-            {
-                IsUpdating = false;
             }
         }
 
