@@ -178,7 +178,7 @@ namespace SongbookManagerLite.ViewModels
                     var newMusic = new Music()
                     {
                         Name = Name,
-                        UserEmail = LoggedUserHelper.GetEmail(),
+                        Owner = LoggedUserHelper.GetEmail(),
                         Author = Author,
                         Key = SelectedKey,
                         Lyrics = Lyrics,

@@ -28,7 +28,7 @@ namespace SongbookManagerLite.Services
                     Key = item.Object.Key,
                     Lyrics = item.Object.Lyrics,
                     Chords = item.Object.Chords,
-                    UserEmail = item.Object.UserEmail,
+                    Owner = item.Object.Owner,
                     CreationDate = item.Object.CreationDate
                 }).ToList();
 
@@ -44,9 +44,9 @@ namespace SongbookManagerLite.Services
                 Key = item.Object.Key,
                 Lyrics = item.Object.Lyrics,
                 Chords = item.Object.Chords,
-                UserEmail = item.Object.UserEmail,
+                Owner = item.Object.Owner,
                 CreationDate = item.Object.CreationDate
-            }).Where(m => m.UserEmail.Equals(userEmail)).ToList();
+            }).Where(m => m.Owner.Equals(userEmail)).ToList();
 
             return musics;
         }
@@ -62,7 +62,7 @@ namespace SongbookManagerLite.Services
         public async Task UpdateMusic(Music music, string oldName)
         {
             var musicToUpdate = (await client.Child("Musics").OnceAsync<Music>())
-                                                .Where(m => m.Object.Name.Equals(oldName) && m.Object.UserEmail.Equals(music.UserEmail)).FirstOrDefault();
+                                                .Where(m => m.Object.Name.Equals(oldName) && m.Object.Owner.Equals(music.Owner)).FirstOrDefault();
 
             await client.Child("Musics").Child(musicToUpdate.Key).PutAsync(music);
         }
@@ -70,7 +70,7 @@ namespace SongbookManagerLite.Services
         public async Task DeleteMusic(Music music)
         {
             var musicToDelete = (await client.Child("Musics").OnceAsync<Music>())
-                                                .Where(m => m.Object.Name.Equals(music.Name) && m.Object.UserEmail.Equals(music.UserEmail)).FirstOrDefault();
+                                                .Where(m => m.Object.Name.Equals(music.Name) && m.Object.Owner.Equals(music.Owner)).FirstOrDefault();
 
             await client.Child("Musics").Child(musicToDelete.Key).DeleteAsync();
         }
@@ -84,8 +84,8 @@ namespace SongbookManagerLite.Services
                 Key = item.Object.Key,
                 Lyrics = item.Object.Lyrics,
                 Chords = item.Object.Chords,
-                UserEmail = item.Object.UserEmail
-            }).Where(m => m.UserEmail.Equals(userEmail) && m.Name.Contains(searchText)).ToList();
+                Owner = item.Object.Owner
+            }).Where(m => m.Owner.Equals(userEmail) && m.Name.Contains(searchText)).ToList();
 
             return musics;
         }

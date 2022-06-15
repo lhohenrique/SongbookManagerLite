@@ -225,7 +225,7 @@ namespace SongbookManagerLite.ViewModels
 
                     await UpdateMusicListAction();
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
                     await Application.Current.MainPage.DisplayAlert("Erro", "Não foi possivel atualizar a lista de músicas", "OK");
                 }
@@ -280,7 +280,7 @@ namespace SongbookManagerLite.ViewModels
                 var music1 = new Music()
                 {
                     Name = "O Nome Da Paz",
-                    UserEmail = "lho.henrique@gmail.com",
+                    Owner = "lho.henrique@gmail.com",
                     Author = "Resgate",
                     Key = "C",
                     Lyrics = "De que adianta estar vestido de branco\nE ter no rosto um sorriso amarelo\nSe a paz não é um estado de espírito\nSe por dentro há uma grande e interminável guerra\n\nA paz não é o que se encontra no mundo\nQue paz é essa que se arma prá guerra ?\nAonde está o fim da destruição ?\nAnsiedade quer vencer o desespero do coração\n\nO nome da paz, foi declarado na cruz\nO nome da paz é jesus\n\nOuço a voz que diz:\nA minha paz vos dou\nAgora tudo vai mudar",
@@ -291,7 +291,7 @@ namespace SongbookManagerLite.ViewModels
                 var music2 = new Music()
                 {
                     Name = "Palavras",
-                    UserEmail = "lho.henrique@gmail.com",
+                    Owner = "lho.henrique@gmail.com",
                     Author = "Resgate",
                     Key = "F#",
                     Lyrics = "Eu poderia ficar a vida inteira\nOuvindo a Tua voz, tão doce\nEu poderia ficar a vida inteira\nAo som de Tua palavras\nNem só de pão o homem viverá\nMas da palavra que sai da Tua boca\n\nEu poderia ficar a vida inteira\nOuvindo a Tua voz, tão doce\nEu poderia ficar a vida inteira\nAo som de Tua palavras\n\nComo uma lâmpada para os meus pés\nComo luz no meu caminho\nAs Tuas palavras\nQue alimentam\nO meu interior",
@@ -302,7 +302,7 @@ namespace SongbookManagerLite.ViewModels
                 var music3 = new Music()
                 {
                     Name = "5:50 Am",
-                    UserEmail = "lho.henrique@gmail.com",
+                    Owner = "lho.henrique@gmail.com",
                     Author = "Resgate",
                     Key = "G",
                     Lyrics = "Abro os olhos sob o mesmo teto, todo dia\nTudo outra vez\nAcordo, um tapa no relógio\nA mente tá vazia, são dez pra seis\n\nHoje a morte do meu ego tá fazendo aniversário\nSerá que eu vou chegar\nChegar ao fim de mais um calendário\nEu não sei! Eu não sei.....eu não sei...\nÉ tudo sempre igual\n\nDisseram que o Teu amor é novo a cada dia, eu pensei\nQuero ouvir a Tua voz\nFalar o que eu queria, são dez pra seis\n\nSe é pra Te servir e então matar aquela velha sede\nSe é pra Te seguir e nunca mais cair na mesma rede\nEu vou! Eu vou....eu vou...\nTe seguir... ",
