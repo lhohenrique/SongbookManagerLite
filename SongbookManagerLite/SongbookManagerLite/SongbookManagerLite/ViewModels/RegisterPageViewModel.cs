@@ -1,4 +1,5 @@
-﻿using SongbookManagerLite.Services;
+﻿using SongbookManagerLite.Resx;
+using SongbookManagerLite.Services;
 using SongbookManagerLite.Views;
 using System;
 using System.Collections.Generic;
@@ -157,19 +158,17 @@ namespace SongbookManagerLite.ViewModels
 
                     if (Result)
                     {
-                        await Application.Current.MainPage.DisplayAlert("Sucesso", "Usuário registrado", "Ok");
-
                         await Shell.Current.GoToAsync($"//{nameof(LoginPage)}");
                     }
                     else
                     {
-                        await Application.Current.MainPage.DisplayAlert("Erro", $"O usuário {Email} já está registrado.", "Ok");
+                        await Application.Current.MainPage.DisplayAlert(AppResources.Error, AppResources.UserAlreadyRegistered, AppResources.Ok);
                     }
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                await Application.Current.MainPage.DisplayAlert("Erro", "Não foi possível registrar o usuário", "Ok");
+                await Application.Current.MainPage.DisplayAlert(AppResources.Error, AppResources.UnableRegisterUser, AppResources.Ok);
             }
             finally
             {
@@ -194,7 +193,7 @@ namespace SongbookManagerLite.ViewModels
 
             if (String.IsNullOrWhiteSpace(nameToValidate))
             {
-                NameErrorMessage = "Informe um nome";
+                NameErrorMessage = AppResources.GiveAName;
             }
             else
             {
@@ -213,7 +212,7 @@ namespace SongbookManagerLite.ViewModels
 
             if (String.IsNullOrWhiteSpace(emailToValidate) || !(Regex.IsMatch(emailToValidate, emailPattern)))
             {
-                EmailErrorMessage = "Email inválido";
+                EmailErrorMessage = AppResources.InvalidEmail;
             }
             else
             {
@@ -230,11 +229,11 @@ namespace SongbookManagerLite.ViewModels
 
             if (String.IsNullOrWhiteSpace(passwordToValidade) || passwordToValidade.Length < 6)
             {
-                PasswordErrorMessage = "A senha precisa ter no mínimo 6 caracteres";
+                PasswordErrorMessage = AppResources.MinimumCharacterMessage;
             }
             else if (!passwordToValidade.Equals(confirmPasswordToValidate))
             {
-                PasswordErrorMessage = "As senhas não correspondem";
+                PasswordErrorMessage = AppResources.PasswordsNotMatch;
             }
             else
             {

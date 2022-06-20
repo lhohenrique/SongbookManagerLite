@@ -1,5 +1,6 @@
 ﻿using SongbookManagerLite.Helpers;
 using SongbookManagerLite.Models;
+using SongbookManagerLite.Resx;
 using SongbookManagerLite.Services;
 using SongbookManagerLite.Views;
 using System;
@@ -109,12 +110,12 @@ namespace SongbookManagerLite.ViewModels
                 }
                 else
                 {
-                    await Application.Current.MainPage.DisplayAlert("Erro", "Usuário/Senha inválido(s)", "Ok");
+                    await Application.Current.MainPage.DisplayAlert(AppResources.Invalid, AppResources.InvalidEmailPassword, AppResources.Ok);
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                await Application.Current.MainPage.DisplayAlert("Erro", ex.Message, "Ok");
+                await Application.Current.MainPage.DisplayAlert(AppResources.Error, AppResources.CouldNotSignIn, AppResources.Ok);
             }
             finally
             {

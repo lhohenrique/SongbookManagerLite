@@ -1,7 +1,10 @@
 ﻿using SongbookManagerLite.Helpers;
+using SongbookManagerLite.Resx;
 using SongbookManagerLite.Views;
 using System;
+using System.Globalization;
 using System.IO;
+using System.Threading;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -28,6 +31,8 @@ namespace SongbookManagerLite
         public App()
         {
             InitializeComponent();
+            Thread.CurrentThread.CurrentUICulture = CultureInfo.InstalledUICulture;
+            AppResources.Culture = CultureInfo.InstalledUICulture;
 
             MainPage = new MainPage();
         }

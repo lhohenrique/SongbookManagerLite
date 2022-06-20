@@ -1,5 +1,6 @@
 ﻿using SongbookManagerLite.Helpers;
 using SongbookManagerLite.Models;
+using SongbookManagerLite.Resx;
 using SongbookManagerLite.Services;
 using SongbookManagerLite.Views;
 using System;
@@ -71,33 +72,38 @@ namespace SongbookManagerLite.ViewModels
                     smtpServer.SendAsync(GlobalVariables.FromEmail, Email, GlobalVariables.Subject, GlobalVariables.Body.Replace("XXXXXX", newPassword), "xyz123d");
 
                     smtpServer.SendCompleted += SmtpServer_SendCompleted;
-
-                    await Application.Current.MainPage.DisplayAlert("Sucesso", "E-mail com sua nova senha enviado.", "Ok");
                 }
                 else
                 {
-                    await Application.Current.MainPage.DisplayAlert("Erro", "Usuário não registrado.", "Ok");
+                    await Application.Current.MainPage.DisplayAlert(AppResources.Error, AppResources.UnregisteredUser, AppResources.Ok);
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                await Application.Current.MainPage.DisplayAlert("Erro ao redefinir a senha", $"{ex.Message}", "Ok");
+                await Application.Current.MainPage.DisplayAlert(AppResources.Error, AppResources.ErrorResettingPassword, AppResources.Ok);
             }
         }
 
         private async void SmtpServer_SendCompleted(object sender, AsyncCompletedEventArgs e)
         {
-            if(user != null)
+            try
             {
-                user.Password = newPassword;
-                await userService.UpdateUser(user);
+                if (user != null)
+                {
+                    user.Password = newPassword;
+                    await userService.UpdateUser(user);
+                }
+
+                await Application.Current.MainPage.DisplayAlert(AppResources.Sucess, AppResources.EmailWithNewPasswordSent, AppResources.Ok);
+
+                smtpServer.SendCompleted -= SmtpServer_SendCompleted;
+
+                await Shell.Current.GoToAsync($"//{nameof(LoginPage)}");
             }
-            
-            await Application.Current.MainPage.DisplayAlert("Sucesso", "E-mail enviado com sua nova senha.", "Ok");
-
-            smtpServer.SendCompleted -= SmtpServer_SendCompleted;
-
-            await Shell.Current.GoToAsync($"//{nameof(LoginPage)}");
+            catch (Exception)
+            {
+                await Application.Current.MainPage.DisplayAlert(AppResources.Error, AppResources.ErrorResettingPassword, AppResources.Ok);
+            }
         }
         #endregion
     }
