@@ -117,14 +117,32 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AreYouShure" xml:space="preserve">
+    <value>Are you sure?</value>
+  </data>
+  <data name="AreYouShureSongRemoved" xml:space="preserve">
+    <value>This song will be removed from your playlist</value>
+  </data>
   <data name="Cancel" xml:space="preserve">
     <value>Cancel</value>
   </data>
   <data name="ConfirmPassword" xml:space="preserve">
     <value>Confirm password</value>
   </data>
+  <data name="CouldNotRemoveSong" xml:space="preserve">
+    <value>Could not remove song</value>
+  </data>
   <data name="CouldNotSignIn" xml:space="preserve">
     <value>Could not sign in</value>
+  </data>
+  <data name="CouldNotUpdateSongList" xml:space="preserve">
+    <value>Could not update song list</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="Edit" xml:space="preserve">
+    <value>Edit</value>
   </data>
   <data name="Email" xml:space="preserve">
     <value>Email</value>
@@ -183,14 +201,32 @@
   <data name="ResetPasswordTitle" xml:space="preserve">
     <value>Reset password</value>
   </data>
+  <data name="Search" xml:space="preserve">
+    <value>Search...</value>
+  </data>
+  <data name="Share" xml:space="preserve">
+    <value>Share</value>
+  </data>
   <data name="SignIn" xml:space="preserve">
     <value>Sign In</value>
   </data>
   <data name="SignUp" xml:space="preserve">
     <value>Sign Up</value>
   </data>
+  <data name="SortByAlphabet" xml:space="preserve">
+    <value>Sort by alphabet</value>
+  </data>
+  <data name="SortByMostRecent" xml:space="preserve">
+    <value>Sort by most recent</value>
+  </data>
+  <data name="SortByOldest" xml:space="preserve">
+    <value>Sort by oldest</value>
+  </data>
   <data name="Sucess" xml:space="preserve">
     <value>Sucess</value>
+  </data>
+  <data name="UnablePerformSearch" xml:space="preserve">
+    <value>Unable to perform search</value>
   </data>
   <data name="UnableRegisterUser" xml:space="preserve">
     <value>Unable to register user</value>

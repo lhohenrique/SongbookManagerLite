@@ -2,6 +2,7 @@
 <ContentPage x:Name="MusicsPage"
              xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:resource="clr-namespace:SongbookManagerLite.Resx"
              x:Class="SongbookManagerLite.Views.MusicPage">
 
     <ContentPage.Resources>
@@ -18,11 +19,11 @@
         </Style>
     </ContentPage.Resources>
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Compartilhar" Order="Primary" Command="{Binding ShareCommand}"/>
+        <ToolbarItem Text="{x:Static resource:AppResources.Share}" Order="Primary" Command="{Binding ShareCommand}"/>
         <!--<ToolbarItem Text="+" Order="Primary" Command="{Binding NewMusicCommand}"/>-->
-        <ToolbarItem Text="Ordem - Alfabética" Order="Secondary" Command="{Binding AlphabeticalOrderCommand}"/>
-        <ToolbarItem Text="Ordem - Mais recente" Order="Secondary" Command="{Binding MostRecentOrderCommand}"/>
-        <ToolbarItem Text="Ordem - Mais antiga" Order="Secondary" Command="{Binding OldestOrderCommand}"/>
+        <ToolbarItem Text="{x:Static resource:AppResources.SortByAlphabet}" Order="Secondary" Command="{Binding AlphabeticalOrderCommand}"/>
+        <ToolbarItem Text="{x:Static resource:AppResources.SortByMostRecent}" Order="Secondary" Command="{Binding MostRecentOrderCommand}"/>
+        <ToolbarItem Text="{x:Static resource:AppResources.SortByOldest}" Order="Secondary" Command="{Binding OldestOrderCommand}"/>
         <ToolbarItem Text="Clear" Order="Secondary" Command="{Binding ClearCommand}"/>
         <ToolbarItem Text="Mock" Order="Secondary" Command="{Binding MockMusicCommand}"/>
     </ContentPage.ToolbarItems>
@@ -33,31 +34,31 @@
              RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=1}">
                 <StackLayout>
                     <StackLayout Orientation="Horizontal">
-                        <SearchBar x:Name="MusicSearchBar" Placeholder="Pesquisar..." Text="{Binding SearchText}"  TextChanged="MusicSearchBar_TextChanged" HorizontalOptions="FillAndExpand" />
+                        <SearchBar x:Name="MusicSearchBar" Placeholder="{x:Static resource:AppResources.Search}" Text="{Binding SearchText}"  TextChanged="MusicSearchBar_TextChanged" HorizontalOptions="FillAndExpand" />
                     </StackLayout>
 
                     <RefreshView IsRefreshing="{Binding IsUpdating, Mode=OneWay}" Command="{Binding UpdateMusicListCommand}">
                         <ListView x:Name="MusicPageMusicListListView"
-                          SeparatorVisibility="None"
-                          SelectedItem="{Binding SelectedMusic}"
-                          ItemsSource="{Binding MusicList, Mode=OneWay}">
+                                  SeparatorVisibility="None"
+                                  SelectedItem="{Binding SelectedMusic}"
+                                  ItemsSource="{Binding MusicList, Mode=OneWay}">
                             <ListView.ItemTemplate>
                                 <DataTemplate>
                                     <ViewCell>
                                         <ViewCell.ContextActions>
-                                            <MenuItem Text="Editar"
-                                              Command="{Binding Source={x:Reference MusicsPage}, Path=BindingContext.EditMusicCommand}"
-                                              CommandParameter="{Binding }"/>
-                                            <MenuItem Text="Excluir"
-                                              Command="{Binding Source={x:Reference MusicsPage}, Path=BindingContext.RemoveMusicCommand}"
-                                              CommandParameter="{Binding }"/>
+                                            <MenuItem Text="{x:Static resource:AppResources.Edit}"
+                                                      Command="{Binding Source={x:Reference MusicsPage}, Path=BindingContext.EditMusicCommand}"
+                                                      CommandParameter="{Binding }"/>
+                                            <MenuItem Text="{x:Static resource:AppResources.Delete}"
+                                                      Command="{Binding Source={x:Reference MusicsPage}, Path=BindingContext.RemoveMusicCommand}"
+                                                      CommandParameter="{Binding }"/>
                                         </ViewCell.ContextActions>
                                         <StackLayout VerticalOptions="FillAndExpand"
-                                         BackgroundColor="White"
-                                         Orientation="Vertical"
-                                         Spacing="0"
-                                         Padding="7"
-                                         Margin="0,0,0,5">
+                                                     BackgroundColor="White"
+                                                     Orientation="Vertical"
+                                                     Spacing="0"
+                                                     Padding="7"
+                                                     Margin="0,0,0,5">
                                             <Grid>
                                                 <Grid.RowDefinitions>
                                                     <RowDefinition Height="auto"/>
@@ -67,20 +68,20 @@
                                                     <ColumnDefinition Width="auto"/>
                                                 </Grid.ColumnDefinitions>
                                                 <Label Text="{Binding Name}"
-                                           FontSize="14"
-                                           VerticalOptions="Center"
-                                           TextColor="Black"/>
+                                                       FontSize="14"
+                                                       VerticalOptions="Center"
+                                                       TextColor="Black"/>
                                                 <Label Text="{Binding Key}"
-                                           FontSize="14"
-                                           VerticalOptions="Center"
-                                           TextColor="Black"
-                                           Grid.Column="1"/>
+                                                       FontSize="14"
+                                                       VerticalOptions="Center"
+                                                       TextColor="Black"
+                                                       Grid.Column="1"/>
                                             </Grid>
                                             <Label Text="{Binding Author}"
-                                       FontSize="10"
-                                       VerticalOptions="Center"
-                                       TextColor="DarkSlateGray"
-                                       Margin="0"/>
+                                                   FontSize="10"
+                                                   VerticalOptions="Center"
+                                                   TextColor="DarkSlateGray"
+                                                   Margin="0"/>
                                         </StackLayout>
                                     </ViewCell>
                                 </DataTemplate>

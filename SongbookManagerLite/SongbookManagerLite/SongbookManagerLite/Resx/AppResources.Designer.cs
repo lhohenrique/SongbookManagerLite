@@ -61,6 +61,24 @@ namespace SongbookManagerLite.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Are you sure?.
+        /// </summary>
+        internal static string AreYouShure {
+            get {
+                return ResourceManager.GetString("AreYouShure", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This song will be removed from your playlist.
+        /// </summary>
+        internal static string AreYouShureSongRemoved {
+            get {
+                return ResourceManager.GetString("AreYouShureSongRemoved", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Cancel.
         /// </summary>
         internal static string Cancel {
@@ -79,11 +97,47 @@ namespace SongbookManagerLite.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Could not remove song.
+        /// </summary>
+        internal static string CouldNotRemoveSong {
+            get {
+                return ResourceManager.GetString("CouldNotRemoveSong", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Could not sign in.
         /// </summary>
         internal static string CouldNotSignIn {
             get {
                 return ResourceManager.GetString("CouldNotSignIn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Could not update song list.
+        /// </summary>
+        internal static string CouldNotUpdateSongList {
+            get {
+                return ResourceManager.GetString("CouldNotUpdateSongList", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Delete.
+        /// </summary>
+        internal static string Delete {
+            get {
+                return ResourceManager.GetString("Delete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Edit.
+        /// </summary>
+        internal static string Edit {
+            get {
+                return ResourceManager.GetString("Edit", resourceCulture);
             }
         }
         
@@ -259,6 +313,24 @@ namespace SongbookManagerLite.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Search....
+        /// </summary>
+        internal static string Search {
+            get {
+                return ResourceManager.GetString("Search", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Share.
+        /// </summary>
+        internal static string Share {
+            get {
+                return ResourceManager.GetString("Share", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Sign In.
         /// </summary>
         internal static string SignIn {
@@ -277,11 +349,47 @@ namespace SongbookManagerLite.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Sort by alphabet.
+        /// </summary>
+        internal static string SortByAlphabet {
+            get {
+                return ResourceManager.GetString("SortByAlphabet", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sort by most recent.
+        /// </summary>
+        internal static string SortByMostRecent {
+            get {
+                return ResourceManager.GetString("SortByMostRecent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sort by oldest.
+        /// </summary>
+        internal static string SortByOldest {
+            get {
+                return ResourceManager.GetString("SortByOldest", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Sucess.
         /// </summary>
         internal static string Sucess {
             get {
                 return ResourceManager.GetString("Sucess", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unable to perform search.
+        /// </summary>
+        internal static string UnablePerformSearch {
+            get {
+                return ResourceManager.GetString("UnablePerformSearch", resourceCulture);
             }
         }
         
