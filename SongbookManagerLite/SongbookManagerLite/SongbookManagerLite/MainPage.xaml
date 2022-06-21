@@ -2,6 +2,7 @@
 <Shell xmlns="http://xamarin.com/schemas/2014/forms"
        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
        xmlns:Views="clr-namespace:SongbookManagerLite.Views"
+       xmlns:resource="clr-namespace:SongbookManagerLite.Resx"
        x:Class="SongbookManagerLite.MainPage">
 
     <ShellItem Route="LoginPage" FlyoutItemIsVisible="False">
@@ -9,19 +10,19 @@
     </ShellItem>
     
     <TabBar>
-        <Tab Title="Músicas" Route="MusicPage">
+        <Tab Title="{x:Static resource:AppResources.Musics}" Route="MusicPage">
             <ShellContent>
-                <Views:MusicPage Title="Lista de Músicas"/>
+                <Views:MusicPage Title="{x:Static resource:AppResources.Musics}"/>
             </ShellContent>
         </Tab>
-        <Tab Title="Repertórios" Route="RepertoirePage" IsEnabled="False">
+        <Tab Title="{x:Static resource:AppResources.Repertoires}" Route="RepertoirePage" IsEnabled="False">
             <ShellContent>
-                <Views:RepertoirePage Title="Lista de Repertórios"/>
+                <Views:RepertoirePage Title="{x:Static resource:AppResources.Repertoires}"/>
             </ShellContent>
         </Tab>
-        <Tab Title="Perfil" Route="ProfilePage">
+        <Tab Title="{x:Static resource:AppResources.Profile}" Route="ProfilePage">
             <ShellContent>
-                <Views:ProfilePage Title="Perfil"/>
+                <Views:ProfilePage Title="{x:Static resource:AppResources.Profile}"/>
             </ShellContent>
         </Tab>
     </TabBar>

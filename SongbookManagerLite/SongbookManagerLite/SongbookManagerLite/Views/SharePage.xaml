@@ -2,9 +2,10 @@
 <ContentPage x:Name="ShareContentPage"
              xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:resource="clr-namespace:SongbookManagerLite.Resx"
              xmlns:converters="clr-namespace:SongbookManagerLite.Converters"
              Shell.TabBarIsVisible="False"
-             Title="Share"
+             Title="{x:Static resource:AppResources.Share}"
              x:Class="SongbookManagerLite.Views.SharePage">
     <ContentPage.Resources>
         <converters:ReverseBoolConverter x:Key="reverseBoolConverter"/>
@@ -13,7 +14,7 @@
     <ContentPage.Content>
         <StackLayout Padding="10">
             <StackLayout Orientation="Vertical" IsVisible="{Binding IsSharedList}">
-                <Label Text="Acessando uma lista compartilhada"
+                <Label Text="{x:Static resource:AppResources.AccessingSharedList}"
                    FontSize="20"
                    FontAttributes="Bold"
                    TextColor="DarkSlateGray"></Label>
@@ -26,7 +27,7 @@
                         VerticalOptions="Center"
                         TextColor="DarkSlateGray"
                         Margin="0"/>
-                <Button Text="Parar compartilhamento" Command="{Binding UnshareCommand}"/>
+                <Button Text="{x:Static resource:AppResources.StopSharing}" Command="{Binding UnshareCommand}"/>
             </StackLayout>
             <Grid IsVisible="{Binding IsSharedList, Converter={StaticResource reverseBoolConverter}}">
                 <Grid.RowDefinitions>
@@ -37,13 +38,13 @@
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="auto"/>
                 </Grid.ColumnDefinitions>
-                <Label Text="Compartilhe suas músicas"
+                <Label Text="{x:Static resource:AppResources.ShareYourSongs}"
                    FontSize="20"
                    FontAttributes="Bold"
                    TextColor="DarkSlateGray"></Label>
 
-                <Entry Placeholder="Adicione pessoas" Text="{Binding Email}" Keyboard="Email" Grid.Row="1"/>
-                <Button Text="Share" Grid.Row="1" Grid.Column="1" IsEnabled="{Binding IsShareEnabled}" Command="{Binding ShareCommand}"/>
+                <Entry Placeholder="{x:Static resource:AppResources.AddPeople}" Text="{Binding Email}" Keyboard="Email" Grid.Row="1"/>
+                <Button Text="{x:Static resource:AppResources.Share}" Grid.Row="1" Grid.Column="1" IsEnabled="{Binding IsShareEnabled}" Command="{Binding ShareCommand}"/>
             </Grid>
 
             <RefreshView IsRefreshing="{Binding IsUpdating, Mode=OneWay}" Command="{Binding UpdateUserListCommand}" IsVisible="{Binding IsSharedList, Converter={StaticResource reverseBoolConverter}}">
@@ -54,7 +55,7 @@
                         <DataTemplate>
                             <ViewCell>
                                 <ViewCell.ContextActions>
-                                    <MenuItem Text="Remover"
+                                    <MenuItem Text="{x:Static resource:AppResources.Remove}"
                                               Command="{Binding Source={x:Reference ShareContentPage}, Path=BindingContext.RemoveShareCommand}"
                                               CommandParameter="{Binding }"/>
                                 </ViewCell.ContextActions>

@@ -1,5 +1,6 @@
 ﻿using SongbookManagerLite.Helpers;
 using SongbookManagerLite.Models;
+using SongbookManagerLite.Resx;
 using SongbookManagerLite.Services;
 using System;
 using System.Collections.Generic;
@@ -124,27 +125,25 @@ namespace SongbookManagerLite.ViewModels
 
                 if (userToShare == null)
                 {
-                    await Application.Current.MainPage.DisplayAlert("Erro", $"O usuário '{Email}' não foi encontrado.", "Ok");
+                    await Application.Current.MainPage.DisplayAlert(AppResources.Error, AppResources.UserNotFound, AppResources.Ok);
                 }
                 else if (!string.IsNullOrEmpty(userToShare.SharedList))
                 {
-                    await Application.Current.MainPage.DisplayAlert("Erro", $"O usuário já está acessando uma lista de músicas compartilhada.", "Ok");
+                    await Application.Current.MainPage.DisplayAlert(AppResources.Error, AppResources.UserAlreadyAccessingSharedSongList, AppResources.Ok);
                 }
                 else
                 {
                     userToShare.SharedList = LoggedUserHelper.GetEmail();
                     await userService.UpdateUser(userToShare);
 
-                    await Application.Current.MainPage.DisplayAlert("Sucesso", $"Lista compartilhada com sucesso.", "Ok");
-
                     Email = string.Empty;
 
                     await UpdateUserListAction();
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                await Application.Current.MainPage.DisplayAlert("Erro", ex.Message, "OK");
+                await Application.Current.MainPage.DisplayAlert(AppResources.Error, AppResources.UnableShareSongList, AppResources.Ok);
             }
         }
 
@@ -166,9 +165,9 @@ namespace SongbookManagerLite.ViewModels
 
                 userListUpdated.ForEach(i => UserList.Add(i));
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                await Application.Current.MainPage.DisplayAlert("Erro", ex.Message, "OK");
+                await Application.Current.MainPage.DisplayAlert(AppResources.Error, AppResources.CouldNotUpdateSharedUserList, AppResources.Ok);
             }
             finally
             {
@@ -180,7 +179,7 @@ namespace SongbookManagerLite.ViewModels
         {
             try
             {
-                var result = await Application.Current.MainPage.DisplayAlert("Tem certeza?", $"'{user.Name}' será removido(a) da sua lista de compartilhamentos.", "Sim", "Não");
+                var result = await Application.Current.MainPage.DisplayAlert(AppResources.AreYouShure, AppResources.ThisUserWillBeRemovedFromYourShareList, AppResources.Yes, AppResources.No);
 
                 if (result)
                 {
@@ -195,9 +194,9 @@ namespace SongbookManagerLite.ViewModels
                     await keyService.ClearUserKeys(user.Email);
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                await Application.Current.MainPage.DisplayAlert("Erro", ex.Message, "OK");
+                await Application.Current.MainPage.DisplayAlert(AppResources.Error, AppResources.UnableRemoveShare, AppResources.Ok);
             }
         }
 
@@ -205,7 +204,7 @@ namespace SongbookManagerLite.ViewModels
         {
             try
             {
-                var result = await Application.Current.MainPage.DisplayAlert("Tem certeza?", $"Você não terá mais acesso à lista de {SharedName}.", "Sim", "Não");
+                var result = await Application.Current.MainPage.DisplayAlert(AppResources.AreYouShure, AppResources.YouWillNoLongerHaveAccessToThisSongList, AppResources.Yes, AppResources.No);
 
                 if (result)
                 {
@@ -220,7 +219,7 @@ namespace SongbookManagerLite.ViewModels
             }
             catch(Exception)
             {
-                await Application.Current.MainPage.DisplayAlert("Erro", "Erro ao parar compartilhamento", "OK");
+                await Application.Current.MainPage.DisplayAlert(AppResources.Error, AppResources.UnableToUnshare, AppResources.Ok);
             }
         }
         #endregion

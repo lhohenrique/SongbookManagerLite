@@ -61,6 +61,24 @@ namespace SongbookManagerLite.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Accessing a shared list.
+        /// </summary>
+        internal static string AccessingSharedList {
+            get {
+                return ResourceManager.GetString("AccessingSharedList", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add people.
+        /// </summary>
+        internal static string AddPeople {
+            get {
+                return ResourceManager.GetString("AddPeople", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Are you sure?.
         /// </summary>
         internal static string AreYouShure {
@@ -111,6 +129,15 @@ namespace SongbookManagerLite.Resx {
         internal static string CouldNotSignIn {
             get {
                 return ResourceManager.GetString("CouldNotSignIn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Could not update shared user list.
+        /// </summary>
+        internal static string CouldNotUpdateSharedUserList {
+            get {
+                return ResourceManager.GetString("CouldNotUpdateSharedUserList", resourceCulture);
             }
         }
         
@@ -232,6 +259,24 @@ namespace SongbookManagerLite.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Music list.
+        /// </summary>
+        internal static string MusicList {
+            get {
+                return ResourceManager.GetString("MusicList", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Musics.
+        /// </summary>
+        internal static string Musics {
+            get {
+                return ResourceManager.GetString("Musics", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Name.
         /// </summary>
         internal static string Name {
@@ -286,11 +331,38 @@ namespace SongbookManagerLite.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Profile.
+        /// </summary>
+        internal static string Profile {
+            get {
+                return ResourceManager.GetString("Profile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Register.
         /// </summary>
         internal static string Register {
             get {
                 return ResourceManager.GetString("Register", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Remove.
+        /// </summary>
+        internal static string Remove {
+            get {
+                return ResourceManager.GetString("Remove", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Repertoires.
+        /// </summary>
+        internal static string Repertoires {
+            get {
+                return ResourceManager.GetString("Repertoires", resourceCulture);
             }
         }
         
@@ -327,6 +399,15 @@ namespace SongbookManagerLite.Resx {
         internal static string Share {
             get {
                 return ResourceManager.GetString("Share", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Share your songs.
+        /// </summary>
+        internal static string ShareYourSongs {
+            get {
+                return ResourceManager.GetString("ShareYourSongs", resourceCulture);
             }
         }
         
@@ -376,11 +457,29 @@ namespace SongbookManagerLite.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Stop Sharing.
+        /// </summary>
+        internal static string StopSharing {
+            get {
+                return ResourceManager.GetString("StopSharing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Sucess.
         /// </summary>
         internal static string Sucess {
             get {
                 return ResourceManager.GetString("Sucess", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This user will be removed from your share list.
+        /// </summary>
+        internal static string ThisUserWillBeRemovedFromYourShareList {
+            get {
+                return ResourceManager.GetString("ThisUserWillBeRemovedFromYourShareList", resourceCulture);
             }
         }
         
@@ -403,11 +502,47 @@ namespace SongbookManagerLite.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Unable to remove share.
+        /// </summary>
+        internal static string UnableRemoveShare {
+            get {
+                return ResourceManager.GetString("UnableRemoveShare", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unable to share song list.
+        /// </summary>
+        internal static string UnableShareSongList {
+            get {
+                return ResourceManager.GetString("UnableShareSongList", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unable to unshare.
+        /// </summary>
+        internal static string UnableToUnshare {
+            get {
+                return ResourceManager.GetString("UnableToUnshare", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Unregistered user.
         /// </summary>
         internal static string UnregisteredUser {
             get {
                 return ResourceManager.GetString("UnregisteredUser", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to User is already accessing a shared song list.
+        /// </summary>
+        internal static string UserAlreadyAccessingSharedSongList {
+            get {
+                return ResourceManager.GetString("UserAlreadyAccessingSharedSongList", resourceCulture);
             }
         }
         
@@ -421,11 +556,29 @@ namespace SongbookManagerLite.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to User not found.
+        /// </summary>
+        internal static string UserNotFound {
+            get {
+                return ResourceManager.GetString("UserNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Yes.
         /// </summary>
         internal static string Yes {
             get {
                 return ResourceManager.GetString("Yes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You will no longer have access to this song list.
+        /// </summary>
+        internal static string YouWillNoLongerHaveAccessToThisSongList {
+            get {
+                return ResourceManager.GetString("YouWillNoLongerHaveAccessToThisSongList", resourceCulture);
             }
         }
     }
