@@ -1,5 +1,6 @@
 ﻿using SongbookManagerLite.Helpers;
 using SongbookManagerLite.Models;
+using SongbookManagerLite.Resx;
 using SongbookManagerLite.Services;
 using System;
 using System.Collections.Generic;
@@ -201,9 +202,9 @@ namespace SongbookManagerLite.ViewModels
 
                 await Navigation.PopAsync();
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                await Application.Current.MainPage.DisplayAlert("Erro", ex.Message, "OK");
+                await Application.Current.MainPage.DisplayAlert(AppResources.Error, AppResources.CouldNotSaveSong, AppResources.Ok);
             }
         }
         #endregion
@@ -265,7 +266,7 @@ namespace SongbookManagerLite.ViewModels
             }
             catch (Exception)
             {
-                await Application.Current.MainPage.DisplayAlert("Erro", "Não foi possivel carregar a página", "OK");
+                await Application.Current.MainPage.DisplayAlert(AppResources.Error, AppResources.CouldNotLoadSong, AppResources.Ok);
             }
         }
         #endregion

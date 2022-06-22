@@ -129,6 +129,9 @@
   <data name="AreYouShureSongRemoved" xml:space="preserve">
     <value>Essa música será removida da sua lista.</value>
   </data>
+  <data name="Artist" xml:space="preserve">
+    <value>Artista</value>
+  </data>
   <data name="Cancel" xml:space="preserve">
     <value>Cancelar</value>
   </data>
@@ -138,8 +141,14 @@
   <data name="ConfirmPassword" xml:space="preserve">
     <value>Confirme a senha</value>
   </data>
+  <data name="CouldNotLoadSong" xml:space="preserve">
+    <value>Não foi possível carregar a música</value>
+  </data>
   <data name="CouldNotRemoveSong" xml:space="preserve">
     <value>Não foi possível remover a música</value>
+  </data>
+  <data name="CouldNotSaveSong" xml:space="preserve">
+    <value>Não foi possível salvar a música</value>
   </data>
   <data name="CouldNotSignIn" xml:space="preserve">
     <value>Não foi possivel fazer login</value>
@@ -186,8 +195,14 @@
   <data name="InvalidEmailPassword" xml:space="preserve">
     <value>E-mail ou senha inválidos</value>
   </data>
+  <data name="Key" xml:space="preserve">
+    <value>Tom</value>
+  </data>
   <data name="Keys" xml:space="preserve">
     <value>Tons</value>
+  </data>
+  <data name="Lyric" xml:space="preserve">
+    <value>Letra</value>
   </data>
   <data name="MinimumCharacterMessage" xml:space="preserve">
     <value>A senha precisa ter no mínimo 6 caracteres</value>
@@ -234,6 +249,9 @@
   <data name="ResetPasswordTitle" xml:space="preserve">
     <value>Redefinir senha</value>
   </data>
+  <data name="Save" xml:space="preserve">
+    <value>Salvar</value>
+  </data>
   <data name="Search" xml:space="preserve">
     <value>Pesquisar...</value>
   </data>
@@ -263,6 +281,9 @@
   </data>
   <data name="Sucess" xml:space="preserve">
     <value>Sucesso</value>
+  </data>
+  <data name="ThereAreNoRegisteredSharedAccessSingers" xml:space="preserve">
+    <value>Não existem cantores registrados ou com acesso compartilhado.</value>
   </data>
   <data name="ThereAreNoSingersWithSavedKeysForThisSong" xml:space="preserve">
     <value>Não existem cantores com tons salvos para esta músicas.</value>

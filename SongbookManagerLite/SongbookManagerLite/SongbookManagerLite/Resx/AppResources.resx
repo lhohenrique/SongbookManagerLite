@@ -129,6 +129,9 @@
   <data name="AreYouShureSongRemoved" xml:space="preserve">
     <value>This song will be removed from your playlist</value>
   </data>
+  <data name="Artist" xml:space="preserve">
+    <value>Artist</value>
+  </data>
   <data name="Cancel" xml:space="preserve">
     <value>Cancel</value>
   </data>
@@ -138,8 +141,14 @@
   <data name="ConfirmPassword" xml:space="preserve">
     <value>Confirm password</value>
   </data>
+  <data name="CouldNotLoadSong" xml:space="preserve">
+    <value>Could not load song</value>
+  </data>
   <data name="CouldNotRemoveSong" xml:space="preserve">
     <value>Could not remove song</value>
+  </data>
+  <data name="CouldNotSaveSong" xml:space="preserve">
+    <value>Could not save song</value>
   </data>
   <data name="CouldNotSignIn" xml:space="preserve">
     <value>Could not sign in</value>
@@ -186,8 +195,14 @@
   <data name="InvalidEmailPassword" xml:space="preserve">
     <value>Invalid email or password</value>
   </data>
+  <data name="Key" xml:space="preserve">
+    <value>Key</value>
+  </data>
   <data name="Keys" xml:space="preserve">
     <value>Keys</value>
+  </data>
+  <data name="Lyric" xml:space="preserve">
+    <value>Lyric</value>
   </data>
   <data name="MinimumCharacterMessage" xml:space="preserve">
     <value>Password must be at least 6 characters long</value>
@@ -234,6 +249,9 @@
   <data name="ResetPasswordTitle" xml:space="preserve">
     <value>Reset password</value>
   </data>
+  <data name="Save" xml:space="preserve">
+    <value>Save</value>
+  </data>
   <data name="Search" xml:space="preserve">
     <value>Search...</value>
   </data>
@@ -263,6 +281,9 @@
   </data>
   <data name="Sucess" xml:space="preserve">
     <value>Sucess</value>
+  </data>
+  <data name="ThereAreNoRegisteredSharedAccessSingers" xml:space="preserve">
+    <value>There are no registered or shared access singers.</value>
   </data>
   <data name="ThereAreNoSingersWithSavedKeysForThisSong" xml:space="preserve">
     <value>There are no singers with saved keys for this song.</value>
