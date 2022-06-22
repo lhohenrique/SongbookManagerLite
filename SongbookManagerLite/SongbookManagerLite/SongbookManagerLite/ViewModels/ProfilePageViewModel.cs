@@ -1,4 +1,5 @@
 ﻿using SongbookManagerLite.Helpers;
+using SongbookManagerLite.Resx;
 using SongbookManagerLite.Services;
 using SongbookManagerLite.Views;
 using System;
@@ -84,7 +85,7 @@ namespace SongbookManagerLite.ViewModels
         public void FeedbackAction()
         {
             string emailTo = GlobalVariables.FromEmail;
-            string subject = "Feedback for Songbook Manager";
+            string subject = AppResources.FeedbackForSongbook;
 
             string url = "mailto:" + emailTo + "?subject=" + subject;
 
@@ -117,7 +118,7 @@ namespace SongbookManagerLite.ViewModels
 
         public async void LogoutAction()
         {
-            var result = await Application.Current.MainPage.DisplayAlert("Tem certeza de que deseja sair?", string.Empty, "Sair", "Cancelar");
+            var result = await Application.Current.MainPage.DisplayAlert(AppResources.AreYouSureYouWantToLogout, string.Empty, AppResources.Yes, AppResources.Cancel);
 
             if (result)
             {

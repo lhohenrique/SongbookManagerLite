@@ -97,6 +97,15 @@ namespace SongbookManagerLite.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Are you sure you want to logout?.
+        /// </summary>
+        internal static string AreYouSureYouWantToLogout {
+            get {
+                return ResourceManager.GetString("AreYouSureYouWantToLogout", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Artist.
         /// </summary>
         internal static string Artist {
@@ -111,6 +120,15 @@ namespace SongbookManagerLite.Resx {
         internal static string Cancel {
             get {
                 return ResourceManager.GetString("Cancel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Change password.
+        /// </summary>
+        internal static string ChangePassword {
+            get {
+                return ResourceManager.GetString("ChangePassword", resourceCulture);
             }
         }
         
@@ -250,6 +268,24 @@ namespace SongbookManagerLite.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Feedback.
+        /// </summary>
+        internal static string Feedback {
+            get {
+                return ResourceManager.GetString("Feedback", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Feedback for Songbook Manager.
+        /// </summary>
+        internal static string FeedbackForSongbook {
+            get {
+                return ResourceManager.GetString("FeedbackForSongbook", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Forgot password?.
         /// </summary>
         internal static string ForgotPassword {
@@ -295,6 +331,15 @@ namespace SongbookManagerLite.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Is singer?.
+        /// </summary>
+        internal static string IsSinger {
+            get {
+                return ResourceManager.GetString("IsSinger", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Key.
         /// </summary>
         internal static string Key {
@@ -309,6 +354,15 @@ namespace SongbookManagerLite.Resx {
         internal static string Keys {
             get {
                 return ResourceManager.GetString("Keys", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Logout.
+        /// </summary>
+        internal static string Logout {
+            get {
+                return ResourceManager.GetString("Logout", resourceCulture);
             }
         }
         
@@ -403,11 +457,29 @@ namespace SongbookManagerLite.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Privacy policy.
+        /// </summary>
+        internal static string PrivacyPolicy {
+            get {
+                return ResourceManager.GetString("PrivacyPolicy", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Profile.
         /// </summary>
         internal static string Profile {
             get {
                 return ResourceManager.GetString("Profile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rate us.
+        /// </summary>
+        internal static string RateUs {
+            get {
+                return ResourceManager.GetString("RateUs", resourceCulture);
             }
         }
         
@@ -471,6 +543,15 @@ namespace SongbookManagerLite.Resx {
         internal static string Search {
             get {
                 return ResourceManager.GetString("Search", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Settings.
+        /// </summary>
+        internal static string Settings {
+            get {
+                return ResourceManager.GetString("Settings", resourceCulture);
             }
         }
         

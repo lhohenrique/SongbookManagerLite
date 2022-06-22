@@ -129,11 +129,17 @@
   <data name="AreYouShureSongRemoved" xml:space="preserve">
     <value>Essa música será removida da sua lista.</value>
   </data>
+  <data name="AreYouSureYouWantToLogout" xml:space="preserve">
+    <value>Tem certeza que deseja sair?</value>
+  </data>
   <data name="Artist" xml:space="preserve">
     <value>Artista</value>
   </data>
   <data name="Cancel" xml:space="preserve">
     <value>Cancelar</value>
+  </data>
+  <data name="ChangePassword" xml:space="preserve">
+    <value>Alterar senha</value>
   </data>
   <data name="Chords" xml:space="preserve">
     <value>Acordes</value>
@@ -180,6 +186,12 @@
   <data name="ErrorResettingPassword" xml:space="preserve">
     <value>Erro ao redefinir a senha</value>
   </data>
+  <data name="Feedback" xml:space="preserve">
+    <value>Feedback</value>
+  </data>
+  <data name="FeedbackForSongbook" xml:space="preserve">
+    <value>Feedback para Songbook Manager</value>
+  </data>
   <data name="ForgotPassword" xml:space="preserve">
     <value>Esqueceu a senha?</value>
   </data>
@@ -195,11 +207,17 @@
   <data name="InvalidEmailPassword" xml:space="preserve">
     <value>E-mail ou senha inválidos</value>
   </data>
+  <data name="IsSinger" xml:space="preserve">
+    <value>É cantor?</value>
+  </data>
   <data name="Key" xml:space="preserve">
     <value>Tom</value>
   </data>
   <data name="Keys" xml:space="preserve">
     <value>Tons</value>
+  </data>
+  <data name="Logout" xml:space="preserve">
+    <value>Sair</value>
   </data>
   <data name="Lyric" xml:space="preserve">
     <value>Letra</value>
@@ -231,8 +249,14 @@
   <data name="PasswordsNotMatch" xml:space="preserve">
     <value>As senhas não correspondem</value>
   </data>
+  <data name="PrivacyPolicy" xml:space="preserve">
+    <value>Política de privacidade</value>
+  </data>
   <data name="Profile" xml:space="preserve">
     <value>Perfil</value>
+  </data>
+  <data name="RateUs" xml:space="preserve">
+    <value>Nos avalie</value>
   </data>
   <data name="Register" xml:space="preserve">
     <value>Registrar</value>
@@ -254,6 +278,9 @@
   </data>
   <data name="Search" xml:space="preserve">
     <value>Pesquisar...</value>
+  </data>
+  <data name="Settings" xml:space="preserve">
+    <value>Configurações</value>
   </data>
   <data name="Share" xml:space="preserve">
     <value>Compartilhar</value>
