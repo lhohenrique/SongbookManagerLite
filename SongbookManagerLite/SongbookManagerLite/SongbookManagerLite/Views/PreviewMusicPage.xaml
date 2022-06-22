@@ -3,6 +3,7 @@
             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
             Shell.TabBarIsVisible="False"
             xmlns:converters="clr-namespace:SongbookManagerLite.Converters"
+            xmlns:resource="clr-namespace:SongbookManagerLite.Resx"
             x:Class="SongbookManagerLite.Views.PreviewMusicPage">
 
     <TabbedPage.Resources>
@@ -10,59 +11,59 @@
     </TabbedPage.Resources>
     
     <TabbedPage.ToolbarItems>
-        <ToolbarItem Text="Editar" Order="Primary" Command="{Binding EditMusicCommand}"/>
-        <ToolbarItem Text="Excluir" Order="Primary" Command="{Binding RemoveMusicCommand}"/>
+        <ToolbarItem Text="{x:Static resource:AppResources.Edit}" Order="Primary" Command="{Binding EditMusicCommand}"/>
+        <ToolbarItem Text="{x:Static resource:AppResources.Delete}" Order="Primary" Command="{Binding RemoveMusicCommand}"/>
     </TabbedPage.ToolbarItems>
 
-    <ContentPage Title="Detalhes" Padding="5">
+    <ContentPage Title="{x:Static resource:AppResources.Details}" Padding="5">
         <ContentPage.Content>
             <StackLayout>
                 <ScrollView>
                     <StackLayout>
                         <Label Text="{Binding Name}"
-                        FontSize="12"
-                        FontAttributes="Bold"
-                        TextColor="DarkSlateGray"></Label>
+                               FontSize="12"
+                               FontAttributes="Bold"
+                               TextColor="DarkSlateGray"></Label>
 
                         <Label Text="{Binding Author}"
-                        FontSize="12"
-                        FontAttributes="Bold"
-                        TextColor="DarkSlateGray"></Label>
+                               FontSize="12"
+                               FontAttributes="Bold"
+                               TextColor="DarkSlateGray"></Label>
 
                         <Label Text="{Binding Lyrics}"
-                        FontSize="12"
-                        FontAttributes="Bold"
-                        TextColor="DarkSlateGray"></Label>
+                               FontSize="12"
+                               FontAttributes="Bold"
+                               TextColor="DarkSlateGray"></Label>
                     </StackLayout>
                 </ScrollView>
             </StackLayout>
         </ContentPage.Content>
     </ContentPage>
 
-    <ContentPage Title="Acordes">
+    <ContentPage Title="{x:Static resource:AppResources.Chords}">
         <ContentPage.Content>
             <StackLayout>
                 <ScrollView>
                     <StackLayout>
                         <Label Text="{Binding Key}"
-                        FontSize="12"
-                        FontAttributes="Bold"
-                        TextColor="DarkSlateGray"></Label>
+                               FontSize="12"
+                               FontAttributes="Bold"
+                               TextColor="DarkSlateGray"></Label>
 
                         <Label Text="{Binding Chords}"
-                        FontSize="12"
-                        FontAttributes="Bold"
-                        TextColor="DarkSlateGray"></Label>
+                               FontSize="12"
+                               FontAttributes="Bold"
+                               TextColor="DarkSlateGray"></Label>
                     </StackLayout>
                 </ScrollView>
             </StackLayout>
         </ContentPage.Content>
     </ContentPage>
 
-    <ContentPage Title="Tons">
+    <ContentPage Title="{x:Static resource:AppResources.Keys}">
         <ContentPage.Content>
             <StackLayout>
-                <Label Text="Não existem cantores com tons salvos para esta músicas."
+                <Label Text="{x:Static resource:AppResources.ThereAreNoSingersWithSavedKeysForThisSong}"
                        FontSize="12"
                        FontAttributes="Bold"
                        TextColor="DarkSlateGray"
@@ -77,11 +78,11 @@
                             <DataTemplate>
                                 <ViewCell>
                                     <StackLayout VerticalOptions="FillAndExpand"
-                                         BackgroundColor="White"
-                                         Orientation="Vertical"
-                                         Spacing="0"
-                                         Padding="7"
-                                         Margin="0,0,0,5">
+                                             BackgroundColor="White"
+                                             Orientation="Vertical"
+                                             Spacing="0"
+                                             Padding="7"
+                                             Margin="0,0,0,5">
                                         <Grid>
                                             <Grid.RowDefinitions>
                                                 <RowDefinition Height="auto"/>
@@ -91,14 +92,14 @@
                                                 <ColumnDefinition Width="auto"/>
                                             </Grid.ColumnDefinitions>
                                             <Label Text="{Binding UserName}"
-                                           FontSize="14"
-                                           VerticalOptions="Center"
-                                           TextColor="Black"/>
+                                                   FontSize="14"
+                                                   VerticalOptions="Center"
+                                                   TextColor="Black"/>
                                             <Label Text="{Binding Key}"
-                                           FontSize="14"
-                                           VerticalOptions="Center"
-                                           TextColor="Black"
-                                           Grid.Column="1"/>
+                                                   FontSize="14"
+                                                   VerticalOptions="Center"
+                                                   TextColor="Black"
+                                                   Grid.Column="1"/>
                                         </Grid>
                                     </StackLayout>
                                 </ViewCell>

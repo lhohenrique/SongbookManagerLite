@@ -132,6 +132,9 @@
   <data name="Cancel" xml:space="preserve">
     <value>Cancel</value>
   </data>
+  <data name="Chords" xml:space="preserve">
+    <value>Chords</value>
+  </data>
   <data name="ConfirmPassword" xml:space="preserve">
     <value>Confirm password</value>
   </data>
@@ -149,6 +152,9 @@
   </data>
   <data name="Delete" xml:space="preserve">
     <value>Delete</value>
+  </data>
+  <data name="Details" xml:space="preserve">
+    <value>Details</value>
   </data>
   <data name="Edit" xml:space="preserve">
     <value>Edit</value>
@@ -179,6 +185,9 @@
   </data>
   <data name="InvalidEmailPassword" xml:space="preserve">
     <value>Invalid email or password</value>
+  </data>
+  <data name="Keys" xml:space="preserve">
+    <value>Keys</value>
   </data>
   <data name="MinimumCharacterMessage" xml:space="preserve">
     <value>Password must be at least 6 characters long</value>
@@ -244,7 +253,7 @@
     <value>Sort by alphabet</value>
   </data>
   <data name="SortByMostRecent" xml:space="preserve">
-    <value>Sort by most recent</value>
+    <value>Sort by newest</value>
   </data>
   <data name="SortByOldest" xml:space="preserve">
     <value>Sort by oldest</value>
@@ -254,6 +263,9 @@
   </data>
   <data name="Sucess" xml:space="preserve">
     <value>Sucess</value>
+  </data>
+  <data name="ThereAreNoSingersWithSavedKeysForThisSong" xml:space="preserve">
+    <value>There are no singers with saved keys for this song.</value>
   </data>
   <data name="ThisUserWillBeRemovedFromYourShareList" xml:space="preserve">
     <value>This user will be removed from your share list</value>
@@ -269,6 +281,9 @@
   </data>
   <data name="UnableShareSongList" xml:space="preserve">
     <value>Unable to share song list</value>
+  </data>
+  <data name="UnableToLoadKeys" xml:space="preserve">
+    <value>Unable to load keys</value>
   </data>
   <data name="UnableToUnshare" xml:space="preserve">
     <value>Unable to unshare</value>

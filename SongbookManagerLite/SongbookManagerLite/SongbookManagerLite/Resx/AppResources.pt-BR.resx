@@ -132,6 +132,9 @@
   <data name="Cancel" xml:space="preserve">
     <value>Cancelar</value>
   </data>
+  <data name="Chords" xml:space="preserve">
+    <value>Acordes</value>
+  </data>
   <data name="ConfirmPassword" xml:space="preserve">
     <value>Confirme a senha</value>
   </data>
@@ -149,6 +152,9 @@
   </data>
   <data name="Delete" xml:space="preserve">
     <value>Excluir</value>
+  </data>
+  <data name="Details" xml:space="preserve">
+    <value>Detalhes</value>
   </data>
   <data name="Edit" xml:space="preserve">
     <value>Editar</value>
@@ -179,6 +185,9 @@
   </data>
   <data name="InvalidEmailPassword" xml:space="preserve">
     <value>E-mail ou senha inválidos</value>
+  </data>
+  <data name="Keys" xml:space="preserve">
+    <value>Tons</value>
   </data>
   <data name="MinimumCharacterMessage" xml:space="preserve">
     <value>A senha precisa ter no mínimo 6 caracteres</value>
@@ -255,6 +264,9 @@
   <data name="Sucess" xml:space="preserve">
     <value>Sucesso</value>
   </data>
+  <data name="ThereAreNoSingersWithSavedKeysForThisSong" xml:space="preserve">
+    <value>Não existem cantores com tons salvos para esta músicas.</value>
+  </data>
   <data name="ThisUserWillBeRemovedFromYourShareList" xml:space="preserve">
     <value>Esse usuário será removido da sua lista de compartilhamentos</value>
   </data>
@@ -269,6 +281,9 @@
   </data>
   <data name="UnableShareSongList" xml:space="preserve">
     <value>Não foi possível compartilhar a lista de músicas</value>
+  </data>
+  <data name="UnableToLoadKeys" xml:space="preserve">
+    <value>Não foi possível carregar os tons</value>
   </data>
   <data name="UnableToUnshare" xml:space="preserve">
     <value>Não foi possível sair do compartilhamento</value>

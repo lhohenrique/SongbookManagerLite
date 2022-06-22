@@ -1,5 +1,6 @@
 ﻿using SongbookManagerLite.Helpers;
 using SongbookManagerLite.Models;
+using SongbookManagerLite.Resx;
 using SongbookManagerLite.Services;
 using SongbookManagerLite.Views;
 using System;
@@ -164,7 +165,7 @@ namespace SongbookManagerLite.ViewModels
             {
                 try
                 {
-                    var result = await Application.Current.MainPage.DisplayAlert("Tem certeza?", $"A música {music.Name} será removida da sua lista.", "Sim", "Não");
+                    var result = await Application.Current.MainPage.DisplayAlert(AppResources.AreYouShure, AppResources.AreYouShureSongRemoved, AppResources.Yes, AppResources.No);
 
                     if (result)
                     {
@@ -172,9 +173,9 @@ namespace SongbookManagerLite.ViewModels
                         await musicService.DeleteMusic(music);
                     }
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
-                    await Application.Current.MainPage.DisplayAlert("Erro", ex.Message, "OK");
+                    await Application.Current.MainPage.DisplayAlert(AppResources.Error, AppResources.CouldNotRemoveSong, AppResources.Ok);
                 }
             }
 
@@ -194,7 +195,7 @@ namespace SongbookManagerLite.ViewModels
             }
             catch (Exception)
             {
-                await Application.Current.MainPage.DisplayAlert("Erro", "Não foi possível carregar os tons", "OK");
+                await Application.Current.MainPage.DisplayAlert(AppResources.Error, AppResources.UnableToLoadKeys, AppResources.Ok);
             }
         }
         #endregion
