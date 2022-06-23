@@ -240,6 +240,12 @@
   <data name="NewPassword" xml:space="preserve">
     <value>Nova senha</value>
   </data>
+  <data name="NewPasswordEmailBody" xml:space="preserve">
+    <value>Olá,\n\nSua nova senha é: XXXXXX\n\nUtilize esta senha para logar no aplicativo. Você poderá altera-la dentro da aplicação.\n\nObrigado,\n\nEquipe Songbook</value>
+  </data>
+  <data name="NewPasswordEmailSubject" xml:space="preserve">
+    <value>Nova senha de acesso para Songbook Manager</value>
+  </data>
   <data name="NewUser" xml:space="preserve">
     <value>Novo usuário?</value>
   </data>

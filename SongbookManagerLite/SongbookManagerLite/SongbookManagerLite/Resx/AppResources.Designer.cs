@@ -430,6 +430,24 @@ namespace SongbookManagerLite.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Hello,\n\nYour new password is: XXXXXX\n\nUse this password to log into the application. You can change it within the application.\n\nThanks,\n\nSongbook team.
+        /// </summary>
+        internal static string NewPasswordEmailBody {
+            get {
+                return ResourceManager.GetString("NewPasswordEmailBody", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to New password for Songbook Manager.
+        /// </summary>
+        internal static string NewPasswordEmailSubject {
+            get {
+                return ResourceManager.GetString("NewPasswordEmailSubject", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Need an account?.
         /// </summary>
         internal static string NewUser {
