@@ -151,6 +151,15 @@ namespace SongbookManagerLite.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Could not change password.
+        /// </summary>
+        internal static string CouldNotChangePassword {
+            get {
+                return ResourceManager.GetString("CouldNotChangePassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Could not load song.
         /// </summary>
         internal static string CouldNotLoadSong {
@@ -412,6 +421,15 @@ namespace SongbookManagerLite.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to New password.
+        /// </summary>
+        internal static string NewPassword {
+            get {
+                return ResourceManager.GetString("NewPassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Need an account?.
         /// </summary>
         internal static string NewUser {
@@ -444,6 +462,15 @@ namespace SongbookManagerLite.Resx {
         internal static string Password {
             get {
                 return ResourceManager.GetString("Password", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Password changed.
+        /// </summary>
+        internal static string PasswordChanged {
+            get {
+                return ResourceManager.GetString("PasswordChanged", resourceCulture);
             }
         }
         

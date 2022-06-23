@@ -1,4 +1,5 @@
 ﻿using SongbookManagerLite.Helpers;
+using SongbookManagerLite.Resx;
 using SongbookManagerLite.Services;
 using System;
 using System.Collections.Generic;
@@ -73,13 +74,13 @@ namespace SongbookManagerLite.ViewModels
                     user.Password = NewPassword;
                     await userService.UpdateUser(user);
 
-                    await Application.Current.MainPage.DisplayAlert("Sucesso", "Senha alterada com sucesso.", "OK");
+                    await Application.Current.MainPage.DisplayAlert(AppResources.PasswordChanged, string.Empty, AppResources.Ok);
 
                     await Navigation.PopAsync();
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
-                    await Application.Current.MainPage.DisplayAlert("Erro", "Não foi possível alterar a senha.", "OK");
+                    await Application.Current.MainPage.DisplayAlert(AppResources.Error, AppResources.CouldNotChangePassword, AppResources.Ok);
                 }
             }
         }
@@ -97,7 +98,7 @@ namespace SongbookManagerLite.ViewModels
             }
             else
             {
-                PasswordErrorMessage = "As senhas não correspondem";
+                PasswordErrorMessage = AppResources.PasswordsNotMatch;
             }
 
             return isValid;

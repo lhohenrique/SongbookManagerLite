@@ -147,6 +147,9 @@
   <data name="ConfirmPassword" xml:space="preserve">
     <value>Confirme a senha</value>
   </data>
+  <data name="CouldNotChangePassword" xml:space="preserve">
+    <value>Não foi possível alterar a senha</value>
+  </data>
   <data name="CouldNotLoadSong" xml:space="preserve">
     <value>Não foi possível carregar a música</value>
   </data>
@@ -234,6 +237,9 @@
   <data name="Name" xml:space="preserve">
     <value>Nome</value>
   </data>
+  <data name="NewPassword" xml:space="preserve">
+    <value>Nova senha</value>
+  </data>
   <data name="NewUser" xml:space="preserve">
     <value>Novo usuário?</value>
   </data>
@@ -245,6 +251,9 @@
   </data>
   <data name="Password" xml:space="preserve">
     <value>Senha</value>
+  </data>
+  <data name="PasswordChanged" xml:space="preserve">
+    <value>Senha alterada</value>
   </data>
   <data name="PasswordsNotMatch" xml:space="preserve">
     <value>As senhas não correspondem</value>
