@@ -4,6 +4,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:resource="clr-namespace:SongbookManagerLite.Resx"
              xmlns:converters="clr-namespace:SongbookManagerLite.Converters"
+             xmlns:controls="clr-namespace:MarcTron.Plugin.Controls;assembly=Plugin.MtAdmob"
              Shell.TabBarIsVisible="False"
              Title="{x:Static resource:AppResources.Share}"
              x:Class="SongbookManagerLite.Views.SharePage">
@@ -47,6 +48,16 @@
                 <Button Text="{x:Static resource:AppResources.Share}" Grid.Row="1" Grid.Column="1" IsEnabled="{Binding IsShareEnabled}" Command="{Binding ShareCommand}"/>
             </Grid>
 
+            <controls:MTAdView x:Name="SharePageAds" IsVisible="true" AdsId="ca-app-pub-3940256099942544/6300978111" VerticalOptions="EndAndExpand" >
+                <controls:MTAdView.HeightRequest>
+                    <x:OnIdiom>
+                        <x:OnIdiom.Phone>50</x:OnIdiom.Phone>
+                        <x:OnIdiom.Tablet>90</x:OnIdiom.Tablet>
+                        <x:OnIdiom.Desktop>90</x:OnIdiom.Desktop>
+                    </x:OnIdiom>
+                </controls:MTAdView.HeightRequest>
+            </controls:MTAdView>
+            
             <RefreshView IsRefreshing="{Binding IsUpdating, Mode=OneWay}" Command="{Binding UpdateUserListCommand}" IsVisible="{Binding IsSharedList, Converter={StaticResource reverseBoolConverter}}">
                 <ListView x:Name="SharedUserListView"
                           SeparatorVisibility="None"

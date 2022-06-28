@@ -4,6 +4,7 @@
             Shell.TabBarIsVisible="False"
             xmlns:converters="clr-namespace:SongbookManagerLite.Converters"
             xmlns:resource="clr-namespace:SongbookManagerLite.Resx"
+            xmlns:controls="clr-namespace:MarcTron.Plugin.Controls;assembly=Plugin.MtAdmob"
             x:Class="SongbookManagerLite.Views.PreviewMusicPage">
 
     <TabbedPage.Resources>
@@ -20,6 +21,16 @@
             <StackLayout>
                 <ScrollView>
                     <StackLayout>
+                        <controls:MTAdView x:Name="PreviewMusicDetailAds" IsVisible="true" AdsId="ca-app-pub-3940256099942544/6300978111" VerticalOptions="EndAndExpand" >
+                            <controls:MTAdView.HeightRequest>
+                                <x:OnIdiom>
+                                    <x:OnIdiom.Phone>50</x:OnIdiom.Phone>
+                                    <x:OnIdiom.Tablet>90</x:OnIdiom.Tablet>
+                                    <x:OnIdiom.Desktop>90</x:OnIdiom.Desktop>
+                                </x:OnIdiom>
+                            </controls:MTAdView.HeightRequest>
+                        </controls:MTAdView>
+
                         <Label Text="{Binding Name}"
                                FontSize="12"
                                FontAttributes="Bold"
@@ -45,6 +56,16 @@
             <StackLayout>
                 <ScrollView>
                     <StackLayout>
+                        <controls:MTAdView x:Name="PreviewMusicChordsAds" IsVisible="true" AdsId="ca-app-pub-3940256099942544/6300978111" VerticalOptions="EndAndExpand" >
+                            <controls:MTAdView.HeightRequest>
+                                <x:OnIdiom>
+                                    <x:OnIdiom.Phone>50</x:OnIdiom.Phone>
+                                    <x:OnIdiom.Tablet>90</x:OnIdiom.Tablet>
+                                    <x:OnIdiom.Desktop>90</x:OnIdiom.Desktop>
+                                </x:OnIdiom>
+                            </controls:MTAdView.HeightRequest>
+                        </controls:MTAdView>
+                        
                         <Label Text="{Binding Key}"
                                FontSize="12"
                                FontAttributes="Bold"
@@ -63,6 +84,16 @@
     <ContentPage Title="{x:Static resource:AppResources.Keys}">
         <ContentPage.Content>
             <StackLayout>
+                <controls:MTAdView x:Name="PreviewMusicKeysAds" IsVisible="true" AdsId="ca-app-pub-3940256099942544/6300978111" VerticalOptions="EndAndExpand" >
+                    <controls:MTAdView.HeightRequest>
+                        <x:OnIdiom>
+                            <x:OnIdiom.Phone>50</x:OnIdiom.Phone>
+                            <x:OnIdiom.Tablet>90</x:OnIdiom.Tablet>
+                            <x:OnIdiom.Desktop>90</x:OnIdiom.Desktop>
+                        </x:OnIdiom>
+                    </controls:MTAdView.HeightRequest>
+                </controls:MTAdView>
+                
                 <Label Text="{x:Static resource:AppResources.ThereAreNoSingersWithSavedKeysForThisSong}"
                        FontSize="12"
                        FontAttributes="Bold"

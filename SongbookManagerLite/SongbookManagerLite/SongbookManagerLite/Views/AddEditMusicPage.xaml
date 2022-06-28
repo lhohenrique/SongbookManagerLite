@@ -4,6 +4,7 @@
             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
             xmlns:converters="clr-namespace:SongbookManagerLite.Converters"
             xmlns:resource="clr-namespace:SongbookManagerLite.Resx"
+            xmlns:controls="clr-namespace:MarcTron.Plugin.Controls;assembly=Plugin.MtAdmob"
             Shell.TabBarIsVisible="False"
             x:Class="SongbookManagerLite.Views.AddEditMusicPage">
 
@@ -18,6 +19,16 @@
     <ContentPage Title="{x:Static resource:AppResources.Details}">
         <ScrollView>
             <StackLayout>
+                <controls:MTAdView x:Name="AddEditMusicDetailAds" IsVisible="true" AdsId="ca-app-pub-3940256099942544/6300978111" VerticalOptions="EndAndExpand" >
+                    <controls:MTAdView.HeightRequest>
+                        <x:OnIdiom>
+                            <x:OnIdiom.Phone>50</x:OnIdiom.Phone>
+                            <x:OnIdiom.Tablet>90</x:OnIdiom.Tablet>
+                            <x:OnIdiom.Desktop>90</x:OnIdiom.Desktop>
+                        </x:OnIdiom>
+                    </controls:MTAdView.HeightRequest>
+                </controls:MTAdView>
+                
                 <Label Text="{Binding Id}"
                         IsVisible="false"/>
 
@@ -45,6 +56,16 @@
     <ContentPage Title="{x:Static resource:AppResources.Chords}">
         <ScrollView>
             <StackLayout>
+                <controls:MTAdView x:Name="AddEditMusicChordsAds" IsVisible="true" AdsId="ca-app-pub-3940256099942544/6300978111" VerticalOptions="EndAndExpand" >
+                    <controls:MTAdView.HeightRequest>
+                        <x:OnIdiom>
+                            <x:OnIdiom.Phone>50</x:OnIdiom.Phone>
+                            <x:OnIdiom.Tablet>90</x:OnIdiom.Tablet>
+                            <x:OnIdiom.Desktop>90</x:OnIdiom.Desktop>
+                        </x:OnIdiom>
+                    </controls:MTAdView.HeightRequest>
+                </controls:MTAdView>
+                
                 <Label Text="{x:Static resource:AppResources.Key}"
                     FontSize="12"
                     FontAttributes="Bold"
@@ -62,6 +83,16 @@
 
     <ContentPage Title="{x:Static resource:AppResources.Keys}">
         <StackLayout>
+            <controls:MTAdView x:Name="AddEditMusicKeysAds" IsVisible="true" AdsId="ca-app-pub-3940256099942544/6300978111" VerticalOptions="EndAndExpand" >
+                <controls:MTAdView.HeightRequest>
+                    <x:OnIdiom>
+                        <x:OnIdiom.Phone>50</x:OnIdiom.Phone>
+                        <x:OnIdiom.Tablet>90</x:OnIdiom.Tablet>
+                        <x:OnIdiom.Desktop>90</x:OnIdiom.Desktop>
+                    </x:OnIdiom>
+                </controls:MTAdView.HeightRequest>
+            </controls:MTAdView>
+            
             <Label Text="{x:Static resource:AppResources.ThereAreNoRegisteredSharedAccessSingers}"
                        FontSize="12"
                        FontAttributes="Bold"
