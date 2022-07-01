@@ -2,10 +2,15 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:resource="clr-namespace:SongbookManagerLite.Resx"
-             Title="{x:Static resource:AppResources.SignUp}"
+             Style="{StaticResource BaseContentPage}"
+             Title="{x:Static resource:AppResources.NewUser}"
              x:Class="SongbookManagerLite.Views.RegisterPage">
 
     <StackLayout Padding="10" VerticalOptions="Start">
+        <Label Text="{x:Static resource:AppResources.SignUp}"
+               Style="{StaticResource TitleLabel}"
+               HorizontalOptions="Center"/>
+        
         <Entry Placeholder="{x:Static resource:AppResources.Name}" Text="{Binding Name}"/>
         <Label Text="{Binding NameErrorMessage}" TextColor="Red"/>
 
@@ -14,11 +19,11 @@
 
         <Entry Placeholder="{x:Static resource:AppResources.Password}" Text="{Binding Password}" IsPassword="True"/>
 
-        <Entry Placeholder="{x:Static resource:AppResources.ConfirmPassword}" Text="{Binding ConfirmPassword}" IsPassword="True"/>
+        <Entry Placeholder="{x:Static resource:AppResources.ConfirmPassword}" Text="{Binding ConfirmPassword}" IsPassword="True" Margin="0,0,0,0"/>
         <Label Text="{Binding PasswordErrorMessage}" TextColor="Red"/>
 
-        <Button Text="{x:Static resource:AppResources.Register}" HorizontalOptions="Center" BackgroundColor="DarkSlateGray"
-                TextColor="White" WidthRequest="300" HeightRequest="40"
+        <Button Text="{x:Static resource:AppResources.Register}"
+                Style="{StaticResource MainButton}"
                 Command="{Binding RegisterCommand}"/>
     </StackLayout>
 </ContentPage>
