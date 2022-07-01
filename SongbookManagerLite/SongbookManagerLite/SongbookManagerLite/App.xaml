@@ -6,6 +6,9 @@
         <ResourceDictionary>
             <Style x:Key="BaseContentPage" TargetType="ContentPage">
                 <Setter Property="BackgroundColor" Value="#E0FFFF"/>
+                <Setter Property="Shell.BackgroundColor" Value="#A0ACBD"/>
+                <Setter Property="Shell.ForegroundColor" Value="#131516"/>
+                <Setter Property="Shell.TitleColor" Value="#131516"/>
             </Style>
             
             <Style x:Key="TitleLabel" TargetType="Label">
@@ -14,7 +17,12 @@
                 <Setter Property="FontSize" Value="30"/>
                 <Setter Property="FontAttributes" Value="Bold"/>
             </Style>
-            
+
+            <Style x:Key="DescriptionLabel" TargetType="Label">
+                <Setter Property="FontFamily" Value="Verdana"/>
+                <Setter Property="TextColor" Value="#131516"/>
+            </Style>
+
             <Style x:Key="BaseButton" TargetType="Button">
                 <Setter Property="CornerRadius" Value="10"/>
                 <Setter Property="TextColor" Value="#131516"/>
