@@ -45,9 +45,9 @@ namespace SongbookManagerLite.Services
             }
         }
 
-        public async Task<bool> LoginUser(string name, string password)
+        public async Task<bool> LoginUser(string email, string password)
         {
-            var user = (await client.Child("Users").OnceAsync<User>()).Where(u => u.Object.Name == name && u.Object.Password == password);
+            var user = (await client.Child("Users").OnceAsync<User>()).Where(u => u.Object.Email == email && u.Object.Password == password).FirstOrDefault();
 
             return user != null;
         }

@@ -5,34 +5,35 @@
              xmlns:resource="clr-namespace:SongbookManagerLite.Resx"
              Shell.FlyoutBehavior="Disabled"
              Shell.NavBarIsVisible="False"
+             Style="{StaticResource BaseContentPage}"
              x:Class="SongbookManagerLite.Views.LoginPage">
 
     <StackLayout Padding="10" VerticalOptions="Center">
         <ScrollView>
-            <StackLayout Spacing="1">
-                <Image WidthRequest="150" HeightRequest="150"/>
+            <StackLayout>
+                <Image Source="logo.png"/>
 
-                <!--<Label Text="Login" FontFamily="Verdana"
-                    TextColor="Purple" FontSize="30"
-                    FontAttributes="Bold"
-                    HorizontalOptions="Center"/>-->
+                <Label Text="{x:Static resource:AppResources.SignIn}" Style="{StaticResource TitleLabel}"
+                       HorizontalOptions="Center"
+                       Margin="0,10,0,0"/>
 
-                <Entry Placeholder="{x:Static resource:AppResources.Email}" Text="{Binding Email}" Keyboard="Email"/>
+                <Entry Placeholder="{x:Static resource:AppResources.Email}" Text="{Binding Email}" Keyboard="Email" Margin="0,10,0,0"/>
 
                 <Entry Placeholder="{x:Static resource:AppResources.Password}" Text="{Binding Password}" IsPassword="True"/>
 
-                <StackLayout Orientation="Horizontal" Spacing="3" Margin="0,-20,0,0">
-                    <Label Text="{x:Static resource:AppResources.NewUser}" TextColor="DarkSlateGray" Margin="0,11,0,0"/>
-                    <Button Text="{x:Static resource:AppResources.SignUp}" BackgroundColor="Transparent" TextColor="Purple"
-                            HeightRequest="40" Padding="0" TextTransform="None" FontAttributes="Bold" FontSize="16"
+                <StackLayout Orientation="Horizontal" Spacing="3" Margin="0,-10,0,0">
+                    <Button Text="{x:Static resource:AppResources.NewUser}" Style="{StaticResource TransparentButton}"
+                            HeightRequest="40" Padding="0,0,2,0"
                             Command="{Binding SignUpCommand}"/>
-                    <Button Text="{x:Static resource:AppResources.ForgotPassword}" BackgroundColor="Transparent" TextColor="DarkSlateGray" HorizontalOptions="EndAndExpand"
-                            HeightRequest="40" Padding="0" TextTransform="None" FontAttributes="None" FontSize="14"
+                    <Button Text="{x:Static resource:AppResources.ForgotPassword}" Style="{StaticResource TransparentButton}"
+                            HorizontalOptions="EndAndExpand"
+                            HeightRequest="40"
                             Command="{Binding ForgotPasswordCommand}"/>
                 </StackLayout>
 
-                <Button Text="{x:Static resource:AppResources.SignIn}" HorizontalOptions="Center" BackgroundColor="Black"
-                        TextColor="White" WidthRequest="300" HeightRequest="40" Margin="0,20,0,0"
+                <Button Text="{x:Static resource:AppResources.SignIn}"
+                        Style="{StaticResource MainButton}"
+                        HeightRequest="40" Margin="0,20,0,0"
                         Command="{Binding LoginCommand}"/>
             </StackLayout>
         </ScrollView>
