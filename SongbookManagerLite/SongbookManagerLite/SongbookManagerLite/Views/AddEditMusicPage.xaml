@@ -5,6 +5,8 @@
             xmlns:converters="clr-namespace:SongbookManagerLite.Converters"
             xmlns:resource="clr-namespace:SongbookManagerLite.Resx"
             xmlns:controls="clr-namespace:MarcTron.Plugin.Controls;assembly=Plugin.MtAdmob"
+            xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
+            Style="{StaticResource BaseContentPage}"
             Shell.TabBarIsVisible="False"
             x:Class="SongbookManagerLite.Views.AddEditMusicPage">
 
@@ -13,13 +15,13 @@
     </TabbedPage.Resources>
     
     <TabbedPage.ToolbarItems>
-        <ToolbarItem Text="{x:Static resource:AppResources.Save}" Order="Primary" Command="{Binding SaveMusicCommand}"/>
+        <ToolbarItem Text="{x:Static resource:AppResources.Save}" Order="Primary" Command="{Binding SaveMusicCommand}" IconImageSource="save.png"/>
     </TabbedPage.ToolbarItems>
 
-    <ContentPage Title="{x:Static resource:AppResources.Details}">
+    <ContentPage Title="{x:Static resource:AppResources.Details}" Style="{StaticResource BaseContentPage}">
         <ScrollView>
-            <StackLayout>
-                <controls:MTAdView x:Name="AddEditMusicDetailAds" IsVisible="true" AdsId="ca-app-pub-3940256099942544/6300978111" VerticalOptions="EndAndExpand" >
+            <StackLayout Spacing="10">
+                <controls:MTAdView x:Name="AddEditMusicDetailAds" IsVisible="true" AdsId="ca-app-pub-3940256099942544/6300978111">
                     <controls:MTAdView.HeightRequest>
                         <x:OnIdiom>
                             <x:OnIdiom.Phone>50</x:OnIdiom.Phone>
@@ -29,34 +31,27 @@
                     </controls:MTAdView.HeightRequest>
                 </controls:MTAdView>
                 
-                <Label Text="{Binding Id}"
-                        IsVisible="false"/>
+                <StackLayout Spacing="10" Padding="10,0">
+                    <Label Text="{x:Static resource:AppResources.Name}"
+                           Style="{StaticResource SecondaryLabel}"></Label>
+                    <Entry Text="{Binding Name}"></Entry>
 
-                <Label Text="{x:Static resource:AppResources.Name}"
-                    FontSize="12"
-                    FontAttributes="Bold"
-                    TextColor="DarkSlateGray"></Label>
-                <Entry Text="{Binding Name}"></Entry>
+                    <Label Text="{x:Static resource:AppResources.Artist}"
+                           Style="{StaticResource SecondaryLabel}"></Label>
+                    <Entry Text="{Binding Author}"></Entry>
 
-                <Label Text="{x:Static resource:AppResources.Artist}"
-                    FontSize="12"
-                    FontAttributes="Bold"
-                    TextColor="DarkSlateGray"></Label>
-                <Entry Text="{Binding Author}"></Entry>
-
-                <Label Text="{x:Static resource:AppResources.Lyric}"
-                    FontSize="12"
-                    FontAttributes="Bold"
-                    TextColor="DarkSlateGray"></Label>
-                <Editor Text="{Binding Lyrics}" AutoSize="TextChanges"></Editor>
+                    <Label Text="{x:Static resource:AppResources.Lyric}"
+                           Style="{StaticResource SecondaryLabel}"></Label>
+                    <Editor Text="{Binding Lyrics}" AutoSize="TextChanges"></Editor>
+                </StackLayout>
             </StackLayout>
         </ScrollView>
     </ContentPage>
 
-    <ContentPage Title="{x:Static resource:AppResources.Chords}">
+    <ContentPage Title="{x:Static resource:AppResources.Chords}" Style="{StaticResource BaseContentPage}">
         <ScrollView>
-            <StackLayout>
-                <controls:MTAdView x:Name="AddEditMusicChordsAds" IsVisible="true" AdsId="ca-app-pub-3940256099942544/6300978111" VerticalOptions="EndAndExpand" >
+            <StackLayout Spacing="10">
+                <controls:MTAdView x:Name="AddEditMusicChordsAds" IsVisible="true" AdsId="ca-app-pub-3940256099942544/6300978111">
                     <controls:MTAdView.HeightRequest>
                         <x:OnIdiom>
                             <x:OnIdiom.Phone>50</x:OnIdiom.Phone>
@@ -65,25 +60,25 @@
                         </x:OnIdiom>
                     </controls:MTAdView.HeightRequest>
                 </controls:MTAdView>
-                
-                <Label Text="{x:Static resource:AppResources.Key}"
-                    FontSize="12"
-                    FontAttributes="Bold"
-                    TextColor="DarkSlateGray"></Label>
-                <Picker ItemsSource="{Binding KeyList}" SelectedItem="{Binding SelectedKey}" Title="Tom"/>
 
-                <Label Text="{x:Static resource:AppResources.Chords}"
-                    FontSize="12"
-                    FontAttributes="Bold"
-                    TextColor="DarkSlateGray"></Label>
-                <Editor Text="{Binding Chords}" AutoSize="TextChanges"></Editor>
+                <StackLayout Orientation="Horizontal" Padding="10,0">
+                    <Label Text="{x:Static resource:AppResources.Key}"
+                           Style="{StaticResource SecondaryLabel}"
+                           Padding="0,9,0,0"></Label>
+                    <Picker ItemsSource="{Binding KeyList}" SelectedItem="{Binding SelectedKey}" Title="{x:Static resource:AppResources.Key}" Margin="5,0,0,0"/>
+                </StackLayout>
+                <StackLayout Padding="10,0">
+                    <Label Text="{x:Static resource:AppResources.Chords}"
+                           Style="{StaticResource SecondaryLabel}"></Label>
+                    <Editor Text="{Binding Chords}" AutoSize="TextChanges"></Editor>
+                </StackLayout>
             </StackLayout>
         </ScrollView>
     </ContentPage>
 
-    <ContentPage Title="{x:Static resource:AppResources.Keys}">
+    <ContentPage Title="{x:Static resource:AppResources.Keys}" Style="{StaticResource BaseContentPage}">
         <StackLayout>
-            <controls:MTAdView x:Name="AddEditMusicKeysAds" IsVisible="true" AdsId="ca-app-pub-3940256099942544/6300978111" VerticalOptions="EndAndExpand" >
+            <controls:MTAdView x:Name="AddEditMusicKeysAds" IsVisible="true" AdsId="ca-app-pub-3940256099942544/6300978111">
                 <controls:MTAdView.HeightRequest>
                     <x:OnIdiom>
                         <x:OnIdiom.Phone>50</x:OnIdiom.Phone>
@@ -94,26 +89,23 @@
             </controls:MTAdView>
             
             <Label Text="{x:Static resource:AppResources.ThereAreNoRegisteredSharedAccessSingers}"
-                       FontSize="12"
-                       FontAttributes="Bold"
-                       TextColor="DarkSlateGray"
-                       HorizontalOptions="Center"
-                       Margin="0,10,0,0"
-                       IsVisible="{Binding HasSingers, Converter={StaticResource reverseBoolConverter}}"></Label>
+                   Style="{StaticResource SecondaryLabel}"
+                   HorizontalOptions="Center"
+                   Margin="0,10,0,0"
+                   IsVisible="{Binding HasSingers, Converter={StaticResource reverseBoolConverter}}"></Label>
 
             <ListView x:Name="UserListListView"
-                    SeparatorVisibility="None"
-                    SelectionMode="None"
-                    ItemsSource="{Binding UserList, Mode=OneWay}">
+                      SeparatorVisibility="Default"
+                      HasUnevenRows="True"
+                      SelectionMode="None"
+                      ItemsSource="{Binding UserList, Mode=OneWay}">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
                             <StackLayout VerticalOptions="FillAndExpand"
                                 BackgroundColor="White"
                                 Orientation="Vertical"
-                                Spacing="0"
-                                Padding="7"
-                                Margin="0,0,0,5">
+                                Padding="10">
                                 <Grid>
                                     <Grid.RowDefinitions>
                                         <RowDefinition Height="auto"/>
@@ -123,9 +115,8 @@
                                         <ColumnDefinition Width="45"/>
                                     </Grid.ColumnDefinitions>
                                     <Label Text="{Binding UserName}"
-                                           FontSize="14"
-                                           VerticalOptions="Center"
-                                           TextColor="Black"/>
+                                           Style="{StaticResource MediumLabel}"
+                                           VerticalOptions="Center"/>
                                     <Picker ItemsSource="{Binding Source={x:Reference AddEditMusicContentPage}, Path=BindingContext.KeyList}"
                                             SelectedItem="{Binding Key}" Title="{x:Static resource:AppResources.Key}"
                                             Grid.Column="1"/>
