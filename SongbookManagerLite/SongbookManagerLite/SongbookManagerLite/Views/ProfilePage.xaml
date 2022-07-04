@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:resource="clr-namespace:SongbookManagerLite.Resx"
              Shell.NavBarIsVisible="False"
+             Style="{StaticResource BaseContentPage}"
              x:Class="SongbookManagerLite.Views.ProfilePage">
     
     <ContentPage.Content>

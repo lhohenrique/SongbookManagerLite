@@ -4,6 +4,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:resource="clr-namespace:SongbookManagerLite.Resx"
              xmlns:controls="clr-namespace:MarcTron.Plugin.Controls;assembly=Plugin.MtAdmob"
+             Style="{StaticResource BaseContentPage}"
              x:Class="SongbookManagerLite.Views.MusicPage">
 
     <ContentPage.Resources>
@@ -21,7 +22,7 @@
     </ContentPage.Resources>
     
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="{x:Static resource:AppResources.Share}" Order="Primary" Command="{Binding ShareCommand}"/>
+        <ToolbarItem Text="{x:Static resource:AppResources.Share}" IconImageSource="share.png" Order="Primary" Command="{Binding ShareCommand}"/>
         <!--<ToolbarItem Text="+" Order="Primary" Command="{Binding NewMusicCommand}"/>-->
         <ToolbarItem Text="{x:Static resource:AppResources.SortByAlphabet}" Order="Secondary" Command="{Binding AlphabeticalOrderCommand}"/>
         <ToolbarItem Text="{x:Static resource:AppResources.SortByMostRecent}" Order="Secondary" Command="{Binding MostRecentOrderCommand}"/>
@@ -40,7 +41,7 @@
                     </StackLayout>
 
                     <StackLayout>
-                        <controls:MTAdView x:Name="MusicPageAds" IsVisible="true" AdsId="ca-app-pub-3940256099942544/6300978111" VerticalOptions="EndAndExpand" >
+                        <controls:MTAdView x:Name="MusicPageAds" IsVisible="true" AdsId="ca-app-pub-3940256099942544/6300978111">
                             <controls:MTAdView.HeightRequest>
                                 <x:OnIdiom>
                                     <x:OnIdiom.Phone>50</x:OnIdiom.Phone>
@@ -53,9 +54,9 @@
 
                     <RefreshView IsRefreshing="{Binding IsUpdating, Mode=OneWay}" Command="{Binding UpdateMusicListCommand}">
                         <ListView x:Name="MusicPageMusicListListView"
-                                SeparatorVisibility="None"
-                                SelectedItem="{Binding SelectedMusic}"
-                                ItemsSource="{Binding MusicList, Mode=OneWay}">
+                                  SeparatorVisibility="Default"
+                                  SelectedItem="{Binding SelectedMusic}"
+                                  ItemsSource="{Binding MusicList, Mode=OneWay}">
                             <ListView.ItemTemplate>
                                 <DataTemplate>
                                     <ViewCell>
@@ -67,35 +68,18 @@
                                                     Command="{Binding Source={x:Reference MusicsPage}, Path=BindingContext.RemoveMusicCommand}"
                                                     CommandParameter="{Binding }"/>
                                         </ViewCell.ContextActions>
-                                        <StackLayout VerticalOptions="FillAndExpand"
-                                                    BackgroundColor="White"
-                                                    Orientation="Vertical"
-                                                    Spacing="0"
-                                                    Padding="7"
-                                                    Margin="0,0,0,5">
-                                            <Grid>
-                                                <Grid.RowDefinitions>
-                                                    <RowDefinition Height="auto"/>
-                                                </Grid.RowDefinitions>
-                                                <Grid.ColumnDefinitions>
-                                                    <ColumnDefinition Width="*"/>
-                                                    <ColumnDefinition Width="auto"/>
-                                                </Grid.ColumnDefinitions>
+                                        <StackLayout BackgroundColor="White"
+                                                     Orientation="Vertical"
+                                                     Padding="10,0">
+                                            <StackLayout Orientation="Horizontal">
                                                 <Label Text="{Binding Name}"
-                                                    FontSize="14"
-                                                    VerticalOptions="Center"
-                                                    TextColor="Black"/>
+                                                       Style="{StaticResource PrimaryLabel}"/>
                                                 <Label Text="{Binding Key}"
-                                                    FontSize="14"
-                                                    VerticalOptions="Center"
-                                                    TextColor="Black"
-                                                    Grid.Column="1"/>
-                                            </Grid>
+                                                       HorizontalOptions="EndAndExpand"
+                                                       Style="{StaticResource PrimaryLabel}"/>
+                                            </StackLayout>
                                             <Label Text="{Binding Author}"
-                                                FontSize="10"
-                                                VerticalOptions="Center"
-                                                TextColor="DarkSlateGray"
-                                                Margin="0"/>
+                                                   Style="{StaticResource SecondaryLabel}"/>
                                         </StackLayout>
                                     </ViewCell>
                                 </DataTemplate>
@@ -105,13 +89,11 @@
                 </StackLayout>
             </ContentView>
 
-            <Button x:Name="AddMusicButton" Text="+"
-                FontSize="30" TextColor="White" Padding="0,0,0,3"
-                CornerRadius="100" WidthRequest="55" HeightRequest="55"
-                BackgroundColor="Orange"
-                Command="{Binding NewMusicCommand}"
-                RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=1, Constant=-65}"  
-                RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=1, Constant=-65}"/>
+            <Button x:Name="AddMusicButton"
+                    Style="{StaticResource FloatingButton}"
+                    Command="{Binding NewMusicCommand}"
+                    RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=1, Constant=-65}"  
+                    RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=1, Constant=-65}"/>
         </RelativeLayout>
     </ContentPage.Content>
 </ContentPage>
