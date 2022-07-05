@@ -5,6 +5,7 @@
             xmlns:converters="clr-namespace:SongbookManagerLite.Converters"
             xmlns:resource="clr-namespace:SongbookManagerLite.Resx"
             xmlns:controls="clr-namespace:MarcTron.Plugin.Controls;assembly=Plugin.MtAdmob"
+            Style="{StaticResource BaseContentPage}"
             x:Class="SongbookManagerLite.Views.PreviewMusicPage">
 
     <TabbedPage.Resources>
@@ -12,79 +13,73 @@
     </TabbedPage.Resources>
     
     <TabbedPage.ToolbarItems>
-        <ToolbarItem Text="{x:Static resource:AppResources.Edit}" Order="Primary" Command="{Binding EditMusicCommand}"/>
-        <ToolbarItem Text="{x:Static resource:AppResources.Delete}" Order="Primary" Command="{Binding RemoveMusicCommand}"/>
+        <ToolbarItem Text="{x:Static resource:AppResources.Edit}" Order="Primary" Command="{Binding EditMusicCommand}" IconImageSource="edit.png"/>
+        <ToolbarItem Text="{x:Static resource:AppResources.Delete}" Order="Primary" Command="{Binding RemoveMusicCommand}" IconImageSource="delete.png"/>
     </TabbedPage.ToolbarItems>
 
-    <ContentPage Title="{x:Static resource:AppResources.Details}" Padding="5">
+    <ContentPage Title="{x:Static resource:AppResources.Details}" Style="{StaticResource BaseContentPage}">
         <ContentPage.Content>
-            <StackLayout>
-                <ScrollView>
-                    <StackLayout>
-                        <controls:MTAdView x:Name="PreviewMusicDetailAds" IsVisible="true" AdsId="ca-app-pub-3940256099942544/6300978111" VerticalOptions="EndAndExpand" >
-                            <controls:MTAdView.HeightRequest>
-                                <x:OnIdiom>
-                                    <x:OnIdiom.Phone>50</x:OnIdiom.Phone>
-                                    <x:OnIdiom.Tablet>90</x:OnIdiom.Tablet>
-                                    <x:OnIdiom.Desktop>90</x:OnIdiom.Desktop>
-                                </x:OnIdiom>
-                            </controls:MTAdView.HeightRequest>
-                        </controls:MTAdView>
+            <ScrollView>
+                <StackLayout Spacing="10">
+                    <controls:MTAdView x:Name="PreviewMusicDetailAds" IsVisible="true" AdsId="ca-app-pub-3940256099942544/6300978111">
+                        <controls:MTAdView.HeightRequest>
+                            <x:OnIdiom>
+                                <x:OnIdiom.Phone>50</x:OnIdiom.Phone>
+                                <x:OnIdiom.Tablet>90</x:OnIdiom.Tablet>
+                                <x:OnIdiom.Desktop>90</x:OnIdiom.Desktop>
+                            </x:OnIdiom>
+                        </controls:MTAdView.HeightRequest>
+                    </controls:MTAdView>
 
+                    <StackLayout Spacing="10" Padding="10">
                         <Label Text="{Binding Name}"
-                               FontSize="12"
-                               FontAttributes="Bold"
-                               TextColor="DarkSlateGray"></Label>
+                            Style="{StaticResource PrimaryLabel}"></Label>
 
                         <Label Text="{Binding Author}"
-                               FontSize="12"
-                               FontAttributes="Bold"
-                               TextColor="DarkSlateGray"></Label>
+                            Style="{StaticResource SecondaryLabel}"></Label>
 
                         <Label Text="{Binding Lyrics}"
-                               FontSize="12"
-                               FontAttributes="Bold"
-                               TextColor="DarkSlateGray"></Label>
+                            Style="{StaticResource MediumLabel}"></Label>
                     </StackLayout>
-                </ScrollView>
-            </StackLayout>
+                </StackLayout>
+            </ScrollView>
         </ContentPage.Content>
     </ContentPage>
 
-    <ContentPage Title="{x:Static resource:AppResources.Chords}">
+    <ContentPage Title="{x:Static resource:AppResources.Chords}" Style="{StaticResource BaseContentPage}">
         <ContentPage.Content>
-            <StackLayout>
-                <ScrollView>
-                    <StackLayout>
-                        <controls:MTAdView x:Name="PreviewMusicChordsAds" IsVisible="true" AdsId="ca-app-pub-3940256099942544/6300978111" VerticalOptions="EndAndExpand" >
-                            <controls:MTAdView.HeightRequest>
-                                <x:OnIdiom>
-                                    <x:OnIdiom.Phone>50</x:OnIdiom.Phone>
-                                    <x:OnIdiom.Tablet>90</x:OnIdiom.Tablet>
-                                    <x:OnIdiom.Desktop>90</x:OnIdiom.Desktop>
-                                </x:OnIdiom>
-                            </controls:MTAdView.HeightRequest>
-                        </controls:MTAdView>
-                        
-                        <Label Text="{Binding Key}"
-                               FontSize="12"
-                               FontAttributes="Bold"
-                               TextColor="DarkSlateGray"></Label>
+            <ScrollView>
+                <StackLayout Spacing="10">
+                    <controls:MTAdView x:Name="PreviewMusicChordsAds" IsVisible="true" AdsId="ca-app-pub-3940256099942544/6300978111">
+                        <controls:MTAdView.HeightRequest>
+                            <x:OnIdiom>
+                                <x:OnIdiom.Phone>50</x:OnIdiom.Phone>
+                                <x:OnIdiom.Tablet>90</x:OnIdiom.Tablet>
+                                <x:OnIdiom.Desktop>90</x:OnIdiom.Desktop>
+                            </x:OnIdiom>
+                        </controls:MTAdView.HeightRequest>
+                    </controls:MTAdView>
+
+                    <StackLayout Padding="10" Spacing="20">
+                        <StackLayout Orientation="Horizontal" Spacing="5">
+                            <Label Text="{x:Static resource:AppResources.Key}"
+                                   Style="{StaticResource MediumLabel}"></Label>
+                            <Label Text="{Binding Key}"
+                                   Style="{StaticResource SecondaryLabel}"></Label>
+                        </StackLayout>
 
                         <Label Text="{Binding Chords}"
-                               FontSize="12"
-                               FontAttributes="Bold"
-                               TextColor="DarkSlateGray"></Label>
+                               Style="{StaticResource MediumLabel}"></Label>
                     </StackLayout>
-                </ScrollView>
-            </StackLayout>
+                </StackLayout>
+            </ScrollView>
         </ContentPage.Content>
     </ContentPage>
 
-    <ContentPage Title="{x:Static resource:AppResources.Keys}">
+    <ContentPage Title="{x:Static resource:AppResources.Keys}" Style="{StaticResource BaseContentPage}">
         <ContentPage.Content>
-            <StackLayout>
-                <controls:MTAdView x:Name="PreviewMusicKeysAds" IsVisible="true" AdsId="ca-app-pub-3940256099942544/6300978111" VerticalOptions="EndAndExpand" >
+            <StackLayout Spacing="5">
+                <controls:MTAdView x:Name="PreviewMusicKeysAds" IsVisible="true" AdsId="ca-app-pub-3940256099942544/6300978111">
                     <controls:MTAdView.HeightRequest>
                         <x:OnIdiom>
                             <x:OnIdiom.Phone>50</x:OnIdiom.Phone>
@@ -95,43 +90,27 @@
                 </controls:MTAdView>
                 
                 <Label Text="{x:Static resource:AppResources.ThereAreNoSingersWithSavedKeysForThisSong}"
-                       FontSize="12"
-                       FontAttributes="Bold"
-                       TextColor="DarkSlateGray"
-                       HorizontalOptions="Center"
-                       Margin="0,10,0,0"
+                       Style="{StaticResource SecondaryLabel}"
+                       HorizontalTextAlignment="Center" HorizontalOptions="Center"
+                       Margin="0,10,0,0" Padding="10"
                        IsVisible="{Binding HasSingers, Converter={StaticResource reverseBoolConverter}}"></Label>
                 
                 <ListView x:Name="UserListListView"
-                          SeparatorVisibility="None"
+                          SeparatorVisibility="Default"
+                          HasUnevenRows="True"
+                          SelectionMode="None"
                           ItemsSource="{Binding UserList, Mode=OneWay}">
                         <ListView.ItemTemplate>
                             <DataTemplate>
                                 <ViewCell>
-                                    <StackLayout VerticalOptions="FillAndExpand"
-                                             BackgroundColor="White"
-                                             Orientation="Vertical"
-                                             Spacing="0"
-                                             Padding="7"
-                                             Margin="0,0,0,5">
-                                        <Grid>
-                                            <Grid.RowDefinitions>
-                                                <RowDefinition Height="auto"/>
-                                            </Grid.RowDefinitions>
-                                            <Grid.ColumnDefinitions>
-                                                <ColumnDefinition Width="*"/>
-                                                <ColumnDefinition Width="auto"/>
-                                            </Grid.ColumnDefinitions>
-                                            <Label Text="{Binding UserName}"
-                                                   FontSize="14"
-                                                   VerticalOptions="Center"
-                                                   TextColor="Black"/>
-                                            <Label Text="{Binding Key}"
-                                                   FontSize="14"
-                                                   VerticalOptions="Center"
-                                                   TextColor="Black"
-                                                   Grid.Column="1"/>
-                                        </Grid>
+                                    <StackLayout BackgroundColor="White"
+                                                 Orientation="Horizontal"
+                                                 Padding="10">
+                                        <Label Text="{Binding UserName}"
+                                               Style="{StaticResource MediumLabel}"/>
+                                        <Label Text="{Binding Key}"
+                                               Style="{StaticResource MediumLabel}"
+                                               HorizontalOptions="EndAndExpand"/>
                                     </StackLayout>
                                 </ViewCell>
                             </DataTemplate>

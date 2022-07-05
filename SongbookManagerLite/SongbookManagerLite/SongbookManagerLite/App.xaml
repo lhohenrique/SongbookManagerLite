@@ -65,6 +65,11 @@
                 <Setter Property="Padding" Value="0,0,0,3"/>
                 <Setter Property="Text" Value="+"/>
             </Style>
+
+            <Style x:Key="IconListButton" TargetType="ImageButton">
+                <Setter Property="WidthRequest" Value="25"/>
+                <Setter Property="BackgroundColor" Value="Transparent"/>
+            </Style>
         </ResourceDictionary>
     </Application.Resources>
 </Application>

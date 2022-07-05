@@ -61,23 +61,20 @@
                             <ListView.ItemTemplate>
                                 <DataTemplate>
                                     <ViewCell>
-                                        <ViewCell.ContextActions>
-                                            <MenuItem Text="{x:Static resource:AppResources.Edit}"
-                                                    Command="{Binding Source={x:Reference MusicsPage}, Path=BindingContext.EditMusicCommand}"
-                                                    CommandParameter="{Binding }"/>
-                                            <MenuItem Text="{x:Static resource:AppResources.Delete}"
-                                                    Command="{Binding Source={x:Reference MusicsPage}, Path=BindingContext.RemoveMusicCommand}"
-                                                    CommandParameter="{Binding }"/>
-                                        </ViewCell.ContextActions>
                                         <StackLayout BackgroundColor="White"
                                                      Orientation="Vertical"
                                                      Padding="10">
                                             <StackLayout Orientation="Horizontal">
                                                 <Label Text="{Binding Name}"
                                                        Style="{StaticResource PrimaryLabel}"/>
-                                                <Label Text="{Binding Key}"
-                                                       HorizontalOptions="EndAndExpand"
-                                                       Style="{StaticResource PrimaryLabel}"/>
+                                                <ImageButton Source="edit.png" HorizontalOptions="EndAndExpand" Margin="0,0,10,0"
+                                                             Style="{StaticResource IconListButton}"
+                                                             Command="{Binding Source={x:Reference MusicsPage}, Path=BindingContext.EditMusicCommand}"
+                                                             CommandParameter="{Binding }"/>
+                                                <ImageButton Source="delete.png" HorizontalOptions="End"
+                                                             Style="{StaticResource IconListButton}"
+                                                             Command="{Binding Source={x:Reference MusicsPage}, Path=BindingContext.RemoveMusicCommand}"
+                                                             CommandParameter="{Binding }"/>
                                             </StackLayout>
                                             <Label Text="{Binding Author}"
                                                    Style="{StaticResource SecondaryLabel}"/>
