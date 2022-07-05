@@ -5,6 +5,7 @@
              xmlns:resource="clr-namespace:SongbookManagerLite.Resx"
              xmlns:converters="clr-namespace:SongbookManagerLite.Converters"
              xmlns:controls="clr-namespace:MarcTron.Plugin.Controls;assembly=Plugin.MtAdmob"
+             Style="{StaticResource BaseContentPage}"
              Shell.TabBarIsVisible="False"
              Title="{x:Static resource:AppResources.Share}"
              x:Class="SongbookManagerLite.Views.SharePage">
@@ -13,42 +14,8 @@
     </ContentPage.Resources>
     
     <ContentPage.Content>
-        <StackLayout Padding="10">
-            <StackLayout Orientation="Vertical" IsVisible="{Binding IsSharedList}">
-                <Label Text="{x:Static resource:AppResources.AccessingSharedList}"
-                   FontSize="20"
-                   FontAttributes="Bold"
-                   TextColor="DarkSlateGray"></Label>
-                <Label Text="{Binding SharedName}"
-                       FontSize="14"
-                       VerticalOptions="Center"
-                       TextColor="Black"/>
-                <Label Text="{Binding SharedEmail}"
-                        FontSize="10"
-                        VerticalOptions="Center"
-                        TextColor="DarkSlateGray"
-                        Margin="0"/>
-                <Button Text="{x:Static resource:AppResources.StopSharing}" Command="{Binding UnshareCommand}"/>
-            </StackLayout>
-            <Grid IsVisible="{Binding IsSharedList, Converter={StaticResource reverseBoolConverter}}">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="auto"/>
-                    <RowDefinition Height="auto"/>
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="auto"/>
-                </Grid.ColumnDefinitions>
-                <Label Text="{x:Static resource:AppResources.ShareYourSongs}"
-                   FontSize="20"
-                   FontAttributes="Bold"
-                   TextColor="DarkSlateGray"></Label>
-
-                <Entry Placeholder="{x:Static resource:AppResources.AddPeople}" Text="{Binding Email}" Keyboard="Email" Grid.Row="1"/>
-                <Button Text="{x:Static resource:AppResources.Share}" Grid.Row="1" Grid.Column="1" IsEnabled="{Binding IsShareEnabled}" Command="{Binding ShareCommand}"/>
-            </Grid>
-
-            <controls:MTAdView x:Name="SharePageAds" IsVisible="true" AdsId="ca-app-pub-3940256099942544/6300978111" VerticalOptions="EndAndExpand" >
+        <StackLayout>
+            <controls:MTAdView x:Name="SharePageAds" IsVisible="true" AdsId="ca-app-pub-3940256099942544/6300978111">
                 <controls:MTAdView.HeightRequest>
                     <x:OnIdiom>
                         <x:OnIdiom.Phone>50</x:OnIdiom.Phone>
@@ -58,33 +25,52 @@
                 </controls:MTAdView.HeightRequest>
             </controls:MTAdView>
             
+            <StackLayout Orientation="Vertical" IsVisible="{Binding IsSharedList}" Padding="10" Spacing="10">
+                <Label Text="{x:Static resource:AppResources.AccessingSharedList}"
+                       Style="{StaticResource TitleLabel}"></Label>
+                <Label Text="{Binding SharedName}"
+                       Style="{StaticResource PrimaryLabel}"/>
+                <Label Text="{Binding SharedEmail}"
+                        Style="{StaticResource SecondaryLabel}"/>
+                <Button Text="{x:Static resource:AppResources.StopSharing}"
+                        Command="{Binding UnshareCommand}"
+                        Style="{StaticResource MainButton}"
+                        Margin="0,10,0,0"/>
+            </StackLayout>
+
+            <StackLayout IsVisible="{Binding IsSharedList, Converter={StaticResource reverseBoolConverter}}" Padding="10" Spacing="10">
+                <Label Text="{x:Static resource:AppResources.ShareYourSongs}" Style="{StaticResource TitleLabel}"></Label>
+                
+                <Entry Placeholder="{x:Static resource:AppResources.AddPeople}" Text="{Binding Email}" Keyboard="Email" Grid.Row="1"/>
+                
+                <Button Text="{x:Static resource:AppResources.Share}"
+                        Style="{StaticResource MainButton}"
+                        IsEnabled="{Binding IsShareEnabled}"
+                        Command="{Binding ShareCommand}"/>
+            </StackLayout>
+
             <RefreshView IsRefreshing="{Binding IsUpdating, Mode=OneWay}" Command="{Binding UpdateUserListCommand}" IsVisible="{Binding IsSharedList, Converter={StaticResource reverseBoolConverter}}">
                 <ListView x:Name="SharedUserListView"
-                          SeparatorVisibility="None"
+                          SeparatorVisibility="Default"
+                          HasUnevenRows="True"
                           ItemsSource="{Binding UserList, Mode=OneWay}">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell>
-                                <ViewCell.ContextActions>
-                                    <MenuItem Text="{x:Static resource:AppResources.Remove}"
-                                              Command="{Binding Source={x:Reference ShareContentPage}, Path=BindingContext.RemoveShareCommand}"
-                                              CommandParameter="{Binding }"/>
-                                </ViewCell.ContextActions>
-                                <StackLayout VerticalOptions="FillAndExpand"
-                                         BackgroundColor="White"
-                                         Orientation="Vertical"
-                                         Spacing="0"
-                                         Padding="7"
-                                         Margin="0,0,0,5">
-                                    <Label Text="{Binding Name}"
-                                       FontSize="14"
-                                       VerticalOptions="Center"
-                                       TextColor="Black"/>
+                                <StackLayout BackgroundColor="White"
+                                             Orientation="Vertical"
+                                             Padding="10">
+                                    <StackLayout Orientation="Horizontal">
+                                        <Label Text="{Binding Name}"
+                                           Style="{StaticResource PrimaryLabel}"/>
+                                        <ImageButton Source="removeShare.png" Style="{StaticResource IconListButton}"
+                                                     HorizontalOptions="EndAndExpand"
+                                                     Command="{Binding Source={x:Reference ShareContentPage}, Path=BindingContext.RemoveShareCommand}"
+                                                     CommandParameter="{Binding }"/>
+                                    </StackLayout>
+                                    
                                     <Label Text="{Binding Email}"
-                                       FontSize="10"
-                                       VerticalOptions="Center"
-                                       TextColor="DarkSlateGray"
-                                       Margin="0"/>
+                                           Style="{StaticResource SecondaryLabel}"/>
                                 </StackLayout>
                             </ViewCell>
                         </DataTemplate>
