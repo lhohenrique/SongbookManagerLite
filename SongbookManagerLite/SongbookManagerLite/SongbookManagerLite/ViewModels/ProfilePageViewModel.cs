@@ -4,6 +4,7 @@ using SongbookManagerLite.Services;
 using SongbookManagerLite.Views;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Text;
 using System.Threading.Tasks;
@@ -50,6 +51,33 @@ namespace SongbookManagerLite.ViewModels
                 isSinger = value;
                 PropertyChanged(this, new PropertyChangedEventArgs("IsSinger"));
                 UpdateUserAsync();
+            }
+        }
+
+        private ObservableCollection<string> menuList = new ObservableCollection<string>()
+        {
+            string.Empty,
+            AppResources.ChangePassword,
+            AppResources.Feedback,
+            AppResources.RateUs,
+            AppResources.PrivacyPolicy,
+            AppResources.Logout
+        };
+        public ObservableCollection<string> MenuList
+        {
+            get { return menuList; }
+            set { menuList = value; }
+        }
+
+        private string selectedMenu;
+        public string SelectedMenu
+        {
+            get => selectedMenu;
+            set
+            {
+                selectedMenu = value;
+                PropertyChanged(this, new PropertyChangedEventArgs("SelectedMenu"));
+                SelectedItemChangedAction();
             }
         }
         #endregion
@@ -136,6 +164,35 @@ namespace SongbookManagerLite.ViewModels
             Name = LoggedUserHelper.LoggedUser.Name;
             Email = LoggedUserHelper.LoggedUser.Email;
             IsSinger = LoggedUserHelper.LoggedUser.IsSinger;
+        }
+
+        public void SelectedItemChangedAction()
+        {
+            if (!string.IsNullOrEmpty(SelectedMenu))
+            {
+                if (SelectedMenu.Equals(AppResources.ChangePassword))
+                {
+                    ChangePasswordAction();
+                }
+                else if (SelectedMenu.Equals(AppResources.Feedback))
+                {
+                    FeedbackAction();
+                }
+                else if (SelectedMenu.Equals(AppResources.RateUs))
+                {
+                    RateAppAction();
+                }
+                else if (SelectedMenu.Equals(AppResources.PrivacyPolicy))
+                {
+                    PrivacyPolicyAction();
+                }
+                else if (SelectedMenu.Equals(AppResources.Logout))
+                {
+                    LogoutAction();
+                }
+
+                SelectedMenu = string.Empty;
+            }
         }
         #endregion
 
