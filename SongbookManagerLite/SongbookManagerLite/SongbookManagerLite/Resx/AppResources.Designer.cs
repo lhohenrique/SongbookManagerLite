@@ -160,6 +160,15 @@ namespace SongbookManagerLite.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Could not load singers.
+        /// </summary>
+        internal static string CouldNotLoadSingers {
+            get {
+                return ResourceManager.GetString("CouldNotLoadSingers", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Could not load song.
         /// </summary>
         internal static string CouldNotLoadSong {
@@ -255,6 +264,15 @@ namespace SongbookManagerLite.Resx {
         internal static string EmailWithNewPasswordSent {
             get {
                 return ResourceManager.GetString("EmailWithNewPasswordSent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enter a name for the song.
+        /// </summary>
+        internal static string EnterNameForTheSong {
+            get {
+                return ResourceManager.GetString("EnterNameForTheSong", resourceCulture);
             }
         }
         

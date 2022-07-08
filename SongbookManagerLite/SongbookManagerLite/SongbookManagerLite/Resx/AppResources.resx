@@ -150,6 +150,9 @@
   <data name="CouldNotChangePassword" xml:space="preserve">
     <value>Could not change password</value>
   </data>
+  <data name="CouldNotLoadSingers" xml:space="preserve">
+    <value>Could not load singers</value>
+  </data>
   <data name="CouldNotLoadSong" xml:space="preserve">
     <value>Could not load song</value>
   </data>
@@ -182,6 +185,9 @@
   </data>
   <data name="EmailWithNewPasswordSent" xml:space="preserve">
     <value>Email with your new password sent</value>
+  </data>
+  <data name="EnterNameForTheSong" xml:space="preserve">
+    <value>Enter a name for the song</value>
   </data>
   <data name="Error" xml:space="preserve">
     <value>Error</value>
