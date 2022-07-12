@@ -141,7 +141,7 @@ namespace SongbookManagerLite.ViewModels
 
         public void PrivacyPolicyAction()
         {
-            // Navigate to privacy policy page
+            Navigation.PushAsync(new PrivacyPolicyPage());
         }
 
         public async void LogoutAction()
