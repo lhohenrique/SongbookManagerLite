@@ -23,7 +23,7 @@
                       SeparatorVisibility="Default"
                       SeparatorColor="#5B6677"
                       HasUnevenRows="True"
-                      Margin="0,-12,0,0"
+                      Margin="0,-10,0,0"
                       SelectedItem="{Binding SelectedMenu, Mode=TwoWay}"
                       ItemsSource="{Binding MenuList, Mode=OneWay}">
                 <ListView.ItemTemplate>

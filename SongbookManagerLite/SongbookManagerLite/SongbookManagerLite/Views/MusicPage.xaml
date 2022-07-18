@@ -27,8 +27,6 @@
         <ToolbarItem Text="{x:Static resource:AppResources.SortByAlphabet}" Order="Secondary" Command="{Binding AlphabeticalOrderCommand}"/>
         <ToolbarItem Text="{x:Static resource:AppResources.SortByMostRecent}" Order="Secondary" Command="{Binding MostRecentOrderCommand}"/>
         <ToolbarItem Text="{x:Static resource:AppResources.SortByOldest}" Order="Secondary" Command="{Binding OldestOrderCommand}"/>
-        <ToolbarItem Text="Clear" Order="Secondary" Command="{Binding ClearCommand}"/>
-        <ToolbarItem Text="Mock" Order="Secondary" Command="{Binding MockMusicCommand}"/>
     </ContentPage.ToolbarItems>
 
     <ContentPage.Content>
@@ -63,16 +61,16 @@
                                     <ViewCell>
                                         <StackLayout BackgroundColor="White"
                                                      Orientation="Vertical"
-                                                     Padding="10">
+                                                     Padding="10,5">
                                             <StackLayout Orientation="Horizontal">
                                                 <Label Text="{Binding Name}"
                                                        Style="{StaticResource PrimaryLabel}"/>
                                                 <ImageButton Source="edit.png" HorizontalOptions="EndAndExpand" Margin="0,0,10,0"
-                                                             Style="{StaticResource IconListButton}"
+                                                             Style="{StaticResource IconListButton}" IsVisible="false"
                                                              Command="{Binding Source={x:Reference MusicsPage}, Path=BindingContext.EditMusicCommand}"
                                                              CommandParameter="{Binding }"/>
                                                 <ImageButton Source="delete.png" HorizontalOptions="End"
-                                                             Style="{StaticResource IconListButton}"
+                                                             Style="{StaticResource IconListButton}" IsVisible="false"
                                                              Command="{Binding Source={x:Reference MusicsPage}, Path=BindingContext.RemoveMusicCommand}"
                                                              CommandParameter="{Binding }"/>
                                             </StackLayout>
@@ -91,7 +89,7 @@
                     Style="{StaticResource FloatingButton}"
                     Command="{Binding NewMusicCommand}"
                     RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=1, Constant=-70}"  
-                    RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=1, Constant=-60}"/>
+                    RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=1, Constant=-70}"/>
         </RelativeLayout>
     </ContentPage.Content>
 </ContentPage>
