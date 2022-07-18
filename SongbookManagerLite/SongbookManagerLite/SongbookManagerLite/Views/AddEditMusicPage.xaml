@@ -21,7 +21,7 @@
     <ContentPage Title="{x:Static resource:AppResources.Details}" Style="{StaticResource BaseContentPage}">
         <ScrollView>
             <StackLayout Spacing="10">
-                <controls:MTAdView x:Name="AddEditMusicDetailAds" IsVisible="true" AdsId="ca-app-pub-3940256099942544/6300978111">
+                <controls:MTAdView x:Name="AddEditMusicDetailAds" IsVisible="true" AdsId="ca-app-pub-4649626975914217/2317560399">
                     <controls:MTAdView.HeightRequest>
                         <x:OnIdiom>
                             <x:OnIdiom.Phone>50</x:OnIdiom.Phone>
@@ -51,7 +51,7 @@
     <ContentPage Title="{x:Static resource:AppResources.Chords}" Style="{StaticResource BaseContentPage}">
         <ScrollView>
             <StackLayout Spacing="10">
-                <controls:MTAdView x:Name="AddEditMusicChordsAds" IsVisible="true" AdsId="ca-app-pub-3940256099942544/6300978111">
+                <controls:MTAdView x:Name="AddEditMusicChordsAds" IsVisible="true" AdsId="ca-app-pub-4649626975914217/2317560399">
                     <controls:MTAdView.HeightRequest>
                         <x:OnIdiom>
                             <x:OnIdiom.Phone>50</x:OnIdiom.Phone>
@@ -77,7 +77,7 @@
 
     <ContentPage Title="{x:Static resource:AppResources.Keys}" Style="{StaticResource BaseContentPage}">
         <StackLayout>
-            <controls:MTAdView x:Name="AddEditMusicKeysAds" IsVisible="true" AdsId="ca-app-pub-3940256099942544/6300978111">
+            <controls:MTAdView x:Name="AddEditMusicKeysAds" IsVisible="true" AdsId="ca-app-pub-4649626975914217/2317560399">
                 <controls:MTAdView.HeightRequest>
                     <x:OnIdiom>
                         <x:OnIdiom.Phone>50</x:OnIdiom.Phone>
