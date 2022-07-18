@@ -35,7 +35,7 @@
         <RelativeLayout>
             <ContentView RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=1}"  
                          RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=1}">
-                <StackLayout>
+                <StackLayout Spacing="2">
                     <StackLayout Orientation="Horizontal">
                         <SearchBar x:Name="MusicSearchBar" Placeholder="{x:Static resource:AppResources.Search}" Text="{Binding SearchText}"  TextChanged="MusicSearchBar_TextChanged" HorizontalOptions="FillAndExpand" />
                     </StackLayout>
@@ -52,7 +52,7 @@
                         </controls:MTAdView>
                     </StackLayout>
 
-                    <RefreshView IsRefreshing="{Binding IsUpdating, Mode=OneWay}" Command="{Binding UpdateMusicListCommand}">
+                    <RefreshView IsRefreshing="{Binding IsUpdating, Mode=OneWay}" Command="{Binding UpdateMusicListCommand}" Padding="0,0,0,2">
                         <ListView x:Name="MusicPageMusicListListView"
                                   SeparatorVisibility="Default"
                                   SelectedItem="{Binding SelectedMusic}"

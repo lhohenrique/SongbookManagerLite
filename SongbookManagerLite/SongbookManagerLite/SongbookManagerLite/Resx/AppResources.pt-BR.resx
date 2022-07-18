@@ -199,7 +199,7 @@
     <value>Feedback</value>
   </data>
   <data name="FeedbackForSongbook" xml:space="preserve">
-    <value>Feedback para Songbook Manager</value>
+    <value>Feedback para Song Folder Lite</value>
   </data>
   <data name="ForgotPassword" xml:space="preserve">
     <value>Esqueceu a senha?</value>
@@ -250,7 +250,7 @@
     <value>Olá,\n\nSua nova senha é: XXXXXX\n\nUtilize esta senha para logar no aplicativo. Você poderá altera-la dentro da aplicação.\n\nObrigado,\n\nEquipe Songbook</value>
   </data>
   <data name="NewPasswordEmailSubject" xml:space="preserve">
-    <value>Nova senha de acesso para Songbook Manager</value>
+    <value>Nova senha de acesso para Song Folder Lite</value>
   </data>
   <data name="NewUser" xml:space="preserve">
     <value>Novo usuário?</value>

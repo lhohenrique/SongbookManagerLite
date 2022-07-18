@@ -4,6 +4,8 @@
        xmlns:Views="clr-namespace:SongbookManagerLite.Views"
        xmlns:resource="clr-namespace:SongbookManagerLite.Resx"
        Shell.TabBarTitleColor="#131516"
+       Shell.TabBarUnselectedColor="#5B6677"
+       Shell.TabBarDisabledColor="LightGray"
        x:Class="SongbookManagerLite.MainPage">
 
     <ShellItem Route="LoginPage" FlyoutItemIsVisible="False">

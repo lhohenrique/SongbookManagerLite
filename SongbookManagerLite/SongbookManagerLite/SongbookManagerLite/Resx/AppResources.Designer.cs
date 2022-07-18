@@ -304,7 +304,7 @@ namespace SongbookManagerLite.Resx {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Feedback for Song Folder.
+        ///   Looks up a localized string similar to Feedback for Song Folder Lite.
         /// </summary>
         internal static string FeedbackForSongbook {
             get {
@@ -457,7 +457,7 @@ namespace SongbookManagerLite.Resx {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to New password for Song Folder.
+        ///   Looks up a localized string similar to New password for Song Folder Lite.
         /// </summary>
         internal static string NewPasswordEmailSubject {
             get {

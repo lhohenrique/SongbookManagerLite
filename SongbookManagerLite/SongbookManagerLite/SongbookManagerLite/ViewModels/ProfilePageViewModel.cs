@@ -128,8 +128,8 @@ namespace SongbookManagerLite.ViewModels
             //string url = Device.RuntimePlatform == Device.iOS ? "https://itunes.apple.com/br/app/skype-para-iphone/id304878510?mt=8"
             //   : "https://play.google.com/store/apps/details?id=com.skype.raider&hl=pt_BR";
 
-            string url = Device.RuntimePlatform == Device.iOS ? "https://itunes.apple.com/br/app/skype-para-iphone/id304878510?mt=8"
-               : "https://play.google.com/store/search?q=Songbook%20Manager&c=apps";
+            string url = Device.RuntimePlatform == Device.iOS ? "https://itunes.apple.com/br/app/song-folder-lite/id304878510?mt=8"
+               : "https://play.google.com/store/search?q=Song%20Folder%20Lite&c=apps";
         
             Launcher.OpenAsync(new Uri(url));
         }

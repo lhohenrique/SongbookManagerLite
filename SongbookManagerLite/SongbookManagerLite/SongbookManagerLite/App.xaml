@@ -39,6 +39,24 @@
                 <Setter Property="FontSize" Value="Medium"/>
             </Style>
 
+            <Style TargetType="Entry">
+                <Setter Property="FontFamily" Value="Verdana"/>
+                <Setter Property="TextColor" Value="#131516"/>
+                <Setter Property="PlaceholderColor" Value="LightGray" />
+            </Style>
+
+            <Style TargetType="Editor">
+                <Setter Property="FontFamily" Value="Verdana"/>
+                <Setter Property="TextColor" Value="#131516"/>
+                <Setter Property="PlaceholderColor" Value="LightGray" />
+            </Style>
+
+            <Style TargetType="Picker">
+                <Setter Property="FontFamily" Value="Verdana"/>
+                <Setter Property="TextColor" Value="#131516"/>
+                <Setter Property="TitleColor" Value="LightGray"/>
+            </Style>
+
             <Style x:Key="BaseButton" TargetType="Button">
                 <Setter Property="BackgroundColor" Value="#5B6677"/>
                 <Setter Property="TextColor" Value="#FFFFFF"/>

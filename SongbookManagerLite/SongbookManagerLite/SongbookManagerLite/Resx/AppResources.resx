@@ -199,7 +199,7 @@
     <value>Feedback</value>
   </data>
   <data name="FeedbackForSongbook" xml:space="preserve">
-    <value>Feedback for Song Folder</value>
+    <value>Feedback for Song Folder Lite</value>
   </data>
   <data name="ForgotPassword" xml:space="preserve">
     <value>Forgot password?</value>
@@ -250,7 +250,7 @@
     <value>Hello,\n\nYour new password is: XXXXXX\n\nUse this password to log into the application. You can change it within the application.\n\nThanks,\n\nSongbook team</value>
   </data>
   <data name="NewPasswordEmailSubject" xml:space="preserve">
-    <value>New password for Song Folder</value>
+    <value>New password for Song Folder Lite</value>
   </data>
   <data name="NewUser" xml:space="preserve">
     <value>Need an account?</value>
