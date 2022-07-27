@@ -55,7 +55,7 @@
     <AndroidCreatePackagePerAbi>false</AndroidCreatePackagePerAbi>
     <AndroidLinkTool>r8</AndroidLinkTool>
     <AndroidKeyStore>true</AndroidKeyStore>
-    <AndroidLinkMode>Full</AndroidLinkMode>
+    <AndroidLinkMode>None</AndroidLinkMode>
     <AndroidSigningKeyStore>C:\Users\lho\AppData\Local\Xamarin\Mono for Android\Keystore\chave\chave.keystore</AndroidSigningKeyStore>
     <AndroidSigningStorePass>368869Lho</AndroidSigningStorePass>
     <AndroidSigningKeyAlias>chave</AndroidSigningKeyAlias>
